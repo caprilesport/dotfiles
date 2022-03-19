@@ -1,0 +1,38 @@
+theme = "dracula"
+
+[editor]
+line-number = "relative"
+color-modes = true
+cursorline = true
+
+[editor.cursor-shape]
+insert = "bar"
+normal = "block"
+select = "underline"
+
+[editor.indent-guides]
+render = true
+character = "┊"
+
+[editor.statusline]
+right = [
+  "diagnostics",
+  "version-control",
+  "selections",
+  "file-type",
+  "file-encoding",
+  "file-line-ending",
+  "position",
+  "position-percentage",
+]
+
+[editor.whitespace.render]
+tab = "all"
+
+[editor.soft-wrap]
+enable = true
+
+[editor.lsp]
+display-messages = true
+# display-inlay-hints = true
+

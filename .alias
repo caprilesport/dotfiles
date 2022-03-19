@@ -1,0 +1,54 @@
+#!/usr/bin/env bash
+
+# shortcuts
+alias :q='exit'
+
+# clusters
+alias qsn='ssh newton "qstat"'
+alias qsj='ssh jupiter "qstat"'
+alias qdelnew='ssh newton "qdel"'
+alias qdeljup='ssh jupiter "qdel"'
+
+# Enable aliases to be sudo’ed
+alias sudo='sudo '
+
+# system
+alias update='echo "Updating system..."; sudo apt update; sudo apt upgrade -y; sudo apt autoremove -y'
+alias apti='sudo apt install'
+alias mkdir='mkdir -p'
+alias reload='source ~/.zshrc'
+
+# programs 
+alias fd='fdfind'
+alias df='duf'
+alias crest='/opt/crest'
+alias ipy='ipython'
+alias chemcraft='wine /home/vport/.wine/drive_c/Chemcraft/Chemcraft.exe'
+alias zeattach='zellij attach `zellij ls | fzf` 2> /dev/null'
+
+#nvim
+alias v='nvim'
+alias vim='nvim'
+
+# ledger alias
+alias hled='hledger'
+
+# lsd
+alias ls='lsd'
+alias l='ls -l'
+alias la='ls -a'
+alias lla='ls -la'
+alias lt='ls --tree'
+
+# git 
+alias g='git'
+alias gf='git diff --name-only'
+alias gac='g a . && g c "updates" && g ps'
+
+# csync
+alias cs='csync'
+
+# common conversion 
+alias orca2xyz='obabel -i orca $1 -o xyz'
+
+# fzf
