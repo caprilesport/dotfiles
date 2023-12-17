@@ -62,10 +62,7 @@ echo
 echo
 
 info "Installing some utilities...\n"
-cargo install alacritty
-cargo install lsd
-cargo install cocogitto
-cargo install zellij
+install "nvim build tools" 'ninja-build gettext cmake unzip'
 install "fdfind" 'sudo apt install fd-find -y'
 install "ctags" 'sudo apt install universal-ctags -y'
 install "curl" 'sudo apt install curl -y'
@@ -98,6 +95,9 @@ gh extension install dlvhdr/gh-dash
 echo
 echo
 
+info "Installing nvim\n" 
+install "nvim" 'git clone https://github.com/neovim/neovim/tree/master && cd nvim && make CMAKE_BUILD_TYPE=Release && sudo make install'
+
 info "Updating pyenv and pip (installing if needed)...\n"
 install "pyenv" 'curl https://pyenv.run | bash'
 pyenv update
@@ -108,9 +108,9 @@ install "juliaup" 'curl -fsSL https://install.julialang.org | sh'
 juliaup update
 julia -e "using Pkg; Pkg.update()"
 
-info "Updating npm (installing if needed)...\n"
+# info "Updating npm (installing if needed)...\n"
 # TODO: update node as well before npm
-npm install -g npm@latest
+# npm install -g npm@latest
 
 info "Updating rustup (installing if needed)...\n"
 install "rustup" "curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh"
@@ -174,89 +174,33 @@ else
   success "fzf is already installed\n"
 fi
 
+cargo install alacritty
+cargo install lsd
 
-
-# Rust development
 rustup component add rust-analyzer
-cargo install cargo-audit
-cargo install cargo-bloat
-cargo install cargo-edit
-cargo install cargo-expand
-cargo install cargo-geiger
-cargo install cargo-generate
-cargo install cargo-msrv
-cargo install cargo-outdated
-cargo install cargo-readme
-cargo install cargo-release
-cargo install cargo-tarpaulin
-cargo install cargo-udeps
-cargo install cargo-unused-features
-cargo install cargo-watch
-cargo install cargo-workspaces
 
-# Python development
+# Python 
 pip install -U black
 pip install -U ipython
-pip install -U maturin
-pip install -U pytest
-pip install -U ruff
-
-# Command-line utilities I developed
-cargo install answer
+pip install -U grip
+pip install -U httpie
+pip install -U proselint
 
 # General command-line goodies
-cargo install ast-grep
-cargo install didyoumean
-cargo install du-dust
-cargo install git-cliff
 cargo install git-delta
-cargo install grex
-cargo install just
-cargo install kalker
 cargo install mdbook
 cargo install so
-cargo install tokei
-cargo install typos-cli
-cargo install watchexec-cli
-cargo install whome
 install "broot" 'cargo install broot && broot --install'
 install "lazygit" 'go install github.com/jesseduffield/lazygit@latest'
 install "marp" 'npm install -g @marp-team/marp-cli'
-install "names" "curl -sSf https://fnichol.github.io/names/install.sh | sh -s -- -d $HOME/.local/bin" # TODO: can we use cargo?
 install "starship" 'curl -sS https://starship.rs/install.sh | sh'
-install "tb" 'npm install -g taskbook'
-install "yt-dlp" 'sudo apt install yt-dlp'
 install "zoxide" 'curl -sS https://webinstall.dev/zoxide | bash' # TODO: can we use cargo?
-pip install -U grip
-pip install -U httpie
-pip install -U ipython
-pip install -U proselint
-pip install -U thefuck
+
 
 # Programming language utilities
 install "fnm" 'curl -fsSL https://fnm.vercel.app/install | bash' # TODO: can we use cargo?
 install "poetry" 'curl -sSL https://install.python-poetry.org | python -'
 install "tsc" "npm install -g typescript@latest"
-
-# Language servers
-cargo install taplo-cli --features lsp
-cargo install texlab
-install "awk-language-server" "npm install -g \"awk-language-server@>=0.5.2\""
-install "bash-language-server" "npm install -g bash-language-server"
-install "bibtex-tidy" "npm install -g bibtex-tidy"
-install "elm-language-server" "npm install -g elm-test elm-format elm-review @elm-tooling/elm-language-server" # elm is manually installed
-install "prettier" "npm install -g prettier@latest prettier-plugin-svelte @prettier/plugin-xml prettier-plugin-sh prettier-plugin-elm prettier-plugin-go-template prettier-plugin-toml"
-install "pylsp" "pip install -U 'python-lsp-server[all]' python-lsp-ruff"
-install "pyright" "npm install -g pyright"
-install "svelteserver" "npm install -g svelte-language-server"
-install "typescript-language-server" "npm install -g typescript typescript-language-server"
-install "vls" "npm install -g vls"
-install "vscode-css-language-server" "npm install -g vscode-langservers-extracted" # works with SCSS too
-install "vscode-html-language-server" "npm install -g vscode-langservers-extracted"
-install "vscode-json-language-server" "npm install -g vscode-langservers-extracted"
-install "yaml-language-server" "npm install -g yaml-language-server"
-julia -e "using Pkg; Pkg.add(\"LanguageServer\")" # sadly no formatter configured yet
-pip install -U mdformat mdformat-gfm mdformat-frontmatter mdformat-footnote mdformat-myst
 
 echo
 echo
@@ -267,25 +211,14 @@ info "alacritty:\n"
 info "(the binary itself is installed automatically)\n"
 code "https://github.com/alacritty/alacritty/blob/master/INSTALL.md#manual-installation\n\n"
 
-info "Helix editor:\n"
-info "(might be installed automatically in the future)\n"
-code "https://docs.helix-editor.com/install.html#build-from-source\n\n"
-
 info "JetBrains Mono:\n"
 code "https://github.com/ryanoasis/nerd-fonts/releases\n"
 code "https://askubuntu.com/a/3706/361183\n\n"
 
 info "Pop!_OS Shell:\n"
-info "(might be installed automatically in the future)\n"
 code "https://github.com/pop-os/shell#installation\n"
 code "https://github.com/pop-os/shell-shortcuts#build\n"
 code "https://github.com/pop-os/launcher#installation\n\n"
-
-info "bat:\n"
-code "https://github.com/sharkdp/bat/releases\n\n"
-
-info "dropbox:\n"
-code "https://www.dropbox.com/install\n\n"
 
 info "fd:\n"
 code "https://github.com/sharkdp/fd/releases\n\n"
@@ -294,23 +227,14 @@ info "git-secrets:\n"
 info "(might be installed automatically in the future)\n"
 code "https://github.com/awslabs/git-secrets#nix-linuxmacos\n\n"
 
-info "vivid:\n"
-code "https://github.com/sharkdp/vivid/releases\n\n"
-
-info "Elm:\n"
-code "https://github.com/elm/compiler/blob/master/installers/linux/README.md#install-instructions\n\n"
-
 info "Golang:\n"
 code "https://go.dev/doc/install\n\n"
 
-info "Marksman:\n"
-info "(a language server for Markdown)\n"
-code "https://github.com/artempyanykh/marksman#option-1-use-pre-built-binary\n\n"
-
 info "wine:\n"
 info "run windows programs in linux\n"
-code "https://wiki.winehq.org/Ubuntu"
+code "https://wiki.winehq.org/Ubuntu" 
 
+info "Language servers are managed by neovim, so if you pretend to use other editor install as needed."
 
 echo
 echo
@@ -324,10 +248,8 @@ fi
 sudo update-alternatives --config x-terminal-emulator
 
 # Possible text editors.
-if command -v hx > /dev/null 2>&1; then
-  sudo update-alternatives --install /usr/bin/editor editor "$(which hx)" 60
-  hx --grammar fetch
-  hx --grammar build
+if command -v nvim > /dev/null 2>&1; then
+  sudo update-alternatives --install /usr/bin/editor editor "$(which nvim)" 60
 fi
 sudo update-alternatives --config editor
 
