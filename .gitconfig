@@ -111,7 +111,7 @@
   default = upstream
 [core]
   autocrlf = false
-  editor = nvim
+  editor = hx
   excludesfile = ~/.yadr/git/gitignore
   pager = delta
 [advice]
