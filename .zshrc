@@ -34,8 +34,11 @@ plugins=(
 source "$ZSH/oh-my-zsh.sh"
 
 source /home/vport/.config/broot/launcher/bash/br
-source ~/.fzf/shell/key-bindings.zsh
+source /home/vport/.fzf/shell/key-bindings.zsh
+
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+bindkey -s ^f "zellij-sessionizer ~/projects ~/data/projects \n "
 
 eval "$(starship init zsh)"
 eval "$(zoxide init zsh)"
