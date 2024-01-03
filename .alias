@@ -24,11 +24,9 @@ alias df='duf'
 alias crest='/opt/crest'
 alias ipy='ipython'
 alias chemcraft='wine /home/vport/.wine/drive_c/Chemcraft/Chemcraft.exe'
-alias zeattach='zellij attach `zellij ls | fzf` 2> /dev/null'
-
-#nvim
-alias v='nvim'
-alias vim='nvim'
+alias za='zellij attach `zellij ls -s | fzf` 2> /dev/null'
+alias lg='lazygit'
+alias cp='cp -r'
 
 # ledger alias
 alias hled='hledger'
@@ -51,4 +49,15 @@ alias cs='csync'
 # common conversion 
 alias orca2xyz='obabel -i orca $1 -o xyz'
 
-# fzf
+#hx
+alias v='hx'
+alias vim='hx'
+
+# if no args given open current folder
+hx() {
+  if [[ $# -eq 0 ]]; then
+    command hx .
+  else
+    command hx "$@"
+  fi
+}
