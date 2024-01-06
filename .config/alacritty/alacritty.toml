@@ -1,57 +1,7 @@
+import = [ "~/.config/alacritty/themes/catppuccin-macchiato.toml" ]
+
 [colors]
 transparent_background_colors = true
-
-########### dracula
-[colors.bright]
-black = "#6272a4"
-red = "#ff6e6e"
-green = "#69ff94"
-yellow = "#ffffa5"
-blue = "#d6acff"
-magenta = "#ff92df"
-cyan = "#a4ffff"
-white = "#ffffff"
-
-[colors.normal]
-black = "#21222c"
-red = "#ff5555"
-green = "#50fa7b"
-yellow = "#f1fa8c"
-blue = "#bd93f9"
-magenta = "#ff79c6"
-cyan = "#8be9fd"
-white = "#f8f8f2"
-
-[colors.primary]
-background = "#282a36"
-foreground = "#f8f8f2"
-
-########## tokyonight
-# [colors.primary]
-# background = '0x1a1b26'
-# foreground = '0xc0caf5'
-
-#   # Normal colors
-# [colors.normal]
-# black =   '0x15161e'
-# red =     '0xf7768e'
-# green =   '0x9ece6a'
-# yellow =  '0xe0af68'
-# blue =    '0x7aa2f7'
-# magenta = '0xbb9af7'
-# cyan =    '0x7dcfff'
-# white =   '0xa9b1d6'
-
-#   # Bright colors
-# [colors.bright]
-# black = '0x414868'
-# red = '0xf7768e'
-# green = '0x9ece6a'
-# yellow ='0xe0af68'
-# blue = '0x7aa2f7'
-# magenta = '0xbb9af7'
-# cyan = '0x7dcfff'
-# white = '0xc0caf5'
 
 # fonts
 [font]
