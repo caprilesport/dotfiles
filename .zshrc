@@ -36,11 +36,11 @@ source "$ZSH/oh-my-zsh.sh"
 source /home/vport/.config/broot/launcher/bash/br
 source /home/vport/.fzf/shell/key-bindings.zsh
 
+[ -f "/home/vport/.ghcup/env" ] && source "/home/vport/.ghcup/env" # ghcup-env
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-
-bindkey -s ^f "zellij-sessionizer ~/projects ~/data/projects \n "
 
 eval "$(starship init zsh)"
 eval "$(zoxide init zsh)"
 
 alias ls="lsd"
+

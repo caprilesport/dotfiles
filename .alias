@@ -49,11 +49,13 @@ alias cs='csync'
 # common conversion 
 alias orca2xyz='obabel -i orca $1 -o xyz'
 
+# zellij sessionizer
+bindkey -s ^f "zellij-sessionizer ~/projects ~/data/projects \n "
+
 #hx
 alias v='hx'
 alias vim='hx'
 
-# if no args given open current folder
 hx() {
   if [[ $# -eq 0 ]]; then
     command hx .
