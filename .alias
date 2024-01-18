@@ -27,6 +27,7 @@ alias chemcraft='wine /home/vport/.wine/drive_c/Chemcraft/Chemcraft.exe'
 alias za='zellij attach `zellij ls -s | fzf` 2> /dev/null'
 alias lg='lazygit'
 alias cp='cp -r'
+alias ged='gedent'
 
 # ledger alias
 alias hled='hledger'

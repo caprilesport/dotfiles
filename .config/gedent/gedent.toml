@@ -1,0 +1,12 @@
+[gedent]
+default_extension = "inp"
+
+[parameters]
+charge = -1
+basis_set = "def2svp"
+functional = "BP86"
+memory = 3000
+mult = 1
+nprocs = 10
+solvation = true
+solvent = "acetronitrile"

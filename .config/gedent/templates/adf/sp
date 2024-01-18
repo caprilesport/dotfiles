@@ -1,0 +1,38 @@
+--@
+extension = "run"
+--@
+AMS_JOBNAME={{ Molecule.filename }} $AMSBIN/ams <<eor
+
+Task SinglePoint
+
+Engine ADF
+	title {{ Molecule.filename }}
+
+	BASIS
+		TYPE {{ basis_set }}
+		CreateOutput yes
+	end
+
+	Symmetry NoSym
+		Dependency
+	end
+
+	XC
+		{{ functional_class }} {{ functional }}
+		Dispersion Grimme3 BJDAMP
+	end
+
+	Beckegrid
+		Quality verygood
+	end
+
+EndEngine
+
+System
+	atoms
+{{ print_molecule(molecule=Molecule) }}
+	end
+		Charge {{ charge }}
+	end
+
+eor
