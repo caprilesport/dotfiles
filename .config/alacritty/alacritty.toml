@@ -30,3 +30,6 @@ opacity = 1.00
 [window.dimensions]
 columns = 93
 lines = 35
+
+[shell]
+program = "/usr/bin/zsh"
