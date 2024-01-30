@@ -1,114 +1,144 @@
-# [[language]]
-# name = "json"
-# formatter = { command = 'prettier', args = ["--parser", "json"] }
-# auto-format = true
+[[language]]
+name = "latex"
+language-servers = ["texlab"]
 
-# [[language]]
-# name = "toml"
-# auto-format = true
+[language-server.texlab.config]
+auxDirectory = "build"
 
-# [[language]]
-# name = "yaml"
-# formatter = { command = 'prettier', args = ["--parser", "yaml"] }
-# auto-format = true
+[language-server.texlab.config.forwardSearch]
+executable = "zathura"
+args = [ "--synctex-forward", "%l:%c:%f", "%p" ]
 
-# [[language]]
-# name = "css"
-# formatter = { command = 'prettier', args = ["--parser", "css"] }
-# auto-format = true
+[language-server.texlab.config.build]
+forwardSearchAfter = true
+onSave = true
 
-# [[language]]
-# name = "html"
-# formatter = { command = 'prettier', args = ["--parser", "html"] }
-# auto-format = true
-
-# [[language]]
-# name = "xml"
-# formatter = { command = 'prettier', args = ["--parser", "xml"] }
-# auto-format = true
-
-# [[language]]
-# name = "markdown"
-# formatter = { command = 'prettier', args = ["--parser", "markdown"] }
-# auto-format = true
-
-# [[language]]
-# name = "latex"
-# formatter = { command = 'latexindent', args = ["-m"] }
-# auto-format = true
-
-# [language.config.texlab.chktex]
-# onEdit = true
-
-# [[language]]
-# name = "bibtex"
-# scope = "source.bib"
-# injection-regex = "bib"
-# file-types = ["bib"]
-# roots = []
-# comment-token = "%"
-# language-server = { command = "texlab" }
-# indent = { tab-width = 4, unit = "\t" }
-# auto-format = true
-
-# [language.formatter]
-# command = 'bibtex-tidy'
+# executable = "latexmk"
 # args = [
-#   "-",
-#   "--curly",
-#   "--drop-all-caps",
-#   "--remove-empty-fields",
-#   "--sort-fields",
-#   "--sort=year,author,id",
-#   "--strip-enclosing-braces",
-#   "--trailing-commas",
-# ]
+#  "-pdf",
+#  "-interaction=nonstopmode",
+#  "-synctex=1",
+#  "-shell-escape",
+#  "-output-directory=build",
+#  "%f"
+#  ]
 
-# [[grammar]]
-# name = "bibtex"
-# source = { git = "https://github.com/latex-lsp/tree-sitter-bibtex", rev = "ccfd77db0ed799b6c22c214fe9d2937f47bc8b34" }
+executable = "tectonic"
+args = [
+ "-X",
+ "compile",
+ "%f",
+ "--synctex",
+ "--keep-logs",
+ "--keep-intermediates",
+ "--outdir=build",
+ "-Zshell-escape",
+ ]
 
-# [[language]]
-# name = "javascript"
-# formatter = { command = 'prettier', args = ["--parser", "typescript"] }
-# auto-format = true
+[[language]]
+name = "python"
+language-servers = ["pyright", "ruff"]
+auto-format = true
 
-# [[language]]
-# name = "typescript"
-# formatter = { command = 'prettier', args = ["--parser", "typescript"] }
-# auto-format = true
+[language-server.pyright]
+command = "pyright-langserver"
+args = ["--stdio"]
 
-# [[language]]
-# name = "svelte"
-# formatter = { command = 'prettier', args = ["--parser", "svelte"] }
-# auto-format = true
+# https://github.com/helix-editor/helix/issues/1898#issuecomment-1627146829
+[language-server.pyright.config.python.analysis]
+typeCheckingMode = "strict"
 
-# [[language]]
-# name = "elm"
-# formatter = { command = 'prettier', args = ["--parser", "elm"] }
-# auto-format = true
+[language-server.ruff]
+command = "ruff-lsp"
 
-# [[language]]
-# name = "awk"
-# auto-format = true
+[language-server.ruff.config.settings]
+args = ["--ignore", "E501"]
 
-# [[language]]
-# name = "bash"
-# formatter = { command = 'prettier', args = ["--parser", "sh"] }
-# auto-format = true
+[language.formatter]
+command = "black"
+args = ["--line-length", "88", "--quiet", "-"]
 
-# [[language]]
-# name = "python"
-# # roots = ["pyproject.toml"]
-# language-server = { command = "pyright-langserver", args = ["--stdio"] }
-# # NOTE: the following is important even if config is empty.
-# config = { }
-# formatter = { command = "black", args = ["--quiet", "-"] }
-# auto-format = true
+# Haskell configuration
 
-# [[language]]
-# name = "rust"
-# auto-format = true
+[[language]]
+name = "haskell"
+formatter = { command = "stylish-haskell", args = [] }
+auto-format = true
 
-# [language.config]
-# checkOnSave = { command = "clippy" }
+# Prettier (tested ones, see <https://github.com/helix-editor/helix/wiki/External-binary-formatter-configuration#prettier>)
+
+[[language]]
+name = "html"
+formatter = { command = "prettier", args = ["--parser", "html"] }
+auto-format = true
+
+[[language]]
+name = "css"
+formatter = { command = "prettier", args = ["--parser", "css"] }
+auto-format = true
+
+# Prettier (untested ones, see above)
+
+[[language]]
+name = "scss"
+formatter = { command = "prettier", args = ["--parser", "scss"] }
+auto-format = true
+
+[[language]]
+name = "graphql"
+formatter = { command = "prettier", args = ["--parser", "graphql"] }
+auto-format = true
+
+[[language]]
+name = "yaml"
+formatter = { command = "prettier", args = ["--parser", "yaml"] }
+auto-format = true
+
+# Prettier (untested ones, official plugins, see above)
+
+[[language]]
+name = "php"
+formatter = { command = "prettier", args = ["--parser", "php"] }
+auto-format = true
+
+[[language]]
+name = "ruby"
+formatter = { command = "prettier", args = ["--parser", "ruby"] }
+auto-format = true
+
+[[language]]
+name = "xml"
+formatter = { command = "prettier", args = ["--parser", "xml"] }
+auto-format = true
+
+# Deno (tested ones, see <https://github.com/helix-editor/helix/wiki/External-binary-formatter-configuration#deno>)
+
+[[language]]
+name = "javascript"
+formatter = { command = 'deno', args = ["fmt", "-", "--ext", "js" ] }
+auto-format = true
+
+[[language]]
+name = "json"
+formatter = { command = 'deno', args = ["fmt", "-", "--ext", "json" ] }
+auto-format = true
+
+[[language]]
+name = "markdown"
+formatter = { command = 'deno', args = ["fmt", "-", "--ext", "md" ] }
+auto-format = true
+
+[[language]]
+name = "typescript"
+formatter = { command = 'deno', args = ["fmt", "-", "--ext", "ts" ] }
+auto-format = true
+
+[[language]]
+name = "jsx"
+formatter = { command = 'deno', args = ["fmt", "-", "--ext", "jsx" ] }
+auto-format = true
+
+[[language]]
+name = "tsx"
+formatter = { command = 'deno', args = ["fmt", "-", "--ext", "tsx" ] }
+auto-format = true
