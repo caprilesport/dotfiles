@@ -50,67 +50,28 @@ fi
 echo
 echo
 
-info "Updating apt...\n"
-sudo apt update
-sudo apt upgrade \
-  && sudo apt dist-upgrade \
-  && sudo apt autoremove \
-  && sudo apt autoclean \
-  && sudo apt clean \
-  && sudo apt install vim gcc make build-essential libssl-dev zlib1g-dev libbz2-dev libreadline-dev libsqlite3-dev wget curl llvm libncursesw5-dev xz-utils tk-dev libxml2-dev libxmlsec1-dev libffi-dev liblzma-dev linux-headers-$(uname -r)
+info "Updating pacman...\n"
+sudo pacman -Syuu
+sudo pacman -S wget curl vim git yadm zsh pyenv g++ gmp ncurses realpath xz-utils github-cli gcc make wget curl llvm fd ctags jq rg shellcheck xsel git-absorb moreutils surfraw autoload zoxide libxcb lazygit duf bat wine timeshift thunderbird git-delta tk openssh openmpi nvtop neofecth telegram-desktop tectonic xclip zathura okular zk zathura-pdf-poppler zathura-pdf-mupdf zathura-cb libreoffice-still chromium starship cmake freetype2 fontconfig pkg-config make libxcb libxkbcommon python webkit2gtk base-devel file openssl appmenu-gtk-module gtk3 libappindicator-gtk3 librsvg libvips tailscale --noconfirm
+sudo systemctl enable --now tailscaled
+sudo tailscale up
 echo
 echo
 
+# this has to be installed with yay
 info "Installing some utilities...\n"
-install "nvim build tools" 'ninja-build gettext cmake unzip'
-install "fdfind" 'sudo apt install fd-find -y'
-install "ctags" 'sudo apt install universal-ctags -y'
-install "curl" 'sudo apt install curl -y'
-install "git-absorb" 'sudo apt install git-absorb -y'
-install "git-extras" 'curl -sSL https://raw.githubusercontent.com/tj/git-extras/master/install.sh | sudo bash /dev/stdin'
-install "jq" 'sudo apt install jq -y'
 install "latexmk" 'sudo apt install texlive-full -y'
-install "pdftotext" 'sudo apt install poppler-utils -y'
-install "rg" 'sudo apt install ripgrep -y'
-install "shellcheck" 'sudo apt install shellcheck -y'
-install "surfraw" 'sudo apt install surfraw surfraw-extra -y'
-install "vipe" 'sudo apt install moreutils -y'
-install "xsel" 'sudo apt install xsel -y'
-install "zsh" 'sudo apt install zsh -y'
 
-if ! command -v "gh" > /dev/null 2>&1; then
-  info "Installing github/cli...\n"
-  curl -fsSL https://cli.github.com/packages/githubcli-archive-keyring.gpg \
-    | sudo dd of=/usr/share/keyrings/githubcli-archive-keyring.gpg \
-    && sudo chmod go+r /usr/share/keyrings/githubcli-archive-keyring.gpg \
-    && echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/githubcli-archive-keyring.gpg] https://cli.github.com/packages stable main" \
-    | sudo tee /etc/apt/sources.list.d/github-cli.list > /dev/null \
-    && sudo apt install gh -y
-else
-  success "github/cli is already installed\n"
-fi
 gh auth login
 gh extension install dlvhdr/gh-dash
 
 echo
 echo
 
-info "Installing nvim\n" 
-install "nvim" 'git clone https://github.com/neovim/neovim/tree/master && cd nvim && make CMAKE_BUILD_TYPE=Release && sudo make install'
-
-info "Updating pyenv and pip (installing if needed)...\n"
-install "pyenv" 'curl https://pyenv.run | bash'
-pyenv update
-pip install -U pip
-
 info "Updating juliaup (installing if needed)...\n"
 install "juliaup" 'curl -fsSL https://install.julialang.org | sh'
 juliaup update
 julia -e "using Pkg; Pkg.update()"
-
-# info "Updating npm (installing if needed)...\n"
-# TODO: update node as well before npm
-# npm install -g npm@latest
 
 info "Updating rustup (installing if needed)...\n"
 install "rustup" "curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh"
@@ -120,18 +81,11 @@ info "Updating ghcup (installling if needed)...\n"
 install "ghcup" "curl --proto '=https' --tlsv1.2 -sSf https://get-ghcup.haskell.org | sh"
 ghcup upgrade
 
-echo
-echo
+info "Updating rye (installing if needed)...\n"
+install "rye" "curl -sSf https://rye-up.com/get | bash"
+rye self update
 
-info "The following will install most of what is needed for my dotfiles... "
-warning "proceed? [y/n]?"
-old_stty_cfg=$(stty -g)
-stty raw -echo
-answer=$(head -c 1)
-stty "$old_stty_cfg"
-if ! echo "$answer" | grep -iq "^y"; then
-  [[ $0 == "${BASH_SOURCE[0]}" ]] && exit 1 || return 1
-fi
+## install npm/node here
 
 echo
 echo
@@ -159,47 +113,23 @@ else
   success "zsh-autosuggestions is already installed\n"
 fi
 
-zsh_syntax_highlighting=${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
-if [[ ! -d $zsh_syntax_highlighting ]]; then
-  info "Installing zsh-syntax-highlighting...\n"
-  git clone https://github.com/zsh-users/zsh-syntax-highlighting "$zsh_syntax_highlighting"
-else
-  success "zsh-syntax-highlighting is already installed\n"
-fi
-
-if [[ ! -d "$HOME/.fzf" ]]; then
-  info "Installing fzf...\n"
-  git clone --depth 1 https://github.com/junegunn/fzf.git $HOME/.fzf && bash $HOME/.fzf/install
-else
-  success "fzf is already installed\n"
-fi
-
-cargo install alacritty
-cargo install lsd
-
-rustup component add rust-analyzer
-
-# Python 
-pip install -U black
-pip install -U ipython
-pip install -U grip
-pip install -U httpie
-pip install -U proselint
+rye install -U black
+rye install -U ipython
+rye install -U grip
+rye install -U httpie
+rye install -U proselint
 
 # General command-line goodies
-cargo install git-delta
 cargo install mdbook
 cargo install so
+cargo install gedent
+cargo install cligpt
 install "broot" 'cargo install broot && broot --install'
-install "lazygit" 'go install github.com/jesseduffield/lazygit@latest'
 install "marp" 'npm install -g @marp-team/marp-cli'
-install "starship" 'curl -sS https://starship.rs/install.sh | sh'
-install "zoxide" 'curl -sS https://webinstall.dev/zoxide | bash' # TODO: can we use cargo?
 
 
 # Programming language utilities
-install "fnm" 'curl -fsSL https://fnm.vercel.app/install | bash' # TODO: can we use cargo?
-install "poetry" 'curl -sSL https://install.python-poetry.org | python -'
+install "fnm" 'curl -fsSL https://fnm.vercel.app/install | bash'
 install "tsc" "npm install -g typescript@latest"
 
 echo
@@ -208,50 +138,17 @@ echo
 warning "Things that need to be installed manually:\n\n"
 
 info "alacritty:\n"
-info "(the binary itself is installed automatically)\n"
 code "https://github.com/alacritty/alacritty/blob/master/INSTALL.md#manual-installation\n\n"
 
 info "JetBrains Mono:\n"
 code "https://github.com/ryanoasis/nerd-fonts/releases\n"
 code "https://askubuntu.com/a/3706/361183\n\n"
 
-info "Pop!_OS Shell:\n"
-code "https://github.com/pop-os/shell#installation\n"
-code "https://github.com/pop-os/shell-shortcuts#build\n"
-code "https://github.com/pop-os/launcher#installation\n\n"
-
-info "fd:\n"
-code "https://github.com/sharkdp/fd/releases\n\n"
-
-info "git-secrets:\n"
-info "(might be installed automatically in the future)\n"
-code "https://github.com/awslabs/git-secrets#nix-linuxmacos\n\n"
-
 info "Golang:\n"
 code "https://go.dev/doc/install\n\n"
 
-info "wine:\n"
-info "run windows programs in linux\n"
-code "https://wiki.winehq.org/Ubuntu" 
-
-info "Language servers are managed by neovim, so if you pretend to use other editor install as needed."
-
 echo
 echo
-
-info "Setting some default applications:\n\n"
-
-# Possible terminal emulators.
-if command -v alacritty > /dev/null 2>&1; then
-  sudo update-alternatives --install /usr/bin/x-terminal-emulator x-terminal-emulator "$(which alacritty)" 50
-fi
-sudo update-alternatives --config x-terminal-emulator
-
-# Possible text editors.
-if command -v nvim > /dev/null 2>&1; then
-  sudo update-alternatives --install /usr/bin/editor editor "$(which nvim)" 60
-fi
-sudo update-alternatives --config editor
 
 echo
 echo
