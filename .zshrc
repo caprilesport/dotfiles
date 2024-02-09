@@ -48,8 +48,8 @@ alias ls="lsd"
 
 # Lines configured by zsh-newuser-install
 HISTFILE=~/.histfile
-HISTSIZE=5000
-SAVEHIST=5000
+HISTSIZE=5000000
+SAVEHIST=5000000
 setopt autocd extendedglob
 unsetopt beep
 bindkey -e
@@ -59,5 +59,5 @@ zstyle :compinstall filename '/home/vport/.zshrc'
 
 autoload -Uz compinit
 compinit
-xrandr --output HDMI-0 --above DP-1
-# End of lines added by compinstall
+
+
