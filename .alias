@@ -13,8 +13,7 @@ alias qdeljup='ssh jupiter "qdel"'
 alias sudo='sudo '
 
 # system
-alias update='echo "Updating system..."; sudo pacman -Syu'
-alias apti='sudo apt install'
+alias update='sudo pacman -Syyu'
 alias mkdir='mkdir -p'
 alias reload='source ~/.zshrc'
 

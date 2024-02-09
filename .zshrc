@@ -1,5 +1,6 @@
 #!/usr/bin/env bash
 # aliases and enviroment variables
+fpath=(~/.zsh/ $fpath)
 source ~/.alias
 source ~/.env
 
@@ -9,10 +10,12 @@ HIST_STAMPS="dd/mm/yyyy"
 
 #Plugins
 plugins=(
+  archlinux
   fd
   fnm
   gh
   git
+  gitfast
   git-extras
   golang
   nmap
@@ -25,7 +28,6 @@ plugins=(
   ripgrep
   rsync
   rust
-  ubuntu
 
   zsh-autosuggestions
   zsh-syntax-highlighting
