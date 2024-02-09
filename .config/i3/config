@@ -99,16 +99,16 @@ bindsym $mod+o    workspace  $ws9
 bindsym $mod+p    workspace  $ws10
 
 # move focused container to workspace
-bindsym $mod+Shift+q    move container to workspace  $ws1
-bindsym $mod+Shift+w    move container to workspace  $ws2
-bindsym $mod+Shift+e    move container to workspace  $ws3
-bindsym $mod+Shift+r    move container to workspace  $ws4
-bindsym $mod+Shift+t    move container to workspace  $ws5
-bindsym $mod+Shift+y    move container to workspace  $ws6
-bindsym $mod+Shift+u    move container to workspace  $ws7
-bindsym $mod+Shift+i    move container to workspace  $ws8
-bindsym $mod+Shift+o    move container to workspace  $ws9
-bindsym $mod+Shift+p    move container to workspace  $ws10
+bindsym $mod+Shift+q    move container to workspace  $ws1; workspace $ws1; focus
+bindsym $mod+Shift+w    move container to workspace  $ws2; workspace $ws2; focus
+bindsym $mod+Shift+e    move container to workspace  $ws3; workspace $ws3; focus
+bindsym $mod+Shift+r    move container to workspace  $ws4; workspace $ws4; focus
+bindsym $mod+Shift+t    move container to workspace  $ws5; workspace $ws5; focus
+bindsym $mod+Shift+y    move container to workspace  $ws6; workspace $ws6; focus
+bindsym $mod+Shift+u    move container to workspace  $ws7; workspace $ws7; focus
+bindsym $mod+Shift+i    move container to workspace  $ws8; workspace $ws8; focus
+bindsym $mod+Shift+o    move container to workspace  $ws9; workspace $ws9; focus
+bindsym $mod+Shift+p    move container to workspace  $ws10; workspace $ws10; focus
 
 # resize window (you can also use the mouse for that):
 #mode "resize" {
@@ -277,11 +277,11 @@ set $ws10 "10"
 #workspace $ws5 output HDMI-0
 
 # bind program to workspace and focus to them on startup:
-assign [class="Xfce4-terminal"] $ws1
+assign [class="alacritty"] $ws7
 assign [class="(?i)firefox"] $ws2
 assign [class="Thunar"] $ws3
 assign [class="thunderbird"] $ws4
-assign [class="TelegramDesktop"] $ws5
+assign [class="TelegramDesktop"] $ws9
 
 # automatic set focus new window if it opens on another workspace than the current:
 for_window [class=Xfce4-terminal] focus
@@ -386,7 +386,7 @@ exec --no-startup-id /usr/bin/dunst
 
 # Autostart apps as you like
 #exec --no-startup-id sleep 2 && xfce4-terminal
-exec --no-startup-id sleep 7 && firefox https://github.com/endeavouros-team/endeavouros-i3wm-setup/blob/main/force-knowledge.md
+# exec --no-startup-id sleep 7 && firefox https://github.com/endeavouros-team/endeavouros-i3wm-setup/blob/main/force-knowledge.md
 #exec --no-startup-id sleep 3 && thunar
 
 ###############
