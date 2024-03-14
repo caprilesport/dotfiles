@@ -18,7 +18,6 @@ alias mkdir='mkdir -p'
 alias reload='source ~/.zshrc'
 
 # programs 
-alias crest='/opt/crest'
 alias ipy='ipython'
 alias chemcraft='wine /home/vport/.wine/drive_c/Chemcraft/Chemcraft.exe'
 alias za='zellij attach `zellij ls -s | fzf` 2> /dev/null'
@@ -26,6 +25,8 @@ alias lg='lazygit'
 alias cp='cp -r'
 alias ged='gedent'
 alias ggen='gedent gen `gedent template list | fzf` '
+alias periodic-table='npx periodic-table-cli'
+alias copy='xclip -selection clipboard'
 
 # ledger alias
 alias hled='hledger'
@@ -49,11 +50,8 @@ alias cs='csync'
 # alias orca2xyz='obabel -i orca $1 -o xyz'
 
 # zellij sessionizer
-bindkey -s ^f "zellij-sessionizer ~/projects \n "
+bindkey -s ^f "zellij-sessionizer ~/projects\n"
 
-#hx
-alias v='hx'
-alias vim='hx'
 
 hx() {
   if [[ $# -eq 0 ]]; then
