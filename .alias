@@ -13,15 +13,11 @@ alias qdeljup='ssh jupiter "qdel"'
 alias sudo='sudo '
 
 # system
-alias update='echo "Updating system..."; sudo apt update; sudo apt upgrade -y; sudo apt autoremove -y'
-alias apti='sudo apt install'
+alias update='sudo pacman -Syyu'
 alias mkdir='mkdir -p'
 alias reload='source ~/.zshrc'
 
 # programs 
-alias fd='fdfind'
-alias df='duf'
-alias crest='/opt/crest'
 alias ipy='ipython'
 alias chemcraft='wine /home/vport/.wine/drive_c/Chemcraft/Chemcraft.exe'
 alias za='zellij attach `zellij ls -s | fzf` 2> /dev/null'
@@ -29,6 +25,8 @@ alias lg='lazygit'
 alias cp='cp -r'
 alias ged='gedent'
 alias ggen='gedent gen `gedent template list | fzf` '
+alias periodic-table='npx periodic-table-cli'
+alias copy='xclip -selection clipboard'
 
 # ledger alias
 alias hled='hledger'
@@ -49,14 +47,11 @@ alias gac='g a . && g c "updates" && g ps'
 alias cs='csync'
 
 # common conversion 
-alias orca2xyz='obabel -i orca $1 -o xyz'
+# alias orca2xyz='obabel -i orca $1 -o xyz'
 
 # zellij sessionizer
-bindkey -s ^f "zellij-sessionizer ~/projects ~/data/projects \n "
+bindkey -s ^f "zellij-sessionizer ~/projects\n"
 
-#hx
-alias v='hx'
-alias vim='hx'
 
 hx() {
   if [[ $# -eq 0 ]]; then

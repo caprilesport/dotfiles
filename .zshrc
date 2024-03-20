@@ -1,5 +1,6 @@
 #!/usr/bin/env bash
 # aliases and enviroment variables
+fpath=(~/.zsh/ $fpath)
 source ~/.alias
 source ~/.env
 
@@ -9,10 +10,12 @@ HIST_STAMPS="dd/mm/yyyy"
 
 #Plugins
 plugins=(
+  archlinux
   fd
   fnm
   gh
   git
+  gitfast
   git-extras
   golang
   nmap
@@ -25,7 +28,6 @@ plugins=(
   ripgrep
   rsync
   rust
-  ubuntu
 
   zsh-autosuggestions
   zsh-syntax-highlighting
@@ -44,3 +46,18 @@ eval "$(zoxide init zsh)"
 
 alias ls="lsd"
 
+# Lines configured by zsh-newuser-install
+HISTFILE=~/.histfile
+HISTSIZE=5000
+SAVEHIST=5000
+setopt autocd extendedglob
+unsetopt beep
+bindkey -e
+# End of lines configured by zsh-newuser-install
+# The following lines were added by compinstall
+zstyle :compinstall filename '/home/vport/.zshrc'
+
+autoload -Uz compinit
+compinit
+xrandr --output HDMI-0 --above DP-1
+# End of lines added by compinstall
