@@ -1,0 +1,31 @@
+--@
+extension = "inp"
+--@
+! {{ level }} {{ basis_set }} 
+! Opt zora numfreq D3BJ old-zora-svp sarc/j
+
+%pal
+ nprocs {{ nprocs }}
+end
+
+%maxcore {{ memory }} 
+
+{% if solvation -%}
+%cpcm
+ smd true
+ smdsolvent "{{ solvent }}"
+end
+
+{% endif -%} 
+
+{% if start_hessian -%}
+%Geom
+ InHess Read
+ InHessName "{{ molecule.filename }}.hess"
+end
+
+{% endif -%} 
+
+*xyz {{ charge }} {{ mult }}
+{{ print_molecule(molecule = Molecule) }}
+*
