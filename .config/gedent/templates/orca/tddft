@@ -1,5 +1,5 @@
 ! B3LYP ZORA-def2-TZVPP def2-TZVPP/C
-! {{ method }} {{ dft_basis_set }} {{ aux_basis_set }} 
+! {{ level }} {{ basis_set }} {{ aux_basis_set }} 
 ! D3BJ ZORA SARC/J RI-SOMF(1X) TightSCF MORead 
 
 %MOInp "C1-solv-ch2cl2.gbw"
@@ -31,4 +31,6 @@ end
 
 %maxcore {{ memory }} 
 
-*xyzfile 0 1 C1-solv-ch2cl2.xyz
+*xyz {{ charge }} {{ mult }}
+{{ print_molecule(molecule = Molecule) }}
+*

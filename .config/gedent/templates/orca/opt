@@ -1,7 +1,7 @@
 --@
 extension = "inp"
 --@
-! {{ functional }} {{ basis_set }} 
+! {{ level }} {{ basis_set }} 
 ! Opt freq D3BJ
 
 %pal

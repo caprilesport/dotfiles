@@ -1,5 +1,12 @@
-! XTB2 
+--@
+extension = "inp"
+--@
+! {{ level }} {{ basis_set }} 
 ! NEB-TS NumFreq IRC
+
+*xyz {{ charge }} {{ mult }}
+{{ print_molecule(molecule = Molecule) }}
+*
 
 %pal
  nprocs {{ nprocs }}
