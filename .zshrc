@@ -38,8 +38,6 @@ source "$ZSH/oh-my-zsh.sh"
 source "$HOME/.config/broot/launcher/bash/br"
 source "$HOME/.fzf/shell/key-bindings.zsh"
 
-[ -f "/home/vport/.ghcup/env" ] && source "/home/vport/.ghcup/env" # ghcup-env
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 eval "$(starship init zsh)"
 eval "$(zoxide init zsh)"
