@@ -37,6 +37,9 @@ alias la='ls -a'
 alias lla='ls -la'
 alias lt='ls --tree'
 
+#cargo
+alias cargoclippy='cargo clippy --fix --allow-dirty --allow-staged -- -W clippy::pedantic -W clippy::nursery'
+
 # git 
 alias g='git'
 alias gf='git diff --name-only'
