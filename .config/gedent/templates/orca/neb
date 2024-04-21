@@ -1,7 +1,5 @@
-! {{ functional }} {{ basis_set }} 
+! XTB2 
 ! NEB-TS NumFreq IRC
-
-*xyzfile {{ charge }} {{ mult }} {{ xyz_file }}
 
 %pal
  nprocs {{ nprocs }}
@@ -17,8 +15,8 @@ end
 {% endif -%}
 
 %neb
- neb_ts_xyzfile "{{ xyz_file }}"
- neb_end_xyzfile "{{ xyz_file }}"
+ neb_ts_xyzfile "ts_guess.xyz"
+ neb_end_xyzfile "end.xyz"
  nimages 29
  preopt_ends true
 end
@@ -40,3 +38,7 @@ end
  maxiter 256
 end
 
+
+*xyz {{ charge }} {{ mult }}
+{{ print_molecule(molecule = Molecule) }}
+*

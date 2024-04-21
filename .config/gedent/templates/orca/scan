@@ -1,5 +1,5 @@
-! {{ functional }} {{ basis_set }} 
-! Opt
+! {{ level }} {{ basis_set }} 
+! Opt {{ dispersion }}
 
 {% if solvation -%}
 %cpcm
@@ -16,5 +16,5 @@ end
 end
 
 *xyz {{ charge }} {{ mult }}
-{{ print_molecule(molecule="Molecule") }}
+{{ print_molecule(molecule=Molecule) }}
 *
