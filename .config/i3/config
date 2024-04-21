@@ -279,9 +279,9 @@ set $ws10 "10"
 # bind program to workspace and focus to them on startup:
 assign [class="alacritty"] $ws7
 assign [class="(?i)firefox"] $ws2
-assign [class="Thunar"] $ws3
-assign [class="thunderbird"] $ws4
-assign [class="TelegramDesktop"] $ws9
+assign [class="Thunar"] $ws5
+assign [class="thunderbird"] $ws9
+assign [class="WhatsApp for Linux"] $ws10
 
 # automatic set focus new window if it opens on another workspace than the current:
 for_window [class=Xfce4-terminal] focus
