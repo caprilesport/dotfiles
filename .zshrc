@@ -44,12 +44,10 @@ source "$HOME/.fzf/shell/key-bindings.zsh"
 eval "$(starship init zsh)"
 eval "$(zoxide init zsh)"
 
-alias ls="lsd"
-
 # Lines configured by zsh-newuser-install
 HISTFILE=~/.histfile
-HISTSIZE=5000000
-SAVEHIST=5000000
+HISTSIZE=50000000
+SAVEHIST=50000000
 setopt autocd extendedglob
 unsetopt beep
 bindkey -e
@@ -59,5 +57,4 @@ zstyle :compinstall filename '/home/vport/.zshrc'
 
 autoload -Uz compinit
 compinit
-
-
+alias ls='exa --icons=auto'

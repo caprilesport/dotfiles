@@ -19,7 +19,7 @@ alias reload='source ~/.zshrc'
 
 # programs 
 alias ipy='ipython'
-alias chemcraft='wine /home/vport/.wine/drive_c/Chemcraft/Chemcraft.exe'
+alias molv='wine /home/vport/.wine/drive_c/Chemcraft/Chemcraft.exe'
 alias za='zellij attach `zellij ls -s | fzf` 2> /dev/null'
 alias lg='lazygit'
 alias cp='cp -r'
@@ -32,7 +32,6 @@ alias copy='xclip -selection clipboard'
 alias hled='hledger'
 
 # lsd
-alias ls='lsd'
 alias l='ls -l'
 alias la='ls -a'
 alias lla='ls -la'
