@@ -1,8 +1,8 @@
 --@
 extension = "inp"
 --@
-! {{ level }} old-zora-{{ basis_set }} 
-! Opt numfreq D3BJ sarc/j
+! {{ level }} {{ basis_set }} 
+! IRC D3BJ KDIIS SOSCF numfreq tightscf
 
 %pal
  nprocs {{ nprocs }}
@@ -18,14 +18,12 @@ end
 
 {% endif -%} 
 
-{% if start_hessian -%}
 %Geom
  InHess Read
  InHessName "{{ Molecule.filename }}.hess"
+ printinternalhess true
 end
 
-{% endif -%} 
-
 *xyz {{ charge }} {{ mult }}
-{{ print_molecule(molecule = Molecule) }}
+{{ print_molecule(molecule=Molecule) }}
 *
