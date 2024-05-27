@@ -1,11 +1,15 @@
 --@
 extension = "inp"
 --@
-! {{ level }} old-zora-{{ basis_set }} 
+! {{ level }} {{ basis_set }} 
 ! Opt numfreq D3BJ sarc/j
 
 %pal
  nprocs {{ nprocs }}
+end
+
+%geom
+ maxiter {{ maxiter }}
 end
 
 %maxcore {{ memory }} 

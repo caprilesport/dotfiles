@@ -1,0 +1,11 @@
+--@
+extension = "inp"
+--@
+! XTB2 numfreq
+{% if solvation -%}
+! ALPB({{ solvent }})
+{% endif -%} 
+
+*xyz {{ charge }} {{ mult }}
+{{ print_molecule(molecule=Molecule) }}
+*

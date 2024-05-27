@@ -1,6 +1,12 @@
 ! {{ level }} {{ basis_set }} 
 ! Opt {{ dispersion }}
 
+%pal
+ nprocs {{ nprocs }}
+end
+
+%maxcore {{ memory }} 
+
 {% if solvation -%}
 %cpcm
  smd true

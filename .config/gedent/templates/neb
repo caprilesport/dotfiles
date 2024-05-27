@@ -2,11 +2,7 @@
 extension = "inp"
 --@
 ! {{ level }} {{ basis_set }} 
-! NEB-TS NumFreq IRC
-
-*xyz {{ charge }} {{ mult }}
-{{ print_molecule(molecule = Molecule) }}
-*
+! NEB-TS 
 
 %pal
  nprocs {{ nprocs }}
@@ -24,14 +20,11 @@ end
 %neb
  neb_ts_xyzfile "ts_guess.xyz"
  neb_end_xyzfile "end.xyz"
- nimages 29
+ nimages 14
  preopt_ends true
 end
 
 %geom
- ts_mode
-  {B 12 23} # bond active in ts
- end
  ts_active_atoms
   {3 7 12 14 15 22 23 27} # atons involved in ts
  end

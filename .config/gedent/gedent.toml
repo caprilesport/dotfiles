@@ -10,3 +10,5 @@ mult = 1
 nprocs = 10
 solvation = true
 solvent = "acetronitrile"
+maxiter = 256
+

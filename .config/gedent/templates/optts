@@ -2,13 +2,19 @@
 extension = "inp"
 --@
 ! {{ level }} {{ basis_set }} 
-! Opt zora numfreq D3BJ old-zora-svp sarc/j
+! OptTS D3BJ tightscf slowconv numfreq
 
 %pal
  nprocs {{ nprocs }}
 end
 
 %maxcore {{ memory }} 
+
+%geom
+ Calc_Hess true
+ TS_active_atoms { 29 2 15 } end
+ TS_active_atoms_factor 1.5 #factor to increase cutoff bond for above defined atoms
+end
 
 {% if solvation -%}
 %cpcm
@@ -27,5 +33,5 @@ end
 {% endif -%} 
 
 *xyz {{ charge }} {{ mult }}
-{{ print_molecule(molecule = Molecule) }}
+{{ print_molecule(molecule=Molecule) }}
 *
