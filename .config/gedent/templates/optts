@@ -2,7 +2,19 @@
 extension = "inp"
 --@
 ! {{ level }} {{ basis_set }} 
-! OptTS D3BJ tightscf slowconv numfreq
+! OptTS {{ dispersion }} tightscf slowconv numfreq
+{% if zora -%}
+! ZORA
+
+{% for atom in zoraatoms -%}
+%basis
+ NewGTO {{ atom }} "{{ zora_basis }}" end
+ newAuxGTO {{ atom }} "{{ zora_aux_basis }}" end
+end
+
+{% endfor -%}
+
+{% endif -%} 
 
 %pal
  nprocs {{ nprocs }}
@@ -12,22 +24,16 @@ end
 
 %geom
  Calc_Hess true
- TS_active_atoms { 29 2 15 } end
- TS_active_atoms_factor 1.5 #factor to increase cutoff bond for above defined atoms
+ numhess true
+ recalc_hess 20
+ TS_active_atoms { {{ ts_active_atoms }} } end
+ TS_active_atoms_factor {{ ts_active_atoms_factor }} #factor to increase cutoff bond for above defined atoms
 end
 
 {% if solvation -%}
 %cpcm
  smd true
  smdsolvent "{{ solvent }}"
-end
-
-{% endif -%} 
-
-{% if start_hessian -%}
-%Geom
- InHess Read
- InHessName "{{ molecule.filename }}.hess"
 end
 
 {% endif -%} 

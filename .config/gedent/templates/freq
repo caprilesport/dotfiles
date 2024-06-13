@@ -1,8 +1,8 @@
 --@
 extension = "inp"
 --@
-! {{ level }} {{ basis_set }} {{ dispersion }} 
-! IRC KDIIS SOSCF numfreq tightscf
+! {{ level }} {{ basis_set }} 
+! numfreq {{ dispersion }} 
 {% if zora -%}
 ! ZORA
 
@@ -30,12 +30,6 @@ end
 
 {% endif -%} 
 
-%Geom
- InHess Read
- InHessName "{{ Molecule.filename }}.hess"
- printinternalhess true
-end
-
 *xyz {{ charge }} {{ mult }}
-{{ print_molecule(molecule=Molecule) }}
+{{ print_molecule(molecule = Molecule) }}
 *
