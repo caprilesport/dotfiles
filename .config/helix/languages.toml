@@ -75,7 +75,6 @@ auto-format = true
 command  = "haskell-language-server-wrapper"
 args = ["--lsp"]
 
-
 # Prettier (tested ones, see <https://github.com/helix-editor/helix/wiki/External-binary-formatter-configuration#prettier>)
 
 [[language]]

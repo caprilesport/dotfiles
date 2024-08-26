@@ -2,14 +2,16 @@
 default_extension = "inp"
 
 [parameters]
-dispersion = "D3"
-charge = -1
-basis_set = "def2-svp"
+zoraatoms = ["Ag"]
+memory = 2000
+basis_set = "ZORA old-ZORA-TZVPP def2-TZVPP/C"
+charge = 0
+dispersion = "D3bj"
 level = "BP86"
-memory = 1750
 mult = 1
-nprocs = 8
+nprocs = 16
 solvation = true
-solvent = "acetronitrile"
+start_hessian = false
+solvent = "dichloromethane"
+zora = true
 maxiter = 256
-

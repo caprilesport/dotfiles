@@ -23,9 +23,9 @@ end
 %maxcore {{ memory }} 
 
 %geom
- Calc_Hess true
- numhess true
- recalc_hess 20
+ maxiter {{ maxiter }}
+ inhess read
+ inhessname "init.hess"
  TS_active_atoms { {{ ts_active_atoms }} } end
  TS_active_atoms_factor {{ ts_active_atoms_factor }} #factor to increase cutoff bond for above defined atoms
 end

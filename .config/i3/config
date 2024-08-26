@@ -140,7 +140,7 @@ bindsym $mod+c mode "resize"
 ######################################
 
 # start a terminal
-bindsym $mod+space exec --no-startup-id alacritty
+bindsym $mod+space exec --no-startup-id wezterm
 
 # kill focused window
 bindsym $mod+x kill
@@ -246,6 +246,7 @@ bindsym XF86AudioPrev exec --no-startup-id playerctl previous
 bindsym $mod+b exec --no-startup-id /usr/bin/firefox
 bindsym $mod+Shift+f exec --no-startup-id /usr/bin/thunar
 bindsym Print exec --no-startup-id scrot ~/%Y-%m-%d-%T-screenshot.png && notify-send "Screenshot saved to ~/$(date +"%Y-%m-%d-%T")-screenshot.png"
+bindsym --release Shift+Print exec scrot -s '/tmp/%F_%T_$wx$h.png' -e 'xclip -selection clipboard -target image/png -i $f' 
 
 # Power Profiles menu switcher (rofi)
 bindsym $mod+Shift+n exec --no-startup-id ~/.config/i3/scripts/power-profiles
@@ -546,3 +547,6 @@ bindsym $mod+m exec --no-startup-id rofi -show window \
 #exec --no-startup-id greenclip daemon>/dev/null
 #bindsym $mod+c exec --no-startup-id rofi -modi "clipboard:greenclip print" -show clipboard \
 #		-config ~/.config/rofi/rofidmenu.rasi
+
+exec setxkbmap us
+exec xrandr --output HDMI-0 --above DP-1

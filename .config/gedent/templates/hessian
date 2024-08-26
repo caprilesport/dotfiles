@@ -2,9 +2,17 @@
 extension = "inp"
 --@
 ! XTB2 numfreq
+
 {% if solvation -%}
 ! ALPB({{ solvent }})
+
 {% endif -%} 
+
+%pal
+  nprocs {{ nprocs }}
+end
+
+%maxcore {{ memory }}
 
 *xyz {{ charge }} {{ mult }}
 {{ print_molecule(molecule=Molecule) }}

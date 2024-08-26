@@ -34,7 +34,7 @@ enable = true
 
 [editor.lsp]
 display-messages = true
-display-inlay-hints = false
+display-inlay-hints = true
 
 # remaps
 [keys.normal]
@@ -42,3 +42,10 @@ display-inlay-hints = false
 # "C-u" = ["half_page_up", "goto_window_center"]
 "{" = ["goto_prev_paragraph", "collapse_selection"]
 "}" = ["goto_next_paragraph", "collapse_selection"]
+
+[keys.normal.space]
+"H" = ":toggle lsp.display-inlay-hints"
+
+
+[editor.smart-tab]
+enable = false

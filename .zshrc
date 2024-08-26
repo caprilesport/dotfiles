@@ -26,6 +26,7 @@ plugins=(
   python
   rsync
   rust
+  rye
 
   zsh-autosuggestions
   zsh-syntax-highlighting
@@ -62,3 +63,7 @@ source /home/vport/.config/broot/launcher/bash/br
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
+# ORCA 6.0.0 secion
+export PATH=/home/vport/orca_6_0_0:$PATH
+

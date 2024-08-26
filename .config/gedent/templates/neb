@@ -3,6 +3,18 @@ extension = "inp"
 --@
 ! {{ level }} {{ basis_set }} 
 ! NEB-TS 
+{% if zora -%}
+! ZORA
+
+{% for atom in zoraatoms -%}
+%basis
+ NewGTO {{ atom }} "{{ zora_basis }}" end
+ newAuxGTO {{ atom }} "{{ zora_aux_basis }}" end
+end
+
+{% endfor -%}
+
+{% endif -%} 
 
 %pal
  nprocs {{ nprocs }}
@@ -15,6 +27,7 @@ end
  smd true
  smdsolvent "{{ solvent }}"
 end
+
 {% endif -%}
 
 %neb

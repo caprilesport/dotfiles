@@ -12,7 +12,7 @@ https://discovery.endeavouros.com/window-tiling-managers/i3-wm/
  = windows key
 
 # start xfce4-terminal
-+t 
++Return 
 
 # kill focused window
 +q
@@ -28,7 +28,7 @@ https://discovery.endeavouros.com/window-tiling-managers/i3-wm/
 
 # Lock the system
 # lock with a picture or blurring the screen (options in config)
-+b
++l
 
 # reload the configuration file
 +Shift+c
@@ -43,10 +43,10 @@ F1
 +F1
 
 # change window focus
-+h focus left
-+j focus down
-+k focus up
-+l focus right
++j focus left
++k focus down
++b focus up
++o focus right
 
 # alternatively, you can use the cursor keys:
 +Left focus left
@@ -55,10 +55,10 @@ F1
 +Right focus right
 
 # move a focused window
-+Shift+h move left
-+Shift+j move down
-+Shift+k move up
-+Shift+l move right
++Shift+j move left
++Shift+k move down
++Shift+b move up
++Shift+o move right
 
 # alternatively, you can use the cursor keys:
 +Shift+Left move left
@@ -67,7 +67,7 @@ F1
 +Shift+Right move right
 
 # split in horizontal orientation
-+z split h
++h split h
 
 # split in vertical orientation
 +v split v
@@ -101,6 +101,6 @@ F1
 +p
 
 ## App shortcuts
-+. stabts Firefox
++w starts Firefox
 +n starts Thunar
  Button screenshot

@@ -2,6 +2,7 @@
 
 # shortcuts
 alias :q='exit'
+alias :!='exit'
 
 # clusters
 alias qsn='ssh newton "qstat"'
@@ -48,7 +49,10 @@ alias gac='g a . && g c "updates" && g ps'
 alias cs='csync'
 
 # common conversion 
-# alias orca2xyz='obabel -i orca $1 -o xyz'
+alias orca2xyz='obabel -i orca $1 -o xyz'
+
+#rm tmp files when pullin in wrong time
+alias rmtmp='rm *.densities *.txt *.hostnames *res.Dipoles *.grd *.gbw *.smd* *.res* *.cpcm'
 
 # zellij sessionizer
 bindkey -s ^f "zellij-sessionizer ~/projects\n"
@@ -69,6 +73,24 @@ hx() {
   else
     command hx "$@"
   fi
+
+# connect phone bluetoothctl
+alias muitagentenolab='echo "connect 74:2A:8A:A8:EC:9B" | bluetoothctl'
+alias soosguri='echo "disconnect "74:2A:8A:A8:EC:9B" | bluetoothctl'
+
+# orca stuff
+alias energy='grep -i "final gibbs free energy" **/*.out'
+alias imfreq='grep -i "imaginary mode" **/*.out'
+alias geomcyclep='grep -i "geometry optimization cycle" **/*.out'
+alias scanprogress='grep -i "RELAXED SURFACE SCAN STEP" **/*.out'
+
+function yy() {
+	local tmp="$(mktemp -t "yazi-cwd.XXXXXX")"
+	yazi "$@" --cwd-file="$tmp"
+	if cwd="$(cat -- "$tmp")" && [ -n "$cwd" ] && [ "$cwd" != "$PWD" ]; then
+		cd -- "$cwd"
+	fi
+	rm -f -- "$tmp"
 }
 
 # ditch the outputs of chemcraft
