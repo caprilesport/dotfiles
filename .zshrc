@@ -11,7 +11,6 @@ HIST_STAMPS="dd/mm/yyyy"
 #Plugins
 plugins=(
   archlinux
-  fd
   fnm
   gh
   git
@@ -25,7 +24,6 @@ plugins=(
   poetry
   pyenv
   python
-  ripgrep
   rsync
   rust
 
@@ -56,3 +54,11 @@ zstyle :compinstall filename '/home/vport/.zshrc'
 autoload -Uz compinit
 compinit
 alias ls='exa --icons=auto'
+
+source /home/vport/.config/broot/launcher/bash/br
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
