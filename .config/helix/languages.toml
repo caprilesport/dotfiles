@@ -39,14 +39,20 @@ args = [
 name = "python"
 language-servers = ["pyright", "ruff"]
 auto-format = true
+roots = [".", "pyproject.toml", "pyrightconfig.json"]
+comment-token = "#"
 
 [language-server.pyright]
 command = "pyright-langserver"
 args = ["--stdio"]
 
+[language-server.pyright.config]
+reportMissingTypeStubs = false
+
 # https://github.com/helix-editor/helix/issues/1898#issuecomment-1627146829
 [language-server.pyright.config.python.analysis]
-typeCheckingMode = "strict"
+typeCheckingMode = "basic"
+autoImportCompletions = true
 
 [language-server.ruff]
 command = "ruff-lsp"
@@ -64,6 +70,11 @@ args = ["--line-length", "88", "--quiet", "-"]
 name = "haskell"
 formatter = { command = "stylish-haskell", args = [] }
 auto-format = true
+
+[language-server.haskell-language-server]
+command  = "haskell-language-server-wrapper"
+args = ["--lsp"]
+
 
 # Prettier (tested ones, see <https://github.com/helix-editor/helix/wiki/External-binary-formatter-configuration#prettier>)
 
