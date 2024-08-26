@@ -2,12 +2,13 @@
 default_extension = "inp"
 
 [parameters]
+dispersion = "D3"
 charge = -1
-basis_set = "def2svp"
+basis_set = "def2-svp"
 level = "BP86"
-memory = 3000
+memory = 1750
 mult = 1
-nprocs = 10
+nprocs = 8
 solvation = true
 solvent = "acetronitrile"
 maxiter = 256

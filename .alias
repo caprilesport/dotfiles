@@ -19,7 +19,6 @@ alias reload='source ~/.zshrc'
 
 # programs 
 alias ipy='ipython'
-alias molv='wine /home/vport/.wine/drive_c/Chemcraft/Chemcraft.exe'
 alias za='zellij attach `zellij ls -s | fzf` 2> /dev/null'
 alias lg='lazygit'
 alias cp='cp -r'
@@ -54,11 +53,30 @@ alias cs='csync'
 # zellij sessionizer
 bindkey -s ^f "zellij-sessionizer ~/projects\n"
 
+#scripts environment
+alias activatescripts='. ~/projects/scripts/.scripts_environment/bin/activate'
 
+#qchemistry
+alias energy='grep "Final Gibbs free energy" **/*.out'
+alias imfreq='grep -i "imaginary mode" **/*.out'
+
+# more complicated functions
+
+# open foulder if hx called with no arguments
 hx() {
   if [[ $# -eq 0 ]]; then
     command hx .
   else
     command hx "$@"
   fi
+}
+
+# ditch the outputs of chemcraft
+molv() {
+  wine /home/vport/.wine/drive_c/Chemcraft/Chemcraft.exe "$1" &> /dev/null & 
+}
+
+# oneliner to send files and ssh to cluster
+sngo() {
+  cs "$1" push && sshcd "$1"
 }
