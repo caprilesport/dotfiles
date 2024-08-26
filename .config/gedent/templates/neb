@@ -31,14 +31,6 @@ end
  maxiter 256
 end
 
-%irc
- de_init_displ 1.0
- tolrmsg 3e-4
- tolmaxg 9e-4
- maxiter 256
-end
-
-
 *xyz {{ charge }} {{ mult }}
 {{ print_molecule(molecule = Molecule) }}
 *

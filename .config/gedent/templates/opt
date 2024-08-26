@@ -2,7 +2,7 @@
 extension = "inp"
 --@
 ! {{ level }} {{ basis_set }} 
-! Opt numfreq {{ dispersion }} 
+! Opt freq {{ dispersion }} 
 {% if zora -%}
 ! ZORA
 
