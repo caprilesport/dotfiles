@@ -51,9 +51,6 @@ alias cs='csync'
 #rm tmp files when pullin in wrong time
 alias rmtmp='rm *.densities *.txt *.hostnames *res.Dipoles *.grd *.gbw *.smd* *.res* *.cpcm'
 
-# zellij sessionizer
-bindkey -s ^f "zellij-sessionizer ~/projects\n"
-
 #scripts environment
 alias activatescripts='. ~/projects/scripts/.scripts_environment/bin/activate'
 
@@ -106,5 +103,46 @@ sngo() {
 # oneliner to optimize a structure with xtb without cluttering the current dir
 xtbopt() {
   mkdir .xtbopt && cp "$1" .xtbopt && cd .xtbopt && xtb "$1" --opt && cp xtbopt.xyz .. && cd ..
+}
+
+cleanorcadir() {
+    local dry_run=false
+    local patterns_to_keep=()
+
+    # Check for the "--dry-run" flag and remove it from the arguments if present
+    for arg in "$@"; do
+        if [ "$arg" == "--dry-run" ]; then
+            dry_run=true
+        else
+            patterns_to_keep+=("$arg")
+        fi
+    done
+    
+    # Build the find command dynamically
+    local find_command='find . -type f \( -name "*.gbw" -o -name "*.cpcm" -o -name "*.densities" -o -name "*.hostnames" -o -name "*job*" -o -name "*engrad" -o -name "*opt" -o -name "*smd*" \)'
+    
+    # Add exclusion patterns based on user input
+    for pattern in "${patterns_to_keep[@]}"; do
+        find_command+=" ! -name \"*$pattern*\""
+    done
+
+    # Execute the dynamically constructed find command
+    local files=$(eval $find_command)
+
+    # Check if any files were found
+    if [ -n "$files" ]; then
+        echo "The following files would be deleted:"
+        echo "$files"
+
+        # If it's not a dry run, delete the files
+        if [ "$dry_run" == false ]; then
+            echo "$files" | xargs rm
+            echo "Files deleted."
+        else
+            echo "Dry run: No files were deleted."
+        fi
+    else
+        echo "No files matching the criteria were found."
+    fi
 }
 
