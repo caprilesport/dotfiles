@@ -26,7 +26,6 @@ plugins=(
   python
   rsync
   rust
-  rye
 
   zsh-autosuggestions
   zsh-syntax-highlighting

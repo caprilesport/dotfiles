@@ -48,26 +48,12 @@ alias gac='g a . && g c "updates" && g ps'
 # csync
 alias cs='csync'
 
-#rm tmp files when pullin in wrong time
-alias rmtmp='rm *.densities *.txt *.hostnames *res.Dipoles *.grd *.gbw *.smd* *.res* *.cpcm'
-
 #scripts environment
 alias activatescripts='. ~/projects/scripts/.scripts_environment/bin/activate'
 
 #qchemistry
 alias energy='grep "Final Gibbs free energy" **/*.out'
 alias imfreq='grep -i "imaginary mode" **/*.out'
-
-# more complicated functions
-
-# open foulder if hx called with no arguments
-hx() {
-  if [[ $# -eq 0 ]]; then
-    command hx .
-  else
-    command hx "$@"
-  fi
-}
 
 # connect phone bluetoothctl
 alias muitagentenolab='echo "connect 74:2A:8A:A8:EC:9B" | bluetoothctl'
@@ -78,6 +64,17 @@ alias energy='grep -i "final gibbs free energy" **/*.out'
 alias imfreq='grep -i "imaginary mode" **/*.out'
 alias geomcyclep='grep -i "geometry optimization cycle" **/*.out'
 alias scanprogress='grep -i "RELAXED SURFACE SCAN STEP" **/*.out'
+
+# more complicated functions
+
+# open folder if hx called with no arguments
+hx() {
+  if [[ $# -eq 0 ]]; then
+    command hx .
+  else
+    command hx "$@"
+  fi
+}
 
 function yy() {
 	local tmp="$(mktemp -t "yazi-cwd.XXXXXX")"
@@ -102,47 +99,18 @@ sngo() {
 
 # oneliner to optimize a structure with xtb without cluttering the current dir
 xtbopt() {
-  mkdir .xtbopt && cp "$1" .xtbopt && cd .xtbopt && xtb "$1" --opt && cp xtbopt.xyz .. && cd ..
+    local file_name="$1"
+    mkdir .xtbopt && cp "$file_name" .xtbopt && cd .xtbopt && xtb "$1" --opt && cp xtbopt.xyz .. && cd ..
+    molv xtbopt.xyz
 }
 
-cleanorcadir() {
-    local dry_run=false
-    local patterns_to_keep=()
-
-    # Check for the "--dry-run" flag and remove it from the arguments if present
-    for arg in "$@"; do
-        if [ "$arg" == "--dry-run" ]; then
-            dry_run=true
-        else
-            patterns_to_keep+=("$arg")
-        fi
-    done
-    
-    # Build the find command dynamically
-    local find_command='find . -type f \( -name "*.gbw" -o -name "*.cpcm" -o -name "*.densities" -o -name "*.hostnames" -o -name "*job*" -o -name "*engrad" -o -name "*opt" -o -name "*smd*" \)'
-    
-    # Add exclusion patterns based on user input
-    for pattern in "${patterns_to_keep[@]}"; do
-        find_command+=" ! -name \"*$pattern*\""
-    done
-
-    # Execute the dynamically constructed find command
-    local files=$(eval $find_command)
-
-    # Check if any files were found
-    if [ -n "$files" ]; then
-        echo "The following files would be deleted:"
-        echo "$files"
-
-        # If it's not a dry run, delete the files
-        if [ "$dry_run" == false ]; then
-            echo "$files" | xargs rm
-            echo "Files deleted."
-        else
-            echo "Dry run: No files were deleted."
-        fi
-    else
-        echo "No files matching the criteria were found."
-    fi
+checkneb() {
+    local file_root="$1"
+    plot_interp_neb "$file_root.interp" &
+    molv "$file_root""_MEP_trj.xyz"
 }
+
+
+
+
 
