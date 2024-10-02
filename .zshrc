@@ -3,6 +3,7 @@
 fpath=(~/.zsh/ $fpath)
 source ~/.alias
 source ~/.env
+source ~/.functions
 
 # Path to oh-my-zsh installation.
 export ZSH="/home/vport/.oh-my-zsh"

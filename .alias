@@ -45,15 +45,8 @@ alias g='git'
 alias gf='git diff --name-only'
 alias gac='g a . && g c "updates" && g ps'
 
-# csync
-alias cs='csync'
-
 #scripts environment
 alias activatescripts='. ~/projects/scripts/.scripts_environment/bin/activate'
-
-#qchemistry
-alias energy='grep "Final Gibbs free energy" **/*.out'
-alias imfreq='grep -i "imaginary mode" **/*.out'
 
 # connect phone bluetoothctl
 alias muitagentenolab='echo "connect 74:2A:8A:A8:EC:9B" | bluetoothctl'
@@ -65,52 +58,6 @@ alias imfreq='grep -i "imaginary mode" **/*.out'
 alias geomcyclep='grep -i "geometry optimization cycle" **/*.out'
 alias scanprogress='grep -i "RELAXED SURFACE SCAN STEP" **/*.out'
 
-# more complicated functions
-
-# open folder if hx called with no arguments
-hx() {
-  if [[ $# -eq 0 ]]; then
-    command hx .
-  else
-    command hx "$@"
-  fi
-}
-
-function yy() {
-	local tmp="$(mktemp -t "yazi-cwd.XXXXXX")"
-	yazi "$@" --cwd-file="$tmp"
-	if cwd="$(cat -- "$tmp")" && [ -n "$cwd" ] && [ "$cwd" != "$PWD" ]; then
-		cd -- "$cwd"
-	fi
-	rm -f -- "$tmp"
-}
-
-# ditch the outputs of chemcraft
-molv () {
-    for file in "$@"; do
-        wine /home/vport/.wine/drive_c/Chemcraft/Chemcraft.exe "$file" &> /dev/null &
-    done
-}
-
-# oneliner to send files and ssh to cluster
-sngo() {
-  cs "$1" push && sshcd "$1" 
-}
-
-# oneliner to optimize a structure with xtb without cluttering the current dir
-xtbopt() {
-    local file_name="$1"
-    mkdir .xtbopt && cp "$file_name" .xtbopt && cd .xtbopt && xtb "$1" --opt && cp xtbopt.xyz .. && cd ..
-    molv xtbopt.xyz
-}
-
-checkneb() {
-    local file_root="$1"
-    plot_interp_neb "$file_root.interp" &
-    molv "$file_root""_MEP_trj.xyz"
-}
-
-
-
-
-
+# other
+alias cs='csync'
+alias newsesh='zellij-sessionizer ~/projects'

@@ -1,0 +1,44 @@
+#!/usr/bin/env bash
+
+# open folder if hx called with no arguments
+hx() {
+  if [[ $# -eq 0 ]]; then
+    command hx .
+  else
+    command hx "$@"
+  fi
+}
+
+function yy() {
+	local tmp="$(mktemp -t "yazi-cwd.XXXXXX")"
+	yazi "$@" --cwd-file="$tmp"
+	if cwd="$(cat -- "$tmp")" && [ -n "$cwd" ] && [ "$cwd" != "$PWD" ]; then
+		cd -- "$cwd"
+	fi
+	rm -f -- "$tmp"
+}
+
+# ditch the outputs of chemcraft
+molv () {
+    for file in "$@"; do
+        wine /home/vport/.wine/drive_c/Chemcraft/Chemcraft.exe "$file" &> /dev/null &
+    done
+}
+
+# oneliner to send files and ssh to cluster
+sngo() {
+  cs "$1" push && sshcd "$1" 
+}
+
+# oneliner to optimize a structure with xtb without cluttering the current dir
+xtbopt() {
+    local file_name="$1"
+    mkdir .xtbopt && cp "$file_name" .xtbopt && cd .xtbopt && xtb "$1" --opt && cp xtbopt.xyz .. && cd ..
+    molv xtbopt.xyz
+}
+
+checkneb() {
+    local file_root="$1"
+    plot_interp_neb "$file_root.interp" &
+    molv "$file_root""_MEP_trj.xyz"
+}
