@@ -2,7 +2,7 @@
 extension = "inp"
 --@
 ! {{ level }} {{ basis_set }} 
-! Opt {{ dispersion }} 
+! {{ dispersion }} 
 {% if zora -%}
 ! ZORA
 
@@ -20,24 +20,12 @@ end
  nprocs {{ nprocs }}
 end
 
-%geom
- maxiter {{ maxiter }}
-end
-
 %maxcore {{ memory }} 
 
 {% if solvation -%}
 %cpcm
  smd true
  smdsolvent "{{ solvent }}"
-end
-
-{% endif -%} 
-
-{% if start_hessian -%}
-%Geom
- InHess Read
- InHessName "{{ Molecule.filename }}.hess"
 end
 
 {% endif -%} 
