@@ -67,3 +67,5 @@ export NVM_DIR="$HOME/.nvm"
 # ORCA 6.0.0 secion
 export PATH=/home/vport/orca_6_0_0:$PATH
 
+
+fpath+=~/.zfunc; autoload -Uz compinit; compinit
