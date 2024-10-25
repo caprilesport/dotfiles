@@ -42,3 +42,11 @@ checkneb() {
     plot_interp_neb "$file_root.interp" &
     molv "$file_root""_MEP_trj.xyz"
 }
+
+trj_to_xyz() {
+  trj_file="$1"
+  nratoms=$(head "$trj_file" -n 1)
+  xyzlength=$((nratoms + 2))
+  xyzfile="${trj_file/_trj/}"
+  tail -n "$xyzlength" "$trj_file" > "$xyzfile"
+}

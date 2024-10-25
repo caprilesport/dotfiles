@@ -7,6 +7,9 @@ alias :!='exit'
 # clusters
 alias qsn='ssh newton "qstat"'
 alias qsj='ssh jupiter "qstat"'
+alias qsp='ssh pipeline "pueue"'
+alias pq='pueue'
+alias jupfree="ssh jupiter \"pbsnodes -aSj | grep -E '8\\/8|16\\/16' | sort -k1 | awk '{print \\\$1}'\""
 alias qdelnew='ssh newton "qdel"'
 alias qdeljup='ssh jupiter "qdel"'
 
