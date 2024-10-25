@@ -2,7 +2,7 @@
 extension = "inp"
 --@
 ! {{ level }} {{ basis_set }} {{ dispersion }} 
-! IRC KDIIS SOSCF numfreq tightscf
+! IRC KDIIS SOSCF tightscf
 {% if zora -%}
 ! ZORA
 
@@ -20,8 +20,6 @@ end
  nprocs {{ nprocs }}
 end
 
-%maxcore {{ memory }} 
-
 {% if solvation -%}
 %cpcm
  smd true
@@ -30,10 +28,9 @@ end
 
 {% endif -%} 
 
-%Geom
- InHess Read
- InHessName "{{ Molecule.filename }}.hess"
- printinternalhess true
+%irc
+ InitHess read
+ Hess_Filename "{{ Molecule.filename }}.hess"
 end
 
 *xyz {{ charge }} {{ mult }}

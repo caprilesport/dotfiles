@@ -24,8 +24,6 @@ end
  maxiter {{ maxiter }}
 end
 
-%maxcore {{ memory }} 
-
 {% if solvation -%}
 %cpcm
  smd true
