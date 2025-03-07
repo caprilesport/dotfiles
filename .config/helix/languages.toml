@@ -1,39 +1,49 @@
 [[language]]
 name = "latex"
-language-servers = ["texlab"]
+language-servers = [ "scls", "texlab" , "ltex-ls-plus" ]
 
-[language-server.texlab.config]
-auxDirectory = "build"
+[language-server.texlab]
+command = "texlab"
 
-[language-server.texlab.config.forwardSearch]
+[language-server.texlab.config.texlab.build]
+onSave = true
+forwardSearchAfter = true
+ executable = "latexmk"
+ args = [
+  "-pdf",
+  "-interaction=nonstopmode",
+  "-synctex=1",
+  "-shell-escape",
+  "%f"
+  ]
+
+[language-server.texlab.config.texlab.forwardSearch]
 executable = "zathura"
 args = [ "--synctex-forward", "%l:%c:%f", "%p" ]
 
-[language-server.texlab.config.build]
-forwardSearchAfter = true
-onSave = true
+[language-server.texlab.config.texlab.chktex]
+onOpenAndSave = true
+onEdit = true
 
-# executable = "latexmk"
-# args = [
-#  "-pdf",
-#  "-interaction=nonstopmode",
-#  "-synctex=1",
-#  "-shell-escape",
-#  "-output-directory=build",
-#  "%f"
-#  ]
+# introduce new language server
+[language-server.scls]
+command = "simple-completion-language-server"
 
-executable = "tectonic"
-args = [
- "-X",
- "compile",
- "%f",
- "--synctex",
- "--keep-logs",
- "--keep-intermediates",
- "--outdir=build",
- "-Zshell-escape",
- ]
+[language-server.scls.config]
+max_completion_items = 100           # set max completion results len for each group: words, snippets, unicode-input
+feature_words = true                 # enable completion by word
+feature_snippets = true              # enable snippets
+snippets_first = true                # completions will return before snippets by default
+snippets_inline_by_word_tail = false # suggest snippets by WORD tail, for example text `xsq|` become `x^2|` when snippet `sq` has body `^2`
+feature_unicode_input = false        # enable "unicode input"
+feature_paths = false                # enable path completion
+feature_citations = false            # enable citation completion (only on `citation` feature enabled)
+
+
+# write logs to /tmp/completion.log
+[language-server.scls.environment]
+RUST_LOG = "info,simple-completion-language-server=info"
+LOG_FILE = "/tmp/completion.log"
 
 [[language]]
 name = "python"
