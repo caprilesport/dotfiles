@@ -22,7 +22,6 @@ plugins=(
   node
   npm
   pip
-  poetry
   pyenv
   python
   rsync
@@ -71,3 +70,4 @@ export PATH=/home/vport/orca_6_0_0:$PATH
 
 fpath+=~/.zfunc; autoload -Uz compinit; compinit
 eval "$(uv generate-shell-completion zsh)"
+
