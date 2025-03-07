@@ -52,5 +52,30 @@ set recolor-darkcolor           "#f8f8f2" # Foreground
 #
 # Startup options
 #
+
+# Open document in fit-width mode by default
+set adjust-open "best-fit"
+
+# One page per row by default
+set pages-per-row 1
+
+#stop at page boundries
+set scroll-page-aware "true"
+set smooth-scroll "true"
+set scroll-full-overlap 0.01
+set scroll-step 100
+
+#zoom settings
+set zoom-min 10
+set guioptions ""
+
 set adjust-open width
-set recolor true
+set recolor false
+
+set render-loading "false"
+set scroll-step 50
+unmap f
+map f toggle_fullscreen
+map [fullscreen] f toggle_fullscreen
+set highlight-color "rgba(255, 255, 0, 0.3)"
+set highlight-active-color "rgba(255, 255, 0, 0.3)"
