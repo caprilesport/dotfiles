@@ -1,0 +1,6 @@
+layout {
+    pane command="btop"
+    pane size=10 command="watch" {
+        args "-d" "-t" "squeue" "-o" "\"%.8i %.10j %.8T %.5C %.10m %.Z\""  
+    }
+}
