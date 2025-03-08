@@ -77,4 +77,6 @@ cleantex() {
 	rm *.aux
 }
 
-
+pqcd() {
+  cd $(pq log $1 | grep Path | awk '{print $2}')
+}

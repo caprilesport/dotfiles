@@ -3,6 +3,7 @@
 # shortcuts
 alias :q='exit'
 alias :!='exit'
+alias tf='tail -f'
 
 # clusters
 alias qsn='ssh newton "qstat"'
