@@ -1,9 +1,0 @@
-[2025-03-07 12:18:54.168] [info] Using configuration file /home/vport/.config/waybar/config.jsonc
-[2025-03-07 12:18:54.169] [info] Including resource file: ~/.config/waybar/modules.json
-[2025-03-07 12:18:54.170] [info] Discovered appearance 'dark'
-[2025-03-07 12:18:54.170] [info] Using CSS file /home/vport/.config/waybar/style.css
-[2025-03-07 12:18:54.173] [info] Hyprland IPC starting
-[2025-03-07 12:18:54.173] [info] Loading persistent workspaces from Hyprland workspace rules
-[2025-03-07 12:18:54.174] [warning] module temperature: Disabling module "temperature", Can't open /sys/class/thermal/thermal_zone0/temp
-[2025-03-07 12:18:54.324] [warning] Requested height: 12 is less than the minimum height: 44 required by the modules
-[2025-03-07 12:18:54.324] [info] Bar configured (width: 1920, height: 44) for output: HDMI-A-1

@@ -2,9 +2,9 @@
   border: none;
   border-radius: 6px;
   font-family: "Symbols Nerd Font Mono", "Jetbrains Mono";
-  font-size: 16px;
+  font-size: 12px;
   font-weight: 500;
-  min-height: 16px;
+  min-height: 12px;
   margin: 3px 4px 3px 4px;
 }
 
@@ -71,7 +71,7 @@ window#waybar > box {
 #bluetooth,
 #custom-launcher
 {
-  font-size: 18px;
+  font-size: 12px;
   font-weight: 600;
 }
 

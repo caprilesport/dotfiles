@@ -78,7 +78,7 @@
   "custom/launcher": {
     "format": "{icon}",
     "format-icons": {
-      "default": ""
+      "default": "󰣇"
     },
     "on-click": "uwsm app -- nwg-drawer -nofs -closebtnleft -closebtn"
   },
