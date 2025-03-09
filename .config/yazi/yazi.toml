@@ -1,0 +1,15 @@
+[opener]
+litio = [
+	{ run = 'litio "$@"', desc = "litio" },
+]
+Chemcraft = [
+	{ run = 'wine /home/vport/.wine/drive_c/Chemcraft/Chemcraft.exe "$@"', desc = "Chemcraft" },
+]
+
+[open]
+prepend_rules = [
+	{ name = "*.xyz", use = ["litio", "Chemcraft"] },
+]
+
+
+
