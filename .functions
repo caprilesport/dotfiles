@@ -66,7 +66,7 @@ rga-fzf() {
 }
 
 cpsc() {
-	file="$(find ~/Pictures/Screenshots -type f | sort -k1,1nr | tail -n 1 )"
+	file="$(find ~/Pictures/ -maxdepth 1 -type f | sort -k1,1nr | tail -n 1 )"
 	# echo $file
 	cp $file $1
 }
