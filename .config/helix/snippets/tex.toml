@@ -20,10 +20,10 @@ prefix = "italic"
 scope = [ "latex" ]
 body = '\\textit{$1}'
 
-[[snippets]]
-prefix = "quote"
-scope = [ "latex" ]
-body = """\'\'$1\`\`"""
+# [[snippets]]
+# prefix = "quote"
+# scope = [ "latex" ]
+# body = """\'\'$1\`\`"""
 
 [[snippets]]
 prefix = "subsection"
