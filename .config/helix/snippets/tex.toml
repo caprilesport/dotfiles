@@ -158,7 +158,8 @@ body = """\\documentclass[a4paper, 11pt]{article}
 \\usepackage[backend=biber,style=chem-acs]{biblatex}
 \\usepackage[pdftex,bookmarks,colorlinks,breaklinks]{hyperref}  
 \\hypersetup{linkcolor=black,citecolor=black,filecolor=black,urlcolor=black} % black links, for printed output
-\\usepackage{memhfixc} 
+\\usepackage{memhfixc}
+\\usepackage{indentfirst}
 \\usepackage{pdfsync}  
 \\usepackage{fancyhdr}
 \\pagestyle{fancy}
