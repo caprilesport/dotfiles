@@ -21,6 +21,8 @@ alias sudo='sudo '
 alias update='sudo pacman -Syyu'
 alias mkdir='mkdir -p'
 alias reload='source ~/.zshrc'
+alias fakevpn='sudo tailscale set --exit-node=trindatimes'
+alias exitfakevpn='sudo tailscale up --exit-node='
 
 # programs 
 alias ipy='ipython'
@@ -31,6 +33,7 @@ alias ged='gedent'
 alias ggen='gedent gen `gedent template list | fzf` '
 alias periodic-table='npx periodic-table-cli'
 alias copy='xclip -selection clipboard'
+alias vmdd='env DISPLAY=:0 vmd'
 
 # ledger alias
 alias hled='hledger'
@@ -65,3 +68,4 @@ alias scanprogress='grep -i "RELAXED SURFACE SCAN STEP" **/*.out'
 # other
 alias cs='csync'
 alias newsesh='zellij-sessionizer ~/projects'
+alias zk-last='hx journal/daily/$(ls journal/daily | sort | tail -n 1)'
