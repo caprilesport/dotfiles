@@ -1,4 +1,4 @@
-theme = "gruvbox"
+theme = "ayu_mirage"
 
 [editor]
 line-number = "relative"
@@ -42,6 +42,16 @@ display-inlay-hints = true
 # "C-u" = ["half_page_up", "goto_window_center"]
 "{" = ["goto_prev_paragraph", "collapse_selection"]
 "}" = ["goto_next_paragraph", "collapse_selection"]
+
+C-b = [
+    ":write-all",
+    ":new",
+    ":insert-output gitui >/dev/tty",
+    ":buffer-close!",
+    ":redraw",
+    ":reload-all"
+]
+
 
 [keys.normal.space]
 "H" = ":toggle lsp.display-inlay-hints"
