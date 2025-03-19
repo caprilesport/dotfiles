@@ -11,6 +11,11 @@ scope = [ "latex" ]
 body = '\\section{$1}'
 
 [[snippets]]
+prefix = "etal"
+scope = [ "latex" ]
+body = '\\textit{et. al.}'
+
+[[snippets]]
 prefix = "bold"
 scope = [ "latex" ]
 body = '\\textbf{$1}'
