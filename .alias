@@ -34,6 +34,7 @@ alias ggen='gedent gen `gedent template list | fzf` '
 alias periodic-table='npx periodic-table-cli'
 alias copy='xclip -selection clipboard'
 alias vmdd='env DISPLAY=:0 vmd'
+alias yadmgui='yadm enter gitui'
 
 # ledger alias
 alias hled='hledger'
