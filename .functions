@@ -77,6 +77,6 @@ cleantex() {
 	rm *.aux
 }
 
-pqcd() {
-  cd $(pq log $1 | grep Path | awk '{print $2}')
+geninit() {
+	wl-paste -t text | sed -r '/^\s*$/d' > init.xyz
 }
