@@ -54,7 +54,7 @@ zstyle :compinstall filename '/home/vport/.zshrc'
 
 autoload -Uz compinit
 compinit
-alias ls='exa --icons=auto'
+alias ls='eza --icons=auto'
 
 source /home/vport/.config/broot/launcher/bash/br
 

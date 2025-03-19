@@ -20,6 +20,8 @@ end
  nprocs {{ nprocs }}
 end
 
+%maxcore {{ memory }}
+
 %geom
  maxiter {{ maxiter }}
 end
