@@ -75,6 +75,12 @@ cleantex() {
 	rm *.log
 	rm *.pdfsync
 	rm *.aux
+	rm *.bcf*
+	rm *fdb*
+	rm *fls
+	rm *.out
+	rm *sync*
+	rm report.toc
 }
 
 geninit() {
