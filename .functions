@@ -132,3 +132,34 @@ take() {
 	mkdir -p $name
 	cd $name
 }
+
+pqr() {
+   local dir=$(pueue log -j | jq -r '
+        to_entries[] |
+        select(.value.task.status | has("Running")) |
+        .value.task.path
+    '| head -n 1)
+
+    if [[ -n "$dir" ]]; then
+        cd "$dir"
+    else
+        echo "No running task found" >&2
+        return 1
+    fi
+}
+
+
+pqd() {
+	   local dir=$(pueue log -j | jq -r '
+        to_entries[] |
+        select(.value.task.status | has("Done")) |
+        .value.task.path
+    ' | fzf)
+
+    if [[ -n "$dir" ]]; then
+        cd "$dir" 
+    else
+        echo "No done tasks selected or found" >&2
+        return 1
+    fi
+}
