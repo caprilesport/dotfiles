@@ -39,7 +39,7 @@ xtbopt() {
 
 checkneb() {
     local file_root="$1"
-    plot_interp_neb "$file_root.interp" &
+    env DISPLAY=:0 plot_interp_neb "$file_root.interp" &
     molv "$file_root""_MEP_trj.xyz"
 }
 
