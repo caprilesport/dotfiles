@@ -84,5 +84,11 @@ cleantex() {
 }
 
 geninit() {
-	wl-paste -t text | sed -r '/^\s*$/d' > init.xyz
+	if [ $# -eq 0 ]
+	then
+		file="init.xyz"
+	else
+		file=$1
+	fi
+	wl-paste -t text | sed -r '/^\s*$/d' > $file
 }
