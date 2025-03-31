@@ -1,6 +1,6 @@
 local wezterm = require 'wezterm'
 local config = {}
-config.font = wezterm.font 'JetBrains Mono'
+config.font = wezterm.font 'Fira Code'
 
 config.color_scheme = "Ayu Mirage"
 config.color_scheme_dirs = { '/home/vport/.wezterm/' }

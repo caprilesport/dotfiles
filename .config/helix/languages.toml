@@ -1,4 +1,8 @@
 [[language]]
+name = "markdown"
+language-servers = [ "scls", "marksman", "markdown-oxide"]
+
+[[language]]
 name = "latex"
 language-servers = [ "scls", "texlab" , "ltex-ls-plus" ]
 
