@@ -4,6 +4,7 @@ theme = "ayu_mirage"
 line-number = "relative"
 color-modes = true
 cursorline = true
+bufferline = "always"
 
 [editor.cursor-shape]
 insert = "block"

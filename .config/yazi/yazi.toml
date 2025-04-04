@@ -5,10 +5,14 @@ litio = [
 Chemcraft = [
 	{ run = 'wine /home/vport/.wine/drive_c/Chemcraft/Chemcraft.exe "$@"', desc = "Chemcraft" },
 ]
+bibiman = [
+	{run = 'bibiman "$@"', block = true, desc = "bibiman"}
+]
 
 [open]
 prepend_rules = [
 	{ name = "*.xyz", use = ["litio", "Chemcraft"] },
+	{ name = "*.bib", use = ["bibiman"]}
 ]
 
 
