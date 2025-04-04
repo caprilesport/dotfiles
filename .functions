@@ -92,6 +92,13 @@ geninit() {
 	fi
 	wl-paste -t text | sed -r '/^\s*$/d' > $file
 }
+
+goto-line() {
+	local text_pattern="$1"
+	local file="$2"
+	hx $file:$(sed -n "/$text_pattern/{=;q;}" $file)
+}
+
 setup-irc() {
 	mkdir ../irc
 	cp init.xyz ../irc
@@ -120,3 +127,8 @@ setup-product() {
 	cd $irc
 }
 
+take() {
+	local name=$1
+	mkdir -p $name
+	cd $name
+}
