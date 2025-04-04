@@ -92,3 +92,31 @@ geninit() {
 	fi
 	wl-paste -t text | sed -r '/^\s*$/d' > $file
 }
+setup-irc() {
+	mkdir ../irc
+	cp init.xyz ../irc
+	cp init.hess ../irc
+	cd ../irc
+	gedent gen irc init.xyz
+}
+
+setup-reactant() {
+	local filename=$1
+	local irc=$(pwd)
+	mkdir ../reactant -p
+	cp $filename ../reactant/init.xyz
+	cd ../reactant
+	gedent gen optfreq init.xyz
+	cd $irc
+}
+
+setup-product() {
+	local filename=$1
+	local irc=$(pwd)
+	mkdir ../product -p
+	cp $filename ../product/init.xyz
+	cd ../product
+	gedent gen optfreq init.xyz
+	cd $irc
+}
+
