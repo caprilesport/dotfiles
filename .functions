@@ -163,3 +163,10 @@ pqd() {
         return 1
     fi
 }
+
+begin-sesh() {
+	tmux new-session -d -s sesh -c ~/notes -n "notes" 
+	tmux new-window -t sesh -c ~/projects -n "doc" 
+	tmux new-window -t sesh -c ~/projects -n "dev" 
+	tmux attach 
+}
