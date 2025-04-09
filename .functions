@@ -27,7 +27,23 @@ molv () {
 
 # oneliner to send files and ssh to cluster
 sngo() {
-  cs "$1" push && sshcd "$1" 
+	local sync_flag=false
+	local remote=$1
+
+  # Check for --sync flag
+  for arg in "$@"; do
+    if [[ "$arg" == "--sync" ]]; then
+      sync_flag=true
+      shift  # Remove the flag from arguments
+      break
+    fi
+  done
+
+	if $sync_flag; then
+		cs "$remote" push sync && sshcd "$remote"
+	else
+	  cs "$remote" push  && sshcd "$remote"
+	fi
 }
 
 # oneliner to optimize a structure with xtb without cluttering the current dir
@@ -35,6 +51,42 @@ xtbopt() {
     local file_name="$1"
     mkdir .xtbopt && cp "$file_name" .xtbopt && cd .xtbopt && xtb "$1" --opt && cp xtbopt.xyz .. && cd ..
     molv xtbopt.xyz
+}
+
+xtbhess() {
+    local file_name="$1"
+    local charge=""
+    local base_name="${file_name%.*}"  # Remove extension
+    
+    # Check for --charge flag
+    while [[ $# -gt 0 ]]; do
+        case "$1" in
+            -c|--charge)
+                charge="$2"
+                shift 2  # Skip both --charge and its value
+                ;;
+            *)
+                shift  # Skip other arguments
+                ;;
+        esac
+    done
+
+    mkdir -p .xtbhess
+    cp "$file_name" .xtbhess/
+    cd .xtbhess
+
+    # Generate Hessian with or without charge
+    if [[ -n "$charge" ]]; then
+        gedent gen hessian "$file_name" --charge "$charge"
+    else
+        gedent gen hessian "$file_name"
+    fi
+
+    # Use base_name for job input and hess file
+    job "${base_name}.inp"
+    cp "${base_name}.hess" ..
+    
+    cd ..
 }
 
 checkneb() {
@@ -169,4 +221,8 @@ begin-sesh() {
 	tmux new-window -t sesh -c ~/projects -n "doc" 
 	tmux new-window -t sesh -c ~/projects -n "dev" 
 	tmux attach 
+}
+
+plj() {
+	cd $(ssh pipeline "pueue status -j" | jq '.tasks[].path' | fzf | tr -d '"')
 }
