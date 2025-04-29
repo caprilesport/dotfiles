@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 # aliases and enviroment variables
-fpath=(~/.zsh/ $fpath)
+fpath+=~/.zsh
 fpath+=~/.zfunc
 source ~/.alias
 source ~/.env
@@ -35,6 +35,7 @@ eval "$(zoxide init zsh)"
 setopt autocd extendedglob
 unsetopt beep
 bindkey -e
+bindkey -s "^f" "tmux-sessionizer\n"
 
 alias ls='eza --icons=auto'
 
