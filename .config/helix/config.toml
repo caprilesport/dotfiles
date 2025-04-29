@@ -44,19 +44,38 @@ display-inlay-hints = true
 "{" = ["goto_prev_paragraph", "collapse_selection"]
 "}" = ["goto_next_paragraph", "collapse_selection"]
 
-C-b = [
+
+[keys.normal.C-g]
+g = [
     ":write-all",
     ":new",
-    ":insert-output gitui >/dev/tty",
+    ":insert-output lazygit >/dev/tty",
+    ":buffer-close!",
+    ":redraw",
+    ":reload-all"
+]
+y = [
+    ":write-all",
+    ":new",
+    ":insert-output yazi >/dev/tty",
     ":buffer-close!",
     ":redraw",
     ":reload-all"
 ]
 
+[keys.normal."+"]
+x = "@/xyz<ret>;jvgekxd<space>P<esc>F*;jxxdf*;k"
+t = "@i- [ ] "
+f = "@glT[;rx"
+
+[keys.normal.C-a]
+t = [":sh tnw cargo test"]
+r = [":sh tnw cargo run"]
+
+
 
 [keys.normal.space]
 "H" = ":toggle lsp.display-inlay-hints"
-
 
 [editor.smart-tab]
 enable = false
