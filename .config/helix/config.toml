@@ -5,6 +5,7 @@ line-number = "relative"
 color-modes = true
 cursorline = true
 bufferline = "always"
+true-color = true
 
 [editor.cursor-shape]
 insert = "block"
