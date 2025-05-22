@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+. "$HOME/.cargo/env"
 export PATH="$HOME/.local/bin:$PATH"
 export PATH="$HOME/projects/scripts:$PATH" # my scripts
 export LEDGER_FILE=~/Finances/2025.journal #ledger journal
@@ -41,6 +41,9 @@ export PATH="$PATH:$GOPATH/bin"
 
 # juliaup
 export PATH="$PATH:/home/vport/.juliaup/bin"
+
+#steel
+export STEEL_HOME="$HOME/.steel"
 
 export FZF_DEFAULT_OPTS="--height=80% --layout=reverse --info=inline --border --margin=1 --padding=1"
 
