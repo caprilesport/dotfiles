@@ -22,6 +22,7 @@ end
 
 %geom
  maxiter {{ maxiter }}
+ inhess XTB2
 end
 
 {% if solvation -%}

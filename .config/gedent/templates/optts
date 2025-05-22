@@ -2,7 +2,7 @@
 extension = "inp"
 --@
 ! {{ level }} {{ basis_set }} 
-! OptTS tightscf slowconv numfreq {{ dispersion }}
+! OptTS tightopt tightscf printbasis printMOs NBO slowconv numfreq {{ dispersion }}
 {% if zora -%}
 ! ZORA
 
@@ -22,9 +22,8 @@ end
 
 %geom
  maxiter {{ maxiter }}
- inhess read
- inhessname "init.hess"
- TS_active_atoms { {{ ts_active_atoms }} } end
+ inhess XTB2
+ ts_active_atoms { {{ ts_active_atoms }} } end
 end
 
 {% if solvation -%}

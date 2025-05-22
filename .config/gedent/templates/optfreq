@@ -34,13 +34,9 @@ end
 
 {% endif -%} 
 
-{% if start_hessian -%}
-%Geom
- InHess Read
- InHessName "{{ Molecule.filename }}.hess"
+%geom
+ inhess XTB2
 end
-
-{% endif -%} 
 
 *xyz {{ charge }} {{ mult }}
 {{ print_molecule(molecule = Molecule) }}
