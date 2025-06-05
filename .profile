@@ -46,6 +46,7 @@ export PATH="$PATH:/home/vport/.juliaup/bin"
 
 #steel
 export STEEL_HOME="$HOME/.steel"
+export STEEL_LSP_HOME="$HOME/.config/steel-lsp/"
 
 export FZF_DEFAULT_OPTS="--height=80% --layout=reverse --info=inline --border --margin=1 --padding=1"
 
@@ -53,7 +54,7 @@ export FZF_DEFAULT_OPTS="--height=80% --layout=reverse --info=inline --border --
 [ -f "/home/vport/.ghcup/env" ] && source "/home/vport/.ghcup/env" # ghcup-env
 
 #gromacs
-if [[ "$HOST" == "pipeline" ]]; then
+if [[ $(hostname) == "pipeline" ]]; then
 	source /opt/gromacs/bin/GMXRC
 else
 	source /usr/local/gromacs/bin/GMXRC
