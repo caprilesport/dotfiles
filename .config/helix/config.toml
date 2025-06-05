@@ -39,8 +39,8 @@ display-inlay-hints = true
 
 # remaps
 [keys.normal]
-# "C-d" = ["half_page_down", "goto_window_center"]
-# "C-u" = ["half_page_up", "goto_window_center"]
+"C-l" = [":buffer-next"]
+"C-h" = [":buffer-previous"]
 "{" = ["goto_prev_paragraph", "collapse_selection"]
 "}" = ["goto_next_paragraph", "collapse_selection"]
 

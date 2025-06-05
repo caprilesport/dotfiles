@@ -1,4 +1,8 @@
 if status is-interactive
+    if set -q SSH_LOGIN[1] || not set -q ENV[1]
+        bass "source ~/.profile"
+    end
+
     #fish options
     set -U fish_greeting
 
@@ -11,4 +15,5 @@ if status is-interactive
 
     # Commands to run in interactive sessions can go here
     bind \cf tmux-sessionizer
+    atuin init fish --disable-up-arrow | source
 end
