@@ -17,7 +17,7 @@ abbr -a qdelpipe 'ssh pipeline "pueue remove $1"'
 # system
 abbr -a update 'sudo pacman -Syyu'
 abbr -a mkdir 'mkdir -p'
-abbr -a reload 'source ~/.zshrc'
+abbr -a reload 'source ~/.config/fish/config.fish'
 abbr -a fakevpn 'sudo tailscale set --exit-node=trindatimes'
 abbr -a exitfakevpn 'sudo tailscale up --exit-node='
 abbr -a update-arch-mirrors 'rate-mirrors --disable-comments-in-file --entry-country=BR --protocol=https arch --max-delay 7200 | sudo tee /etc/pacman.d/mirrorlist'
@@ -42,6 +42,9 @@ abbr -a la 'eza -a --icons=always'
 abbr -a lla 'eza -la --icons=always'
 abbr -a lt 'eza --tree --icons=always'
 
+abbr -a cat bat
+abbr -a cd z
+
 #cargo
 abbr -a cargoclippy 'cargo clippy --fix --allow-dirty --allow-staged -- -W clippy::pedantic -W clippy::nursery'
 
@@ -63,4 +66,4 @@ abbr -a scanprogress 'grep -i "RELAXED SURFACE SCAN STEP" **/*.out'
 abbr -a cs csync
 abbr -a up 'cd (parent-dirs | fzf)'
 abbr -a rmfilter 'rm (ls | rg -v (string trim -c "|" (for i in (ls | fzf -m); echo -n "$i|"; end)))'
-abbr -a addjob 'pq add -- job init.inp'
+abbr -a addjob 'pueue add -- job init.inp'
