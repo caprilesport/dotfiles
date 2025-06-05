@@ -9,11 +9,13 @@ export PATH="/opt/xtb/bin:$PATH" # some programs
 # local and remote directories roots
 export LOCAL_PROJECTS="/home/vport/projects"
 export JUPITER_PROJECTS="/scratch/vport/projects"
-export NEWTON_PROJECTS="/mnt/data/vport/projects/"
+export LOBOC_PROJECTS="/scratch/01032a/vport"
 
 #set hx as preferred editor
 export EDITOR=$HOME/.cargo/bin/hx
 export VISUAL=$HOME/.cargo/bin/hx
+
+export STEEL_LSP_HONE="$HOME/.config/steel-lsp"
 
 # some software 
 export PATH="$HOME/software:$PATH"
@@ -69,3 +71,5 @@ export HISTSIZE=50000000
 export SAVEHIST=50000000
 
 
+
+. "$HOME/.atuin/bin/env"

@@ -30,9 +30,18 @@ function geninit -a file
     wl-paste -t text | sed -r '/^\s*$/d' >"$file"
 end
 
-function setup-calc -a filename
+function setup-calc
     argparse r/reverse 'c/charge=' i/irc -- $argv
-    or return 0
+    or return 1
+
+    if set -q argv[1]
+        set basefile (string split "." "$argv[1]" -f1)
+    else
+        set basefile init
+    end
+
+    set -q _flag_charge
+    or set -l _flag_charge 0
 
     if [ -z "$filename" ]
         set basefile init
@@ -40,28 +49,28 @@ function setup-calc -a filename
         set basefile (string split "." "$filename" -f1)
     end
 
-    if [ -z $_flag_reverse ]
+    if [ -z "$_flag_reverse" ]
         set product "$basefile"_IRC_F.xyz
         set reagent "$basefile"_IRC_B.xyz
     else
-        set reagent "$basefile"_IRC_F.xyz
+        set reagent "$basefile"_IRC_B.xyz
         set product "$basefile"_IRC_F.xyz
     end
 
     if [ -z $_flag_irc ]
         mkdir ../react-freq -p
         mkdir ../prod-freq -p
-        cp $reagent ../react-freq/init.xyz
-        cp $product ../prod-freq/init.xyz
-        gedent gen optfreq ../react-freq/init.xyz --charge $charge
-        gedent gen optfreq ../prod-freq/init.xyz --charge $charge
+        cp "$reagent" ../react-freq/init.xyz
+        cp "$product" ../prod-freq/init.xyz
+        gedent gen optfreq ../react-freq/init.xyz --charge $_flag_charge
+        gedent gen optfreq ../prod-freq/init.xyz --charge $_flag_charge
         cd ..
     else
         mkdir ../irc
-        cp "$basename".xyz ../irc
-        cp "$basename".hess ../irc
+        cp "$basefile".xyz ../irc
+        cp "$basefile".hess ../irc
         cd ../irc
-        gedent gen irc init.xyz --charge $charge
+        gedent gen irc init.xyz --charge $_flag_charge
     end
 
 end
@@ -71,9 +80,9 @@ function sngo -a remote
     or return 0
 
     if [ -z $_flag_sync ]
-        cs "$remote" push sync && sshcd "$remote"
+        csync "$remote" push && sshcd "$remote"
     else
-        cs "$remote" push && sshcd "$remote"
+        csync "$remote" push sync && sshcd "$remote"
     end
 
 end

@@ -6,9 +6,11 @@ abbr -a tf 'tail -f'
 # clusters
 abbr -a qsj 'ssh jupiter "qstat"'
 abbr -a qsp 'ssh -t pipeline "pueue"'
+abbr -a qsl 'ssh loboc "qstat"'
 abbr -a pq pueue
+abbr -a pqn "cd (ssh pipeline \"pueue status -j\" | jq '.tasks.[].path' | tr -d '\"' | head -n1)"
 abbr -a jupfree "ssh jupiter \"pbsnodes -aSj | grep -E '8\\/8|16\\/16' | sort -k1 | awk '{print \\\$1}'\""
-abbr -a qdelnew 'ssh newton "qdel"'
+abbr -a qdelloboc 'ssh loboc "qdel"'
 abbr -a qdeljup 'ssh jupiter "qdel"'
 abbr -a qdelpipe 'ssh pipeline "pueue remove $1"'
 
@@ -33,6 +35,7 @@ abbr -a yadmgui 'yadm enter gitui'
 abbr -a hled hledger
 
 # lsd
+abbr -a l ls
 abbr -a ls 'eza --icons=always'
 abbr -a ll 'eza -l --icons=always'
 abbr -a la 'eza -a --icons=always'
@@ -48,7 +51,7 @@ abbr -a gf 'git diff --name-only'
 abbr -a gac 'g a . && g c "updates" && g ps'
 
 #scripts environment
-abbr -a activatescripts '. ~/projects/scripts/.venv/bin/activate'
+abbr -a activatescripts '. ~/projects/scripts/.venv/bin/activate.fish'
 
 # orca stuff
 abbr -a energy 'grep -i "final gibbs free energy" **/*.out'
