@@ -52,105 +52,33 @@ echo
 
 info "Updating pacman...\n"
 sudo pacman -Syuu
-sudo pacman -S wget curl vim git yadm zsh pyenv g++ gmp ncurses realpath xz-utils github-cli gcc make wget curl llvm fd ctags jq rg shellcheck xsel git-absorb moreutils surfraw autoload zoxide libxcb lazygit duf bat wine timeshift thunderbird git-delta tk openssh openmpi nvtop neofecth telegram-desktop tectonic xclip zathura okular zk zathura-pdf-poppler zathura-pdf-mupdf zathura-cb libreoffice-still chromium starship cmake freetype2 fontconfig pkg-config make libxcb libxkbcommon python webkit2gtk base-devel file openssl appmenu-gtk-module gtk3 libappindicator-gtk3 librsvg libvips tailscale --noconfirm
+yay -S fish wezterm wget curl vim git yadm zsh pyenv g++ gmp ncurses realpath xz-utils github-cli gcc make wget curl llvm fd ctags jq rg shellcheck xsel git-absorb moreutils surfraw autoload zoxide libxcb lazygit duf bat wine timeshift thunderbird git-delta tk openssh openmpi nvtop neofecth telegram-desktop tectonic xclip zathura okular zk zathura-pdf-poppler zathura-pdf-mupdf zathura-cb libreoffice-still chromium starship cmake freetype2 fontconfig pkg-config make libxcb libxkbcommon python webkit2gtk base-devel file openssl appmenu-gtk-module gtk3 libappindicator-gtk3 librsvg libvips tailscale mpv hledger wine ipython lazygit pueue warsaw-bin duf markdown-oxide-git texlab-bin ltex-ls-bin pyright nvm btop texlive-full texlive-full git-delta miller yazi jq rnr-bin texlive-basic, texlive-latex texlive-latexrecommended texlive-fontsrecommended texlive-fontsextra texlive-xetex texlive-bibtexextra texlive-mathscience texlive-lang biber nodejs npm texlive-latexextra bluez bluez-utils fd-find ttf-fira-code tmux eza zoxide bat openssh openssh-server gnome-tweaks lazygit nerd-fonts atuin --noconfirm
+
 sudo systemctl enable --now tailscaled
 sudo tailscale up
 echo
 echo
 
-# this has to be installed with yay
-info "Installing some utilities...\n"
-install "latexmk" 'sudo apt install texlive-full -y'
+# enable ssh
+sudo systemctl start sshd
 
-gh auth login
-gh extension install dlvhdr/gh-dash
+# fisher
+curl -sL https://raw.githubusercontent.com/jorgebucaran/fisher/main/functions/fisher.fish | source && fisher install jorgebucaran/fisher
+fisher install edc/bass
 
 echo
 echo
-
-info "Updating juliaup (installing if needed)...\n"
-install "juliaup" 'curl -fsSL https://install.julialang.org | sh'
-juliaup update
-julia -e "using Pkg; Pkg.update()"
 
 info "Updating rustup (installing if needed)...\n"
 install "rustup" "curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh"
 rustup update
 
-info "Updating ghcup (installling if needed)...\n"
-install "ghcup" "curl --proto '=https' --tlsv1.2 -sSf https://get-ghcup.haskell.org | sh"
-ghcup upgrade
-
-info "Updating rye (installing if needed)...\n"
-install "rye" "curl -sSf https://rye-up.com/get | bash"
-rye self update
-
-## install npm/node here
-
 echo
 echo
 
-if [[ ! -d "$HOME/.oh-my-zsh" ]]; then
-  info "Installing oh-my-zsh...\n"
-  sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
-else
-  success "oh-my-zsh is already installed\n"
-fi
-
-zsh_completions=${ZSH_CUSTOM:-${ZSH:-$HOME/.oh-my-zsh}/custom}/plugins/zsh-completions
-if [[ ! -d $zsh_completions ]]; then
-  info "Installing zsh-completions...\n"
-  git clone https://github.com/zsh-users/zsh-completions "$zsh_completions"
-else
-  success "zsh-completions is already installed\n"
-fi
-
-zsh_autosuggestions=${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
-if [[ ! -d $zsh_autosuggestions ]]; then
-  info "Installing zsh-autosuggestions...\n"
-  git clone https://github.com/zsh-users/zsh-autosuggestions "$zsh_autosuggestions"
-else
-  success "zsh-autosuggestions is already installed\n"
-fi
-
-rye install -U black
-rye install -U ipython
-rye install -U grip
-rye install -U httpie
-rye install -U proselint
-
-# General command-line goodies
-cargo install mdbook
-cargo install so
-cargo install gedent
-cargo install cligpt
-install "broot" 'cargo install broot && broot --install'
-install "marp" 'npm install -g @marp-team/marp-cli'
-
-
-# Programming language utilities
-install "fnm" 'curl -fsSL https://fnm.vercel.app/install | bash'
-install "tsc" "npm install -g typescript@latest"
-
-echo
-echo
-
-warning "Things that need to be installed manually:\n\n"
-
-info "alacritty:\n"
-code "https://github.com/alacritty/alacritty/blob/master/INSTALL.md#manual-installation\n\n"
-
-info "JetBrains Mono:\n"
-code "https://github.com/ryanoasis/nerd-fonts/releases\n"
-code "https://askubuntu.com/a/3706/361183\n\n"
-
-info "Golang:\n"
-code "https://go.dev/doc/install\n\n"
-
-echo
-echo
-
-echo
-echo
+echo "Things to do manually:"
+echo "Login to github, run:\ngh auth login"
+echo "Install helix: https://docs.helix-editor.com/install.html"
+echo "Login to atuin: run:\natuin login"
 
 success "Done!\n"
