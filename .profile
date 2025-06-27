@@ -10,12 +10,11 @@ export PATH="/opt/xtb/bin:$PATH" # some programs
 export LOCAL_PROJECTS="/home/vport/projects"
 export JUPITER_PROJECTS="/scratch/vport/projects"
 export LOBOC_PROJECTS="/scratch/01032a/vport"
+export NEWTON_PROJECTS="/scratch/vport"
 
 #set hx as preferred editor
 export EDITOR=$HOME/.cargo/bin/hx
 export VISUAL=$HOME/.cargo/bin/hx
-
-export STEEL_LSP_HONE="$HOME/.config/steel-lsp"
 
 # some software 
 export PATH="$HOME/software:$PATH"
@@ -50,13 +49,10 @@ export STEEL_LSP_HOME="$HOME/.config/steel-lsp/"
 
 export FZF_DEFAULT_OPTS="--height=80% --layout=reverse --info=inline --border --margin=1 --padding=1"
 
-# ghcup 
-[ -f "/home/vport/.ghcup/env" ] && source "/home/vport/.ghcup/env" # ghcup-env
-
 #gromacs
 if [[ $(hostname) == "pipeline" ]]; then
 	source /opt/gromacs/bin/GMXRC
-else
+elif [[ $(hostname) == "trindatimes" ]]; then 
 	source /usr/local/gromacs/bin/GMXRC
 fi
 
@@ -67,10 +63,5 @@ export MLR_KEY_COLOR=112
 # secret :)
 source "$HOME/.secrets"
 
-export HISTFILE=~/.histfile
-export HISTSIZE=50000000
-export SAVEHIST=50000000
-
-
-
 . "$HOME/.atuin/bin/env"
+. "/home/vport/.deno/env"
