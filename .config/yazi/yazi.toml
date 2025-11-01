@@ -8,10 +8,15 @@ Chemcraft = [
 bibiman = [
 	{run = 'bibiman "$@"', block = true, desc = "bibiman"}
 ]
+edit = [
+	{ run = '$EDITOR "$@"', block = true, for = "unix" },
+]
 
 [open]
 prepend_rules = [
-	{ name = "*.xyz", use = ["litio", "Chemcraft"] },
+	{ name = "*.inp", use = ["edit", "Chemcraft"] },
+	{ name = "*.xyz", use = ["litio", "edit", "Chemcraft"] },
+	{ name = "*.out", use = ["Chemcraft", "edit"] },
 	{ name = "*.bib", use = ["bibiman"]}
 ]
 

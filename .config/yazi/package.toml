@@ -1,0 +1,34 @@
+[[plugin.deps]]
+use = "yazi-rs/plugins:full-border"
+rev = "b886025"
+hash = "3996fc74044bc44144b323686f887e1"
+
+[[plugin.deps]]
+use = "dedukun/relative-motions"
+rev = "a603d9e"
+hash = "e02a788e5b8ae0fb47fd0193dda589cc"
+
+[[plugin.deps]]
+use = "yazi-rs/plugins:smart-enter"
+rev = "de53d90"
+hash = "56fdabc96fc1f4d53c96eb884b02a5be"
+
+[[plugin.deps]]
+use = "yazi-rs/plugins:smart-filter"
+rev = "de53d90"
+hash = "e56b7abf3c06e8ce496eadcca168c093"
+
+[[flavor.deps]]
+use = "BennyOe/tokyo-night"
+rev = "5f56364"
+hash = "c0bf69ad2c44005892d586e9693993c6"
+
+[[flavor.deps]]
+use = "kmlupreti/ayu-dark"
+rev = "5f600aa"
+hash = "a05f94b9a20b64d814c7631074d65c4a"
+
+[[flavor.deps]]
+use = "yazi-rs/flavors:dracula"
+rev = "d3fd3a5"
+hash = "7b9ff01a0070cc9176e0c683329aeb26"
