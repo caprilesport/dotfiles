@@ -44,6 +44,10 @@ display-inlay-hints = true
 "C-h" = [":buffer-previous"]
 "{" = ["goto_prev_paragraph", "collapse_selection"]
 "}" = ["goto_next_paragraph", "collapse_selection"]
+C-d = ":half-page-down-smooth"
+C-u = ":half-page-up-smooth"
+pageup = ":page-up-smooth"
+pagedown = ":page-down-smooth"
 
 
 [keys.normal.C-g]
