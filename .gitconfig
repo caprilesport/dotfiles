@@ -150,3 +150,6 @@
     hunk-header-style = file line-number syntax
 [pull]
 	rebase = true
+
+[delta]
+    side-by-side = true
