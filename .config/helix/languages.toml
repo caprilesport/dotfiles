@@ -1,3 +1,16 @@
+[language-server.beancount-language-server]
+command = "beancount-language-server"
+args = ["--stdio"]
+config.journal_file = "~/Finances/main.beancount"
+
+[language-server.rust-analyzer.config.check]
+command = "clippy"
+
+[[language]]
+name = "beancount"
+language-servers = [{ name = "beancount-language-server" }]
+formatter = { command = "beanhub-cli", args = ["format", "-s"]}
+
 [[language]]
 name = "scheme"
 formatter = { command = "raco", args = ["fmt", "-i"]}
@@ -10,11 +23,15 @@ args = []
 
 [[language]]
 name = "markdown"
-language-servers = [ "scls", "marksman", "markdown-oxide"]
+language-servers = [ "scls", "marksman"]
+formatter = { command = 'deno', args = ["fmt", "-", "--ext", "md" ] }
+auto-format = true
 
 [[language]]
 name = "latex"
 language-servers = [ "scls", "texlab" , "ltex-ls-plus" ]
+formatter = { command = 'tex-fmt', args = ["--stdin"] }
+auto-format = true
 
 [language-server.texlab]
 command = "texlab"
@@ -39,7 +56,6 @@ args = [ "--synctex-forward", "%l:%c:%f", "%p" ]
 onOpenAndSave = true
 onEdit = true
 
-# introduce new language server
 [language-server.scls]
 command = "simple-completion-language-server"
 
@@ -53,11 +69,9 @@ feature_unicode_input = false        # enable "unicode input"
 feature_paths = false                # enable path completion
 feature_citations = false            # enable citation completion (only on `citation` feature enabled)
 
-
-# write logs to /tmp/completion.log
-[language-server.scls.environment]
+[language-server.scls.environment] 
 RUST_LOG = "info,simple-completion-language-server=info"
-LOG_FILE = "/tmp/completion.log"
+LOG_FILE = "/tmp/completion.log" # write logs to /tmp/completion.log
 
 [[language]]
 name = "python"
@@ -85,10 +99,8 @@ command = "ruff-lsp"
 args = ["--ignore", "E501"]
 
 [language.formatter]
-command = "black"
-args = ["--line-length", "88", "--quiet", "-"]
-
-# Haskell configuration
+command = "bash"
+args = ["-c", "black --line-length 88 --quiet - | docformatter --black --force-wrap -"]
 
 [[language]]
 name = "haskell"
@@ -155,11 +167,6 @@ auto-format = true
 [[language]]
 name = "json"
 formatter = { command = 'deno', args = ["fmt", "-", "--ext", "json" ] }
-auto-format = true
-
-[[language]]
-name = "markdown"
-formatter = { command = 'deno', args = ["fmt", "-", "--ext", "md" ] }
 auto-format = true
 
 [[language]]
