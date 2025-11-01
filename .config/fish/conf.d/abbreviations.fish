@@ -17,7 +17,7 @@ abbr -a qdelpipe 'ssh pipeline "pueue remove $1"'
 # system
 abbr -a update 'sudo pacman -Syyu'
 abbr -a mkdir 'mkdir -p'
-abbr -a reload 'source ~/.config/fish/config.fish'
+abbr -a reload 'exec fish'
 abbr -a fakevpn 'sudo tailscale set --exit-node=trindatimes'
 abbr -a exitfakevpn 'sudo tailscale up --exit-node='
 abbr -a update-arch-mirrors 'rate-mirrors --disable-comments-in-file --entry-country=BR --protocol=https arch --max-delay 7200 | sudo tee /etc/pacman.d/mirrorlist'
