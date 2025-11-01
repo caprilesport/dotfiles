@@ -2,6 +2,13 @@
 abbr -a :q exit
 abbr -a :! exit
 abbr -a tf 'tail -f'
+abbr -a - "z -"
+abbr -a ... "cd ../../"
+abbr -a .... "cd ../../../"
+abbr -a ..... "cd ../../../../"
+abbr -a --set-cursor awkp "awk '{print \$%}'"
+abbr -a tms tmux-sessionizer
+abbr -a fgj "fg (jobs | fzf | awk '{print \$2}')"
 
 # clusters
 abbr -a qsj 'ssh jupiter "qstat"'
