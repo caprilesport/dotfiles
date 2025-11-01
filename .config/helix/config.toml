@@ -68,6 +68,7 @@ y = [
 x = "@/xyz<ret>;jvgekxd<space>P<esc>F*;jxxdf*;k"
 t = "@i- [ ] "
 f = "@glT[;rx"
+p = [":sh python %{buffer_name}"]
 
 [keys.normal.C-a]
 t = [":sh tnw cargo test"]
