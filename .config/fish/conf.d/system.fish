@@ -7,13 +7,13 @@ function y
     rm -f -- "$tmp"
 end
 
-function hx
-    if [ -z "$argv" ]
-        command hx .
-    else
-        command hx $argv
-    end
-end
+# function hx
+#     if [ -z "$argv" ]
+#         command hx .
+#     else
+#         command hx $argv
+#     end
+# end
 
 function goto-line -a text_pattern file
     hx $file:(sed -n "/$text_pattern/{=;q;}" $file)
