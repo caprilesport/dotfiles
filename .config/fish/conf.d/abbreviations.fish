@@ -40,17 +40,19 @@ abbr -a cp 'cp -r'
 abbr -a ggen 'gedent gen (gedent template list | fzf) '
 abbr -a periodic-table 'npx periodic-table-cli'
 abbr -a yadmgui 'yadm enter gitui'
+abbr -a --set-cursor rnr 'rnr regex --no-dump % * -f'
+abbr -a rg "rg -j1"
 
 # ledger abbr -a
 abbr -a hled hledger
 
 # lsd
 abbr -a l ls
-abbr -a ls 'eza --icons=always'
-abbr -a ll 'eza -l --icons=always'
-abbr -a la 'eza -a --icons=always'
-abbr -a lla 'eza -la --icons=always'
-abbr -a lt 'eza --tree --icons=always'
+abbr -a --set-cursor ls 'eza % --icons'
+abbr -a --set-cursor ll 'eza -l % --icons'
+abbr -a --set-cursor la 'eza -a % --icons'
+abbr -a --set-cursor lla 'eza -la % --icons'
+abbr -a --set-cursor lt 'eza --tree % --icons'
 
 abbr -a cat bat
 abbr -a cd z
