@@ -10,6 +10,8 @@ abbr -a --set-cursor awkp "awk '{print \$%}'"
 abbr -a tms tmux-sessionizer
 abbr -a fgj "fg (jobs | fzf | awk '{print \$2}')"
 
+abbr -a --set-cursor litio "litio % --background white"
+
 # clusters
 abbr -a pipe 'ssh -t pipeline "fish -l"'
 abbr -a qsj 'ssh jupiter "qstat"'
