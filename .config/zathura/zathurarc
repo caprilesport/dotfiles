@@ -79,3 +79,6 @@ map f toggle_fullscreen
 map [fullscreen] f toggle_fullscreen
 set highlight-color "rgba(255, 255, 0, 0.3)"
 set highlight-active-color "rgba(255, 255, 0, 0.3)"
+
+set synctex true
+set synctex-editor-command "texlab inverse-search -i %{input} -l %{line}"
