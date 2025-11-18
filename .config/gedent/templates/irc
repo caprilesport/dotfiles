@@ -29,6 +29,9 @@ end
 {% endif -%} 
 
 %irc
+ maxiter 40
+ TolRMSG   3.e-4      # RMS gradient (a.u.)
+ TolMaxG   1.e-3      # Max. element of gradient (a.u.)
  InitHess read
  Hess_Filename "{{ Molecule.filename }}.hess"
 end
