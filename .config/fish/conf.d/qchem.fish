@@ -3,8 +3,9 @@ function xtbopt -a file_name charge --description "optimize the xyz file in xtb"
     cp "$file_name" .xtbopt
     cd .xtbopt
     xtb "$file_name" --opt
-    cp ctbopt.xyz ..
+    cp xtbopt.xyz ..
     cd ..
+    molv xtbopt.xyz
 end
 
 function xtbhess -a file_name charge
