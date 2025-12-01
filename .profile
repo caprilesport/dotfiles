@@ -5,10 +5,13 @@ export PATH="$HOME/.local/bin:$PATH"
 export PATH="$HOME/software:$PATH"
 export PATH="$HOME/projects/scripts:$PATH" # my scripts
 
+export PATH="$HOME/software/blender-5:$PATH"
+
 #path xtb/crest
 export XTBHOME="$HOME/software/xtb"
 export PATH="$HOME/software/crest:$PATH"
 export PATH="$HOME/software/xtb/bin:$PATH" # some programs
+
 
 #git 
 export GCM_CREDENTIAL_STORE=cache

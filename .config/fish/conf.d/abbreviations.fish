@@ -56,14 +56,14 @@ abbr -a hled hledger
 
 # lsd
 abbr -a l ls
-abbr -a --set-cursor ls 'eza % --icons'
-abbr -a --set-cursor ll 'eza -l % --icons'
-abbr -a --set-cursor la 'eza -a % --icons'
-abbr -a --set-cursor lla 'eza -la % --icons'
-abbr -a --set-cursor lt 'eza --tree % --icons'
+abbr -a --set-cursor ls 'eza --icons auto'
+abbr -a --set-cursor ll 'eza -l --icons auto'
+abbr -a --set-cursor la 'eza -a --icons auto'
+abbr -a --set-cursor lla 'eza -la --icons auto'
+abbr -a --set-cursor lt 'eza --tree --icons auto'
 
 abbr -a cat bat
-abbr -a cd z
+# abbr -a cd z
 
 #cargo
 abbr -a cargoclippy 'cargo clippy --fix --allow-dirty --allow-staged -- -W clippy::pedantic -W clippy::nursery'
