@@ -13,9 +13,10 @@ abbr -a fgj "fg (jobs | fzf | awk '{print \$2}')"
 abbr -a --set-cursor litio "litio % --background white"
 
 # clusters
-abbr -a pipe 'ssh -t pipeline "fish -l"'
+abbr -a babel 'ssh -t babel "fish -l"'
 abbr -a qsj 'ssh jupiter "qstat"'
-abbr -a qsp 'ssh -t pipeline "pueue"'
+abbr -a qsv 'ssh jupiter "qstat" -u vport'
+abbr -a qsb 'ssh -t babel "pueue"'
 abbr -a qsl 'ssh loboc "qstat"'
 abbr -a qsn 'ssh newton "squeue"'
 abbr -a pq pueue
@@ -23,7 +24,8 @@ abbr -a pqn "cd (ssh pipeline \"pueue status -j\" | jq '.tasks.[].path' | tr -d 
 abbr -a jupfree "ssh jupiter \"pbsnodes -aSj | grep -E '8\\/8|16\\/16' | sort -k1 | awk '{print \\\$1}'\""
 abbr -a qdelloboc 'ssh loboc "qdel"'
 abbr -a qdeljup 'ssh jupiter "qdel"'
-abbr -a qdelpipe 'ssh pipeline "pueue remove $1"'
+abbr -a qdelnew 'ssh newton "scancel"'
+abbr -a qdelbabel 'ssh babel "pueue remove $1"'
 abbr -a geemloboc 'ssh loboc "qstat" | rg "vport|mrauen|krauskopf|famorim|viniglitz"'
 
 # system
