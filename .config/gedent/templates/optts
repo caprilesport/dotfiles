@@ -2,7 +2,7 @@
 extension = "inp"
 --@
 ! {{ level }} {{ basis_set }} 
-! OptTS tightopt tightscf printbasis printMOs NBO slowconv numfreq {{ dispersion }}
+! OptTS slowconv numfreq {{ dispersion }}
 {% if zora -%}
 ! ZORA
 
