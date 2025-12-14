@@ -40,10 +40,13 @@ abbr -a getid "(recli status --show-id | fzf | awk '{print \$(NF)}')"
 abbr -a recli-ids "recli status --show-id | fzf  -m | awk '{print \$(NF)}'"
 abbr -a orca-normal 'rg "ORCA TERMINATED NORMALLY" --files-with-matches *.out '
 
+abbr -a remove-ext "(path change-extension '' )"
+
 # programs 
 abbr -a ipy ipython
 abbr -a lg lazygit
 abbr -a cp 'cp -r'
+abbr -a scp 'scp -r'
 abbr -a ggen 'gedent gen (gedent template list | fzf) '
 abbr -a periodic-table 'npx periodic-table-cli'
 abbr -a yadmgui 'yadm enter gitui'
