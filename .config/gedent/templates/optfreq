@@ -32,10 +32,6 @@ end
 
 {% endif -%} 
 
-%geom
- inhess XTB2
-end
-
 *xyz {{ charge }} {{ mult }}
 {{ print_molecule(molecule = Molecule) }}
 *

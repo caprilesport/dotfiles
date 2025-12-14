@@ -1,0 +1,25 @@
+--@
+extension = "inp"
+--@
+! TPSS pcsseg-1 AUTOAUX NMR
+
+%pal
+ nprocs {{ nprocs }}
+end
+
+{% if solvation -%}
+%cpcm
+ smd true
+ smdsolvent "{{ solvent }}"
+end
+
+{% endif -%} 
+
+*xyz {{ charge }} {{ mult }}
+{{ print_molecule(molecule = Molecule) }}
+*
+
+%EPRNMR
+   NUCLEI = ALL H {SHIFT, SSALL}
+   TAU DOBSON
+END
