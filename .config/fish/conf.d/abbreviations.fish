@@ -21,7 +21,6 @@ abbr -a qsl 'ssh loboc "qstat"'
 abbr -a qsn 'ssh newton "squeue"'
 abbr -a pq pueue
 abbr -a pqn "cd (ssh pipeline \"pueue status -j\" | jq '.tasks.[].path' | tr -d '\"' | head -n1)"
-abbr -a jupfree "ssh jupiter \"pbsnodes -aSj | grep -E '8\\/8|16\\/16' | sort -k1 | awk '{print \\\$1}'\""
 abbr -a qdelloboc 'ssh loboc "qdel"'
 abbr -a qdeljup 'ssh jupiter "qdel"'
 abbr -a qdelnew 'ssh newton "scancel"'
@@ -63,7 +62,6 @@ abbr -a --set-cursor lla 'eza -la --icons auto'
 abbr -a --set-cursor lt 'eza --tree --icons auto'
 
 abbr -a cat bat
-# abbr -a cd z
 
 #cargo
 abbr -a cargoclippy 'cargo clippy --fix --allow-dirty --allow-staged -- -W clippy::pedantic -W clippy::nursery'
