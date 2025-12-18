@@ -2,7 +2,7 @@ function xtbopt -a file_name charge --description "optimize the xyz file in xtb"
     mkdir .xtbopt
     cp "$file_name" .xtbopt
     cd .xtbopt
-    xtb "$file_name" --opt
+    xtb "$file_name" --opt -T 12
     cp xtbopt.xyz ..
     cd ..
     molv xtbopt.xyz

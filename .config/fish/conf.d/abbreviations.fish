@@ -46,6 +46,7 @@ abbr -a remove-ext "(path change-extension '' )"
 abbr -a ipy ipython
 abbr -a lg lazygit
 abbr -a cp 'cp -r'
+abbr -a du dust
 abbr -a scp 'scp -r'
 abbr -a ggen 'gedent gen (gedent template list | fzf) '
 abbr -a periodic-table 'npx periodic-table-cli'
@@ -73,18 +74,17 @@ abbr -a cargoclippy 'cargo clippy --fix --allow-dirty --allow-staged -- -W clipp
 abbr -a g git
 abbr -a gf 'git diff --name-only'
 abbr -a gac 'git a . && git c "updates" && git ps'
-
-#scripts environment
-abbr -a pyenv '. ~/projects/scripts/.venv/bin/activate.fish'
+abbr -a gs 'git status'
+abbr -a fuzzygit 'git log | fzf | awk \'{print $7}\''
 
 # orca stuff
-abbr -a energy 'grep -i "final gibbs free energy" **/*.out'
-abbr -a imfreq 'grep -i "imaginary mode" **/*.out'
-abbr -a geomcycle 'grep -i "geometry optimization cycle" **/*.out'
-abbr -a scanprogress 'grep -i "RELAXED SURFACE SCAN STEP" **/*.out'
+abbr -a energy 'grep -i "final gibbs free energy" *.out'
+abbr -a imfreq 'grep -i "imaginary mode" *.out'
+abbr -a geomcycle 'grep -i "geometry optimization cycle" *.out'
+abbr -a scanprogress 'grep -i "RELAXED SURFACE SCAN STEP" *.out'
 
 # other
 abbr -a cs csync
 abbr -a up 'cd (parent-dirs | fzf)'
 abbr -a rmfilter 'rm (ls | rg -v (string trim -c "|" (for i in (ls | fzf -m); echo -n "$i|"; end)))'
-abbr -a addjob 'pueue add -- job init.inp'
+abbr -a addjob 'pueue add -- job -v 5 init.inp'
