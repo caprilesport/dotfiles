@@ -55,6 +55,7 @@ set recolor-darkcolor           "#f8f8f2" # Foreground
 
 # Open document in fit-width mode by default
 set adjust-open "best-fit"
+set adjust_window width
 
 # One page per row by default
 set pages-per-row 1
@@ -66,7 +67,8 @@ set scroll-full-overlap 0.01
 set scroll-step 100
 
 #zoom settings
-set zoom-min 10
+set zoom-min 135
+set zoom-max 175
 set guioptions ""
 
 set adjust-open width
