@@ -3,13 +3,14 @@ local config = {}
 config.font = wezterm.font 'Fira Code'
 config.font_size = 13
 
-config.color_scheme = "Dracula (Official)"
+config.color_scheme = "Catppuccin Mocha"
 config.color_scheme_dirs = { '/home/vport/.config/wezterm/colors' }
 -- config.window_decorations = 'NONE'
 config.enable_tab_bar = false
 config.default_prog = { '/usr/bin/fish'}
 -- config.front_end = "WebGpu"
 config.max_fps = 240
+config.window_background_opacity = 0.95
 
 
 local success, stdout, stderr = wezterm.run_child_process({"gsettings", "get", "org.gnome.desktop.interface", "cursor-theme"})
