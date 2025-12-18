@@ -1,6 +1,9 @@
 . "$HOME/.cargo/env"
 export PATH="$HOME/.local/bin:$PATH"
 
+export PATH="$HOME/.npm-global/bin:$PATH"
+export PATH="$HOME/.npm-global/lib:$PATH"
+
 # some software 
 export PATH="$HOME/software:$PATH"
 export PATH="$HOME/projects/scripts:$PATH" # my scripts
