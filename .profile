@@ -1,3 +1,8 @@
+export SSH_AUTH_SOCK="$XDG_RUNTIME_DIR/gcr/ssh"
+
+#allow less to scroll with mouse
+export LESS="--mouse --wheel-lines=3"
+
 . "$HOME/.cargo/env"
 export PATH="$HOME/.local/bin:$PATH"
 
@@ -9,12 +14,19 @@ export PATH="$HOME/software:$PATH"
 export PATH="$HOME/projects/scripts:$PATH" # my scripts
 
 export PATH="$HOME/software/blender-5:$PATH"
+export PATH="$HOME/software/vmd-2:$PATH"
+export PATH="$HOME/software/vmd:$PATH"
 
 #path xtb/crest
 export XTBHOME="$HOME/software/xtb"
 export PATH="$HOME/software/crest:$PATH"
 export PATH="$HOME/software/xtb/bin:$PATH" # some programs
 
+export GXTBHOME="$HOME/software/gxtb"
+export PATH="$HOME/software/gxtb:$PATH"
+
+#nbo
+export NBOEXE="$HOME/software/nbo7/bin/nbo7.i4.exe"
 
 #git 
 export GCM_CREDENTIAL_STORE=cache
@@ -27,6 +39,7 @@ export LD_LIBRARY_PATH="$HOME/software/orca_5_0_4:$LD_LIBRARY_PATH"
 export PATH="/opt/openmpi-4.1.1/bin/:$PATH"
 export LD_LIBRARY_PATH="/opt/openmpi-4.1.1/lib:$LD_LIBRARY_PATH"
 
+export PATH="$HOME/software/xtb-6.6.1/bin:$PATH" # some programs
 # go 
 export GOPATH="$HOME/projects"
 export GOPATH="$HOME/go:$GOPATH"
@@ -53,6 +66,8 @@ export VISUAL=$HOME/.cargo/bin/hx
 
 export LEDGER_FILE=~/Finances/2025.journal #ledger journal
 
+export ZK_NOTEBOOK_DIR="$HOME/notes/"
+
 #gromacs
 # if [[ $(hostname) == "pipeline" ]]; then
 # 	source /opt/gromacs/bin/GMXRC
@@ -61,9 +76,11 @@ export LEDGER_FILE=~/Finances/2025.journal #ledger journal
 # fi
 
 # my python lib
-export PYTHONPATH=$PYTHONPATH:$HOME/projects/lib/
+# export PYTHONPATH=$PYTHONPATH:$HOME/projects/lib/
 
 # secret :)
 source "$HOME/.secrets"
 
 . "$HOME/.atuin/bin/env"
+
+
