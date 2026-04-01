@@ -46,3 +46,16 @@ function molv
         end
     end
 end
+
+function nj
+    if test (count $argv) -eq 0
+        set -l dir (next-job next)
+        if test -n "$dir"; and test -d "$dir"
+            pushd $dir
+        else
+            echo "No jobs in queue"
+        end
+    else
+        next-job $argv  # nj peek, nj skip, nj list, nj sort, etc.
+    end
+end
