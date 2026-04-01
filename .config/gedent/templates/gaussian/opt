@@ -1,0 +1,20 @@
+{#
+software = "gaussian"
+jobtype = "opt"
+requires = ["method", "basis_set", "charge", "mult", "nprocs", "mem", "Molecule"]
+description = "Geometry optimization and frequency"
+#}
+{%if solvation-%}
+{%set solvent="scrf=(smd, solvent=" ~ solvent ~ ")"-%}
+{%else-%}
+{%set solvent=""-%}
+{%endif-%}
+%chk={{ name }}.chk
+%nproc={{ nprocs }}
+%mem={{ mem }}GB
+# {{ method }}/{{ basis_set }} opt freq=noraman {{ solvent }}
+
+job title: {{ name }}
+
+{{ charge }} {{ mult }}
+{{ print_molecule(molecule=Molecule) }}

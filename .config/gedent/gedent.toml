@@ -1,18 +1,40 @@
 [gedent]
 default_extension = "inp"
+software = "orca"
 
-[parameters]
-zoraatoms = ["Ag"]
-memory = 2000
+[model]
+method = "PBEh-3c"
 basis_set = ""
 charge = 0
-dispersion = ""
-level = "r2scan-3c"
 mult = 1
+dispersion = ""
+solvent = "water"
+solvation_model = "smd"
+
+[resources]
 nprocs = 16
-solvation = true
-start_hessian = false
-solvent = "dichloromethane"
-zora = false
-zora_basis = ""
+mem = 1500
+
+[parameters]
+method_class = "GGA"
+
 maxiter = 256
+
+scan_atoms = [1,2] # 1-indexed
+scan_end = 3.89
+scan_steps = 20
+
+start_hessian = false # if you have a starting hessian, conflicts a bit with calc_hess
+calc_hess = false # exact or hybrid
+hybrid_hess = true # if you want to calculate the hybrid hess -- this conflicts with the above calc_hess
+
+ts_active_atoms = [15,18,20] # 1-indexed
+hybrid_hess_extra_atoms = [20,21,22] # appends to ts_active_atoms for a more complete hybrid hess calculation
+
+frag_1 = [1,4] # used in EDA
+frag_2 = [5,8] # used in EDA
+frag_1_charge = 0 # used in EDA
+frag_2_charge = 0 # used in EDA
+frag_1_mult = 1 # used in EDA
+frag_2_mult = 1 # used in EDA
+

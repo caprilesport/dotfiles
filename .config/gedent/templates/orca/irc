@@ -1,0 +1,29 @@
+{#-
+software = "orca"
+jobtype = "irc"
+requires = ["method", "basis_set", "charge", "mult", "nprocs", "mem", "Molecule"]
+description = "Intrinsic reaction coordinate — requires a prior hessian file (name.hess)"
+-#}! {{ method }} {{ basis_set }}{% if dispersion is defined %} {{ dispersion }}{% endif %}{% if solvation %}{% if solvation_model is defined and solvation_model == "alpb" %} ALPB({{ solvent }}){% elif solvation_model is defined and solvation_model == "cpcm" %} CPCM({{ solvent }}){% endif %}{% endif %}
+! IRC KDIIS SOSCF TightSCF
+
+%pal
+ nprocs {{ nprocs }}
+end
+
+{% if solvation and (solvation_model is not defined or solvation_model == "smd") -%}
+%cpcm
+ smd true
+ SMDsolvent "{{ solvent }}"
+end
+{% endif -%}
+%irc
+ maxiter 40
+ TolRMSG  3.e-4
+ TolMaxG  1.e-3
+ InitHess read
+ Hess_Filename "{{ name }}.hess"
+end
+
+*xyz {{ charge }} {{ mult }}
+{{ print_coords(molecule = Molecule) }}
+*

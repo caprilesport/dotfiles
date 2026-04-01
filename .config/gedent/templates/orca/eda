@@ -1,0 +1,38 @@
+{#-
+software = "orca"
+jobtype = "sp"
+requires = ["method", "basis_set", "charge", "mult", "nprocs", "mem", "Molecule"]
+description = "Single point energy"
+-#}! {{ method }} {{ basis_set }}{%- if dispersion is defined %} {{ dispersion }}{% endif %}{%- if solvation %}{% if solvation_model is defined and solvation_model == "alpb" %} ALPB({{ solvent }}){% elif solvation_model is defined and solvation_model == "cpcm" %} CPCM({{ solvent }}){% endif %}{% endif %} EDA
+
+%pal
+ nprocs {{ nprocs }}
+end
+
+%EDA                #EDA block                       
+  FRAG1 "{{ method }}{%- if basis_set != "" %} {{ basis_set }}{%- endif -%}{%- if dispersion is defined -%} {{ dispersion }}{%- endif -%}"  #Method for fragment 1 
+  FRAG2 "{{ method }}{%- if basis_set != "" %} {{ basis_set }}{%- endif -%}{%- if dispersion is defined -%} {{ dispersion }}{%- endif -%}"  #Method for fragment 2
+  FRAG1_C {{ frag_1_charge }}          #Charge of fragment 1
+  FRAG1_M {{ frag_1_mult }}            #Multiplicity of fragment 1
+  FRAG2_C {{ frag_2_charge }}          #Charge of fragment 2
+  FRAG2_M {{ frag_2_mult }}            #Multiplicity of fragment 2
+END
+
+{% if solvation and (solvation_model is not defined or solvation_model == "smd") -%}
+%cpcm
+ smd true
+ SMDsolvent "{{ solvent }}"
+end
+{% endif -%}
+
+*xyz {{ charge }} {{ mult }}
+{{ print_coords(molecule = Molecule) }}
+*
+
+
+%frag
+ Definition
+  1 { {{- frag_1.0 - 1 }}:{{ frag_1.1 - 1 -}} } end
+  2 { {{- frag_2.0 - 1 }}:{{ frag_2.1 - 1 -}} } end
+ end
+end

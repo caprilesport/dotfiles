@@ -1,0 +1,41 @@
+{#
+software = "adf"
+jobtype = "sp"
+requires = ["basis_set", "method", "method_class", "charge", "Molecule"]
+description = "Single point energy"
+#}
+AMS_JOBNAME={{ name }} $AMSBIN/ams <<eor
+
+Task SinglePoint
+
+Engine ADF
+	title {{ name }}
+
+	BASIS
+		TYPE {{ basis_set }}
+		CreateOutput yes
+	end
+
+	Symmetry NoSym
+		Dependency
+	end
+
+	XC
+		{{ method_class }} {{ method }}
+		Dispersion Grimme3 BJDAMP
+	end
+
+	Beckegrid
+		Quality verygood
+	end
+
+EndEngine
+
+System
+	atoms
+{{ print_coords(molecule=Molecule) }}
+	end
+		Charge {{ charge }}
+	end
+
+eor

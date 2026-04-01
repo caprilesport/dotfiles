@@ -1,0 +1,18 @@
+{#
+software = "gaussian"
+jobtype = "nbo_del"
+requires = ["method", "basis_set", "charge", "mult", "nprocs", "mem", "Molecule"]
+description = "NBO deletion analysis"
+#}
+%chk={{ name }}.chk
+%nproc={{ nprocs }}
+%mem={{ mem }}GB
+# {{ method }}/{{ basis_set }} pop=nbo6del nosymm
+
+job title: {{ name }}
+
+{{ charge }} {{ mult }}
+{{ print_molecule(molecule=Molecule) }}
+
+$nbo  $end
+$del  lewis  $end
