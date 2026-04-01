@@ -44,11 +44,6 @@ display-inlay-hints = true
 "C-h" = [":buffer-previous"]
 "{" = ["goto_prev_paragraph", "collapse_selection"]
 "}" = ["goto_next_paragraph", "collapse_selection"]
-# C-d = ":half-page-down-smooth"
-# C-u = ":half-page-up-smooth"
-# pageup = ":page-up-smooth"
-# pagedown = ":page-down-smooth"
-
 
 [keys.normal.C-g]
 g = [
@@ -67,18 +62,17 @@ y = [
     ":redraw",
     ":reload-all"
 ]
+r = [
+    ":write-all",
+    ":insert-output scooter --no-stdin >/dev/tty",
+    ":redraw",
+    ":reload-all"
+]
+
 
 [keys.normal."+"]
 x = "@/xyz<ret>;jvgekxd<space>P<esc>F*;jxxdf*;k"
-t = "@i- [ ] "
-f = "@glT[;rx"
 p = [":sh python %{buffer_name}"]
-
-[keys.normal.C-a]
-t = [":sh tnw cargo test"]
-r = [":sh tnw cargo run"]
-
-
 
 [keys.normal.space]
 "H" = ":toggle lsp.display-inlay-hints"

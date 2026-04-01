@@ -88,8 +88,7 @@ scope = [ "latex" ]
 body = """\\begin{figure}[H]
 	\\centering
 	\\includegraphics[width=0.7\\linewidth]{./images/$1}
-	\\caption{$2}
-	\\label{fig:$3}
+	\\caption{$2}\\label{fig:$3}
 \\end{figure}
 """
 
@@ -101,18 +100,15 @@ body = """\\begin{figure}[H] % reminder to add \\usepackage{subcaption}
     \\begin{subfigure}{0.48\\linewidth}  % First subfigure
         \\centering
         \\includegraphics[width=1.0\\linewidth]{./images/}
-        \\caption{Caption for Figure 1}
-        \\label{fig:figure1}
+        \\caption{Caption for Figure 1}\\label{fig:figure1}
     \\end{subfigure}
     \\hfill  % Add some horizontal space between the subfigures
     \\begin{subfigure}{0.48\\linewidth}  % Second subfigure
         \\centering
         \\includegraphics[width=1.0\\linewidth]{./images/}
-        \\caption{Caption for Figure 2}
-        \\label{fig:figure2}
+        \\caption{Caption for Figure 2}\\label{fig:figure2}
     \\end{subfigure}
-    \\caption{Overall caption for both subfigures}
-    \\label{fig:subfigures}
+    \\caption{Overall caption for both subfigures}\\label{fig:subfigures}
 \\end{figure}"""
 
 [[snippets]]
@@ -123,25 +119,21 @@ body = """\\begin{figure}[H] % reminder to add \\usepackage{subcaption}
     \\begin{subfigure}[b]{0.30\\linewidth}  % First subfigure
         \\centering
         \\includegraphics[width=1.0\\linewidth]{./images/}
-        \\caption{Caption for Figure 1}
-        \\label{fig:figure1}
+        \\caption{Caption for Figure 1}\\label{fig:figure1}
     \\end{subfigure}
     \\hfill  % Add some horizontal space between the subfigures
     \\begin{subfigure}[b]{0.30\\linewidth}  % Second subfigure
         \\centering
         \\includegraphics[width=1.0\\linewidth]{./images/}
-        \\caption{Caption for Figure 2}
-        \\label{fig:figure2}
+        \\caption{Caption for Figure 2}\\label{fig:figure2}
     \\end{subfigure}
     \\hfill  % Add some horizontal space between the subfigures
     \\begin{subfigure}[b]{0.30\\linewidth}  % Second subfigure
         \\centering
         \\includegraphics[width=1.0\\linewidth]{./images/}
-        \\caption{Caption for Figure 3}
-        \\label{fig:figure3}
+        \\caption{Caption for Figure 3}\\label{fig:figure3}
     \\end{subfigure}
-    \\caption{Overall caption for the three subfigures}
-    \\label{fig:subfigures}
+    \\caption{Overall caption for the three subfigures}\\label{fig:subfigures}
 \\end{figure}"""
 
 [[snippets]]

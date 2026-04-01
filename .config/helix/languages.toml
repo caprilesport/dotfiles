@@ -22,10 +22,27 @@ command = "steel-language-server"
 args = []
 
 [[language]]
-name = "markdown"
-language-servers = [ "scls", "marksman"]
-formatter = { command = 'deno', args = ["fmt", "-", "--ext", "md" ] }
+name = "lua"
 auto-format = true
+
+[language.formatter]
+command = "stylua"
+args = ["--column-width", "80", "-"]
+
+# [[language]]
+# name = "markdown"
+# language-servers = [ "scls", "marksman"]
+# formatter = { command = 'deno', args = ["fmt", "-", "--ext", "md" ] }
+# auto-format = true
+
+[[language]]
+name = "markdown"
+roots = [".zk"]
+language-servers = ["zk"]
+
+[language-server.zk]
+command = "zk"
+args = ["lsp"]
 
 [[language]]
 name = "latex"
@@ -49,8 +66,8 @@ forwardSearchAfter = true
   ]
 
 [language-server.texlab.config.texlab.forwardSearch]
-executable = "zathura"
-args = [ "--synctex-forward", "%l:1:%f", "%p" ]
+executable = "okular"
+args = ["--unique", "file:%p#src:%l%f"]
 
 [language-server.texlab.config.texlab.chktex]
 onOpenAndSave = true
@@ -75,22 +92,27 @@ LOG_FILE = "/tmp/completion.log" # write logs to /tmp/completion.log
 
 [[language]]
 name = "python"
-language-servers = ["pyright", "ruff"]
+# language-servers = ["pyright", "ruff"]
+language-servers = ["astral-ty", "ruff"]
 auto-format = true
 roots = [".", "pyproject.toml", "pyrightconfig.json"]
 comment-token = "#"
 
-[language-server.pyright]
-command = "pyright-langserver"
-args = ["--stdio"]
+[language-server.astral-ty]
+command = "ty"
+args = ["server"]
 
-[language-server.pyright.config]
-reportMissingTypeStubs = false
+# [language-server.pyright]
+# command = "pyright-langserver"
+# args = ["--stdio"]
 
-# https://github.com/helix-editor/helix/issues/1898#issuecomment-1627146829
-[language-server.pyright.config.python.analysis]
-typeCheckingMode = "basic"
-autoImportCompletions = true
+# [language-server.pyright.config]
+# reportMissingTypeStubs = false
+
+# # https://github.com/helix-editor/helix/issues/1898#issuecomment-1627146829
+# [language-server.pyright.config.python.analysis]
+# typeCheckingMode = "basic"
+# autoImportCompletions = true
 
 [language-server.ruff]
 command = "ruff-lsp"
@@ -100,7 +122,7 @@ args = ["--ignore", "E501"]
 
 [language.formatter]
 command = "bash"
-args = ["-c", "black --line-length 88 --quiet - | docformatter --black --force-wrap -"]
+args = ["-c", "black --line-length 88 --quiet -"]
 
 [[language]]
 name = "haskell"
@@ -183,3 +205,12 @@ auto-format = true
 name = "tsx"
 formatter = { command = 'deno', args = ["fmt", "-", "--ext", "tsx" ] }
 auto-format = true
+
+[[language]]
+name = "fish"
+language-servers = [ "fish-lsp" ]
+
+[language-server.fish-lsp]
+command = "fish-lsp"
+args= ["start"]
+environment = { "fish_lsp_show_client_popups" = "false" }
