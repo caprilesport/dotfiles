@@ -6,6 +6,8 @@ color-modes = true
 cursorline = true
 bufferline = "always"
 true-color = true
+insecure = true
+mouse = true
 
 [editor.cursor-shape]
 insert = "block"
@@ -73,9 +75,15 @@ r = [
 [keys.normal."+"]
 x = "@/xyz<ret>;jvgekxd<space>P<esc>F*;jxxdf*;k"
 p = [":sh python %{buffer_name}"]
+X = ["extend_line_up", "extend_to_line_bounds"]
+A-x = "extend_to_line_bounds"
 
 [keys.normal.space]
 "H" = ":toggle lsp.display-inlay-hints"
 
 [editor.smart-tab]
 enable = false
+
+[keys.select]
+X = ["extend_line_above", "extend_to_line_bounds"]
+A-x = "extend_to_line_bounds"
