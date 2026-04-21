@@ -20,5 +20,14 @@ prepend_rules = [
 	{ name = "*.bib", use = ["bibiman"]}
 ]
 
+# Linux: Swaybg
+[[opener.set-wallpaper]]
+run  = "killall swaybg; swaybg -m fill -i %s1"
+for  = "linux"
+desc = "Set as wallpaper"
+orphan = true
 
 
+[[mgr.prepend_keymap]]
+on  = "y"
+run = [ 'shell -- for path in %s; do echo "file://$path"; done | wl-copy -t text/uri-list', "yank" ]

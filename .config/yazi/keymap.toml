@@ -5,36 +5,6 @@ run  = 'shell "fish" --block'
 desc = "Open $SHELL here"
 
 [[mgr.prepend_keymap]]
-on   = ["g", "s", "s"]
-for  = "unix"
-run  = 'shell "recli submit $0 -r jupitersmall"'
-desc = "Submit job in jupiter"
-
-[[mgr.prepend_keymap]]
-on   = ["g", "s", "b"]
-for  = "unix"
-run  = 'shell "recli submit $0 -r jupiterbig"'
-desc = "Submit job in jupiter big"
-
-[[mgr.prepend_keymap]]
-on   = ["g", "s", "p"]
-for  = "unix"
-run  = 'shell "recli submit $0 -r pipeline"'
-desc = "Submit job in pipeline"
-
-[[mgr.prepend_keymap]]
-on   = ["g", "s", "l"]
-for  = "unix"
-run  = 'shell "recli submit $0 -r loboc"'
-desc = "Submit job in loboc"
-
-[[mgr.prepend_keymap]]
-on   = ["g", "s", "n"]
-for  = "unix"
-run  = 'shell "recli submit $0 -r newton"'
-desc = "Submit job in newton"
-
-[[mgr.prepend_keymap]]
 on   = ["g", "e"]
 run  = 'shell "helix $0" --block'
 block = true
@@ -45,11 +15,6 @@ on = "E"
 for = "unix"
 run = 'shell "helix $0" --block'
 desc = "Edit in helix"
-
-# [[mgr.prepend_keymap]]
-# on   = [ "g", "p" ]
-# run  = "cd ~/projects"
-# desc = "Cd to ~/projects"
 
 [[mgr.prepend_keymap]]
 on = "@"
@@ -64,3 +29,14 @@ desc = "Enter the child directory, or open the file"
 on   = "F"
 run  = "plugin smart-filter"
 desc = "Smart filter"
+
+[[mgr.prepend_keymap]]
+on  = "<C-n>"
+run = "shell -- dragon -x -i -T %h"
+
+# keymap.toml
+[[mgr.prepend_keymap]]
+on   = "<C-w>"
+for  = "linux"
+run  = "shell -- hyprctl hyprpaper reload ,%h"
+desc = "Set hovered file as wallpaper"

@@ -32,3 +32,8 @@ hash = "a05f94b9a20b64d814c7631074d65c4a"
 use = "yazi-rs/flavors:dracula"
 rev = "d3fd3a5"
 hash = "7b9ff01a0070cc9176e0c683329aeb26"
+
+[[flavor.deps]]
+use = "yazi-rs/flavors:catppuccin-mocha"
+rev = "9511cb0"
+hash = "7dfe41c9c3d9be76da8a844263d0bbed"
