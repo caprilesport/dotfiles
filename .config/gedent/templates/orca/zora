@@ -6,6 +6,13 @@ description = "Single point with ZORA relativistic correction for core-related p
 -#}! {{ method }} {{ basis_set }}{% if dispersion is defined %} {{ dispersion }}{% endif %}{% if solvation %}{% if solvation_model is defined and solvation_model == "alpb" %} ALPB({{ solvent }}){% elif solvation_model is defined and solvation_model == "cpcm" %} CPCM({{ solvent }}){% endif %}{% endif %}
 ! ZORA
 
+{% if pmodel -%}
+%scf 
+  guess PModel # or HCore
+end
+{% endif -%}
+
+
 {% for atom in zoraatoms -%}
 %basis
  NewGTO {{ atom }} "{{ zora_basis }}" end

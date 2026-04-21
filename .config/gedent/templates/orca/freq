@@ -6,6 +6,12 @@ description = "Numerical frequency calculation"
 -#}! {{ method }} {{ basis_set }}{% if dispersion is defined %} {{ dispersion }}{% endif %}{% if solvation %}{% if solvation_model is defined and solvation_model == "alpb" %} ALPB({{ solvent }}){% elif solvation_model is defined and solvation_model == "cpcm" %} CPCM({{ solvent }}){% endif %}{% endif %}
 ! numfreq
 
+{% if pmodel -%}
+%scf 
+  guess PModel # or HCore
+end
+{% endif -%}
+
 %pal
  nprocs {{ nprocs }}
 end

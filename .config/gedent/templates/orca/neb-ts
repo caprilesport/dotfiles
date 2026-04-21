@@ -10,6 +10,12 @@ description = "NEB-TS transition state search — place product as name.end.xyz,
  nprocs {{ nprocs }}
 end
 
+{% if pmodel -%}
+%scf 
+  guess PModel # or HCore
+end
+{% endif -%}
+
 {% if solvation and (solvation_model is not defined or solvation_model == "smd") -%}
 %cpcm
  smd true

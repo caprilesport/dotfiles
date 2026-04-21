@@ -5,6 +5,12 @@ requires = ["charge", "mult", "nprocs", "mem", "Molecule"]
 description = "NMR chemical shifts (TPSS/pcsseg-1, 1H)"
 -#}! TPSS pcsseg-1 AUTOAUX NMR{% if solvation %}{% if solvation_model is defined and solvation_model == "alpb" %} ALPB({{ solvent }}){% elif solvation_model is defined and solvation_model == "cpcm" %} CPCM({{ solvent }}){% endif %}{% endif %}
 
+{% if pmodel -%}
+%scf 
+  guess PModel # or HCore
+end
+{% endif -%}
+
 %pal
  nprocs {{ nprocs }}
 end

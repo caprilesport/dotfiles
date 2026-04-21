@@ -9,6 +9,12 @@ description = "Single point energy"
  nprocs {{ nprocs }}
 end
 
+{% if pmodel -%}
+%scf 
+  guess PModel # or HCore
+end
+{% endif -%}
+
 %EDA                #EDA block                       
   FRAG1 "{{ method }}{%- if basis_set != "" %} {{ basis_set }}{%- endif -%}{%- if dispersion is defined -%} {{ dispersion }}{%- endif -%}"  #Method for fragment 1 
   FRAG2 "{{ method }}{%- if basis_set != "" %} {{ basis_set }}{%- endif -%}{%- if dispersion is defined -%} {{ dispersion }}{%- endif -%}"  #Method for fragment 2
