@@ -1,0 +1,73 @@
+/*
+  Ghostty tab bar — Catppuccin Mocha
+  debug: env GTK_DEBUG=interactive ghostty
+  https://docs.gtk.org/gtk4/css-overview.html
+  https://docs.gtk.org/gtk4/css-properties.html
+*/
+
+headerbar {
+  min-height: 0;
+  padding: 0;
+  margin: 0;
+}
+
+tabbar {
+  background-color: #181825; /* mantle */
+}
+
+tabbar tabbox {
+  margin: 0;
+  padding: 2px 4px 0;
+  min-height: 0px;
+  background-color: #181825; /* mantle */
+}
+
+/* tabbar tabbox tab { */
+/* margin: 0 2px; */
+/* padding: 0 10px; */
+/* min-height: 24px; */
+/* min-width: 120px; */
+/* max-width: 120px; */
+/* color: #a6adc8; /* subtext0 */
+*/
+  /* border: 1px solid transparent; */
+  /* border-radius: 6px 6px 0 0; */
+  /* background-color: transparent; */
+  /* transition: background-color 150ms ease, color 150ms ease, border-color 150ms ease; */
+/* } */
+
+/* tabbar tabbox tab:hover { */
+  /* background-color: #313244; /* surface0 */ */
+  /* color: #bac2de; /* subtext1 */ */
+  /* border-color: #45475a; /* surface1 */ */
+/* } */
+
+/* tabbar tabbox tab:selected { */
+  /* background-color: #1e1e2e; /* base */ */
+  /* color: #cdd6f4; /* text */ */
+  /* border-top-color: #cba6f7; /* mauve accent on top */ */
+/* } */
+
+tabbar tabbox tab label {
+  font-size: 8px;
+  font-family: monospace;
+  padding: 0 2px;
+  min-width: 0;
+  max-width: 80px;
+}
+
+/* close button on tabs */
+/* tabbar tabbox tab button { */
+/* padding: 0; */
+/* margin: 0 0 0 4px; */
+/* min-width: 16px; */
+/* min-height: 16px; */
+/* border-radius: 4px; */
+/* opacity: 0.5; */
+/* } */
+
+tabbar tabbox tab button:hover {
+  opacity: 1;
+  background-color: #45475a; /* surface1 */
+  color: #f38ba8; /* red */
+}

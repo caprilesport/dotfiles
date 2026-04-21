@@ -1,0 +1,59 @@
+# === general config ===
+
+scrollback-limit = 10000000
+
+shell-integration = fish
+command = /usr/bin/fish --login --interactive
+
+# window-new-tab-position = end
+mouse-hide-while-typing = true
+focus-follows-mouse = true
+desktop-notifications = false
+
+copy-on-select = clipboard
+clipboard-paste-protection = false
+ 
+# === theme and aesthetics ===
+
+theme = Catppuccin Mocha
+background-opacity = 0.8
+gtk-custom-css = tab-style.css
+gtk-tabs-location = top
+window-theme = ghostty
+window-decoration = none
+
+window-padding-x = 10,10
+window-padding-y = 10,10
+
+
+# === keybindings ===
+
+# tab nav
+keybind=ctrl+a>c=new_tab
+keybind=ctrl+shift+l=next_tab
+keybind=ctrl+shift+h=previous_tab
+keybind=ctrl+a>o=toggle_tab_overview
+
+keybind=ctrl+a>,=prompt_tab_title
+
+# # create splits
+keybind=ctrl+a>u=new_split:right
+keybind=ctrl+a>r=new_split:down
+
+keybind=ctrl+a>e=equalize_splits
+
+# # navigate panes
+keybind=alt+l=goto_split:right
+keybind=alt+h=goto_split:left
+keybind=alt+k=goto_split:up
+keybind=alt+j=goto_split:down
+
+
+
+keybind=ctrl+a>shift+r=reload_config
+
+keybind=ctrl+a>p=toggle_command_palette
+keybind=ctrl+a>q=toggle_quick_terminal
+
+keybind=ctrl+a>z=toggle_split_zoom
+
