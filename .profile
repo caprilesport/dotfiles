@@ -16,6 +16,9 @@ export PATH="$HOME/projects/scripts:$PATH" # my scripts
 export PATH="$HOME/software/blender-5:$PATH"
 export PATH="$HOME/software/vmd-2:$PATH"
 export PATH="$HOME/software/vmd:$PATH"
+export PATH="$HOME/software/chimera-src/bin:$PATH"
+export PATH="$HOME/software/Multiwfn_2026.3.27_bin_Linux:$PATH"
+
 
 #path xtb/crest
 export XTBHOME="$HOME/software/xtb"
@@ -84,3 +87,22 @@ source "$HOME/.secrets"
 . "$HOME/.atuin/bin/env"
 
 
+
+# >>> juliaup initialize >>>
+
+# !! Contents within this block are managed by juliaup !!
+
+case ":$PATH:" in
+    *:/home/vport/.juliaup/bin:*)
+        ;;
+
+    *)
+        export PATH=/home/vport/.juliaup/bin${PATH:+:${PATH}}
+        ;;
+esac
+
+export PATH="/home/vport/.julia/bin:$PATH"
+
+
+
+# <<< juliaup initialize <<<
