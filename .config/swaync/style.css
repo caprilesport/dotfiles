@@ -1,0 +1,132 @@
+:root {
+  --cc-bg: rgba(24, 24, 37, 0.90);
+  --noti-border-color: rgba(180, 190, 254, 0.18);
+  --noti-bg: 49, 50, 68;
+  --noti-bg-alpha: 0.92;
+  --noti-bg-darker: rgb(30, 30, 46);
+  --noti-bg-hover: rgb(69, 71, 90);
+  --noti-bg-focus: rgba(69, 71, 90, 0.70);
+  --noti-close-bg: rgba(245, 194, 231, 0.16);
+  --noti-close-bg-hover: rgba(245, 194, 231, 0.26);
+  --text-color: rgb(205, 214, 244);
+  --text-color-disabled: rgb(108, 112, 134);
+  --bg-selected: rgb(180, 190, 254);
+  --notification-icon-size: 52px;
+  --notification-app-icon-size: calc(var(--notification-icon-size) / 3);
+  --notification-group-icon-size: 28px;
+  --border: 1px solid var(--noti-border-color);
+  --border-radius: 12px;
+  --notification-shadow: 0 10px 30px rgba(17, 17, 27, 0.35);
+  --font-size-body: 14px;
+  --font-size-summary: 15px;
+}
+
+@define-color cc-bg rgba(24, 24, 37, 0.90);
+@define-color noti-border-color rgba(180, 190, 254, 0.18);
+@define-color noti-bg rgba(49, 50, 68, 0.92);
+@define-color noti-bg-opaque rgb(49, 50, 68);
+@define-color noti-bg-darker rgb(30, 30, 46);
+@define-color noti-bg-hover rgb(69, 71, 90);
+@define-color noti-bg-hover-opaque rgb(69, 71, 90);
+@define-color noti-bg-focus rgba(69, 71, 90, 0.70);
+@define-color noti-close-bg rgba(245, 194, 231, 0.16);
+@define-color noti-close-bg-hover rgba(245, 194, 231, 0.26);
+@define-color text-color rgb(205, 214, 244);
+@define-color text-color-disabled rgb(108, 112, 134);
+@define-color bg-selected rgb(180, 190, 254);
+
+* {
+  font-family: "Fira Code", "Symbols Nerd Font", sans-serif;
+}
+
+notificationwindow,
+blankwindow {
+  background: transparent;
+}
+
+.notification-row .notification-background {
+  padding: 6px 10px;
+}
+
+.notification-row .notification-background .notification {
+  border-radius: var(--border-radius);
+  border: var(--border);
+  box-shadow: var(--notification-shadow);
+  background: rgba(var(--noti-bg), var(--noti-bg-alpha));
+}
+
+.notification-row .notification-background .notification .notification-default-action {
+  padding: 6px;
+  border-radius: var(--border-radius);
+}
+
+.notification-row .notification-background .notification .notification-default-action:hover {
+  background: var(--noti-bg-hover);
+}
+
+.notification-row .notification-background .notification .notification-default-action .notification-content .text-box .summary,
+.notification-row .notification-background .notification .notification-default-action .notification-content .text-box .time {
+  color: var(--text-color);
+}
+
+.notification-row .notification-background .notification .notification-default-action .notification-content .text-box .body {
+  color: rgba(205, 214, 244, 0.92);
+}
+
+.close-button {
+  background: var(--noti-close-bg);
+  color: #f5c2e7;
+  margin-top: 10px;
+  margin-right: 10px;
+  min-width: 24px;
+  min-height: 24px;
+  border-radius: 999px;
+  box-shadow: none;
+  border: none;
+}
+
+.close-button:hover {
+  background: var(--noti-close-bg-hover);
+}
+
+.control-center {
+  background: var(--cc-bg);
+  border: var(--border);
+  border-radius: 14px;
+  box-shadow: var(--notification-shadow);
+}
+
+.control-center .control-center-list,
+.control-center .control-center-list-placeholder {
+  background: transparent;
+}
+
+.control-center .control-center-list .notification {
+  box-shadow: none;
+}
+
+.widget-title,
+.widget-dnd {
+  background: rgba(49, 50, 68, 0.88);
+  border: var(--border);
+  border-radius: 12px;
+  padding: 8px 12px;
+  margin: 10px 10px 0 10px;
+}
+
+.widget-title > label,
+.widget-dnd > label {
+  color: var(--text-color);
+}
+
+.widget-title button,
+.widget-dnd switch {
+  background: rgba(180, 190, 254, 0.14);
+  border: var(--border);
+  border-radius: 10px;
+  color: #b4befe;
+}
+
+.widget-title button:hover {
+  background: rgba(180, 190, 254, 0.22);
+}

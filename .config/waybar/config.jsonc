@@ -1,0 +1,132 @@
+[
+  {
+    "layer": "top",
+    "position": "bottom",
+    "height": 28,
+    "spacing": 8,
+    "margin-top": 0,
+    "margin-left": 10,
+    "margin-right": 10,
+    "margin-bottom": 8,
+
+    "modules-left": [
+      "niri/workspaces",
+      "custom/kbd-layout",
+      "memory",
+      "cpu",
+      "disk"
+    ],
+
+    "modules-center": [
+      "clock"
+    ],
+
+    "modules-right": [
+      "custom/notifications",
+      "wireplumber",
+      "backlight",
+      "network",
+      "battery",
+      "tray",
+      "custom/power"
+    ],
+
+    "niri/workspaces": {
+      "format": "{value}",
+      "all-outputs": false,
+      "current-only": false
+    },
+
+    "custom/kbd-layout": {
+      "return-type": "json",
+      "interval": 1,
+      "exec": "sh /home/vport/.config/waybar/scripts/kbd-layout.sh",
+      "tooltip": true
+    },
+
+    "custom/notifications": {
+      "return-type": "json",
+      "interval": 5,
+      "exec": "sh -c 'count=$(swaync-client -c -sw 2>/dev/null || echo 0); if [ \"$count\" -gt 0 ] 2>/dev/null; then printf \"{\\\"text\\\":\\\"󰂚 %s\\\",\\\"tooltip\\\":\\\"%s notifications\\\"}\\n\" \"$count\" \"$count\"; else printf \"{\\\"text\\\":\\\"󰂚\\\",\\\"tooltip\\\":\\\"No notifications\\\"}\\n\"; fi'",
+      "on-click": "swaync-client -t -sw",
+      "on-click-right": "swaync-client -d -sw",
+      "tooltip": true
+    },
+
+    "wireplumber": {
+      "format": "󰕾 {volume}%",
+      "format-muted": "󰝟 mute",
+      "scroll-step": 5,
+      "max-volume": 100,
+      "on-click": "sh /home/vport/.config/niri/scripts/audio-menu.sh",
+      "on-click-right": "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle",
+      "tooltip-format": "{node_name}"
+    },
+
+    "backlight": {
+      "format": "󰃠 {percent}%",
+      "scroll-step": 5,
+      "min-brightness": 1
+    },
+
+    "memory": {
+      "interval": 5,
+      "format": "󰍛 {used:0.1f}G",
+      "tooltip": true
+    },
+
+    "cpu": {
+      "interval": 5,
+      "format": "󰘚 {usage}%",
+      "tooltip": true
+    },
+
+    "disk": {
+      "path": "/",
+      "interval": 30,
+      "unit": "GiB",
+      "format": "󰋊 {specific_free:0.0f}G",
+      "tooltip-format": "{free} free out of {total} on {path}"
+    },
+
+    "network": {
+      "interval": 5,
+      "format-wifi": "󰖩 {essid}",
+      "format-ethernet": "󰈀 eth",
+      "format-linked": "󰌘 link",
+      "format-disconnected": "󰖪 off",
+      "on-click": "sh /home/vport/.config/niri/scripts/wifi-menu.sh",
+      "tooltip-format-wifi": "{essid} ({signalStrength}%)\\n{ipaddr}",
+      "tooltip-format-ethernet": "{ifname}\\n{ipaddr}"
+    },
+
+    "battery": {
+      "interval": 10,
+      "states": {
+        "warning": 30,
+        "critical": 15
+      },
+      "format": "󰁹 {capacity}%",
+      "format-charging": "󰂄 {capacity}%",
+      "format-plugged": "󰚥 AC",
+      "tooltip": true
+    },
+
+    "clock": {
+      "interval": 60,
+      "format": "󰥔 {:%a %d %b %H:%M}",
+      "tooltip-format": "{:%A, %d %B %Y\\nWeek %V\\n%H:%M}"
+    },
+
+    "tray": {
+      "icon-size": 14,
+      "spacing": 8
+    },
+
+    "custom/power": {
+      "format": "󰐥",
+      "tooltip": false,
+      "on-click": "sh /home/vport/.config/niri/scripts/power-menu.sh"
+    }
+  }
+]

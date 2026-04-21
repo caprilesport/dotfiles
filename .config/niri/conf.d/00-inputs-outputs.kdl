@@ -1,0 +1,45 @@
+input {
+    keyboard {
+        xkb {
+            layout "br,br"
+            variant ",nodeadkeys"
+            options "grp:caps_toggle"
+        }
+        track-layout "window"
+    }
+    touchpad {
+        tap
+        natural-scroll
+        // off // toggleOffTouchpad
+    }
+    mouse {
+    }
+    trackpoint {
+    }
+}
+
+/-output "eDP-2" {
+    mode "2560x1600@239.998993"
+    position x=2560 y=0
+    variable-refresh-rate
+}
+
+output "eDP-1" {
+    // Notebook Screen
+    mode "1920x1200@59.999"
+    scale 1.0
+    position x=0 y=0
+    focus-at-startup
+}
+
+// Lab Monitor: 1080p positioned above
+output "LG Electronics LG FULL HD 0x01010101" {
+    mode "1920x1080@60.000"
+    position x=0 y=-1080
+}
+
+// Home Monitor: 768p positioned above
+output "LG Electronics LG HD 410AZFM7K803" {
+    mode "1366x768@60.000"
+    position x=-1366 y=156
+}

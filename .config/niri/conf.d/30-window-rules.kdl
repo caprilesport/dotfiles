@@ -1,0 +1,60 @@
+window-rule {
+    match app-id=r#"^org\.wezfurlong\.wezterm$"#
+    default-column-width {}
+}
+
+window-rule {
+    match app-id=r#"firefox$"# title="^Picture-in-Picture$"
+    open-floating true
+}
+
+window-rule {
+    match app-id="firefox"
+    open-on-output "HDMI-A-1"
+    open-maximized true
+}
+
+/-window-rule {
+    match app-id=r#"^org\.keepassxc\.KeePassXC$"#
+    match app-id=r#"^org\.gnome\.World\.Secrets$"#
+    block-out-from "screen-capture"
+}
+
+window-rule {
+    match app-id="Alacritty"
+    open-maximized true
+    background-effect {
+        xray true
+        blur true
+    }
+}
+
+window-rule {
+    match app-id="rio"
+    open-maximized true
+    background-effect {
+        xray false
+        blur true
+    }
+}
+
+window-rule {
+    match app-id="kitty"
+    open-maximized true
+    background-effect {
+        xray false
+        blur true
+    }
+}
+
+window-rule {
+    geometry-corner-radius 8
+    clip-to-geometry true
+}
+
+window-rule {
+    match app-id="Alacritty"
+    draw-border-with-background false
+    geometry-corner-radius 8
+    clip-to-geometry true
+}
