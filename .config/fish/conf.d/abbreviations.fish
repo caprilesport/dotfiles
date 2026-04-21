@@ -15,6 +15,10 @@ abbr -a rf 'recli fetch'
 abbr -a rs 'recli status'
 abbr -a rq 'recli queue'
 
+abbr -a babel 'ssh -t babel fish'
+
+abbr -a hm 'history merge'
+
 abbr -a --set-cursor remote-dir "recli info % | rg 'remote_dir' | awk '{print \$2}' | wl-copy"
 abbr -a --set-cursor local-dir "cd (recli info % | rg 'work_dir' | awk '{print \$2}')"
 
@@ -48,13 +52,12 @@ abbr -a rg "rg -j1"
 
 # lsd
 abbr -a l ls
-abbr -a --set-cursor ls 'eza --icons auto'
-abbr -a --set-cursor ll 'eza -l --icons auto'
-abbr -a --set-cursor la 'eza -a --icons auto'
-abbr -a --set-cursor lla 'eza -la --icons auto'
-abbr -a --set-cursor lt 'eza --tree --icons auto'
-
-abbr -a cat bat
+abbr -a ls 'eza --icons auto'
+abbr -a ll 'eza -l --icons auto'
+abbr -a la 'eza -a --icons auto'
+abbr -a lla 'eza -la --icons auto'
+abbr -a lt 'eza --tree --icons auto'
+abbr -a tree 'eza --icons auto --tree'
 
 #cargo
 abbr -a cclippy 'cargo clippy --fix --allow-dirty --allow-staged -- -W clippy::pedantic -W clippy::nursery'
