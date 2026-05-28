@@ -15,9 +15,9 @@ clipboard-paste-protection = false
  
 # === theme and aesthetics ===
 
-theme = Catppuccin Mocha
-background-opacity = 0.8
-gtk-custom-css = tab-style.css
+theme = Everforest Dark Hard
+background-opacity = 0.9
+# gtk-custom-css = tab-style.css
 gtk-tabs-location = top
 window-theme = ghostty
 window-decoration = none
@@ -37,8 +37,8 @@ keybind=ctrl+a>o=toggle_tab_overview
 keybind=ctrl+a>,=prompt_tab_title
 
 # # create splits
-keybind=ctrl+a>u=new_split:right
-keybind=ctrl+a>r=new_split:down
+keybind=ctrl+a>shift+\=new_split:right
+keybind=ctrl+a>-=new_split:down
 
 keybind=ctrl+a>e=equalize_splits
 
