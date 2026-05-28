@@ -15,6 +15,9 @@ abbr -a rf 'recli fetch'
 abbr -a rs 'recli status'
 abbr -a rq 'recli queue'
 
+abbr -a svg2png --set-cursor 'inkscape % --export-type=png --export-dpi=600'
+abbr -a pob ' wine ~/.wine/drive_c/users/vport/AppData/Roaming/Path\ of\ Building\ Community\ \(PoE2\)/Path\ of\ Building-PoE2.exe '
+
 abbr -a babel 'ssh -t babel fish'
 
 abbr -a hm 'history merge'
@@ -36,7 +39,7 @@ abbr -a update-arch-mirrors 'rate-mirrors --disable-comments-in-file --entry-cou
 abbr -a update-eos-mirrors 'rate-mirrors --disable-comments-in-file --entry-country=BR --protocol=https endeavouros  | sudo tee /etc/pacman.d/endeavouros-mirrorlist'
 abbr -a fuckchemcraft 'xdotool search --class "chemcraft" windowactivate'
 
-abbr -a remove-ext "(path change-extension '' )"
+abbr -a remove-ext "path change-extension '' "
 
 # programs 
 abbr -a ipy ipython
