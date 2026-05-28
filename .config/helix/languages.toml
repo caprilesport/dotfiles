@@ -21,7 +21,8 @@ command = "clippy"
 [[language]]
 name = "beancount"
 language-servers = [{ name = "beancount-language-server" }]
-formatter = { command = "beanhub-cli", args = ["format", "-s"]}
+formatter = { command = "bean-format", args = ["%{buffer_name}"] }
+auto-format = true
 
 [[language]]
 name = "scheme"
