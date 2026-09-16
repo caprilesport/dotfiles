@@ -1,9 +1,9 @@
 # === general config ===
-
+cursor-click-to-move = false
 scrollback-limit = 10000000
 
-shell-integration = fish
-command = /usr/bin/fish --login --interactive
+shell-integration = nushell
+command = /home/vport/.cargo/bin/nu 
 
 # window-new-tab-position = end
 mouse-hide-while-typing = true
@@ -15,10 +15,11 @@ clipboard-paste-protection = false
  
 # === theme and aesthetics ===
 
-theme = Everforest Dark Hard
-background-opacity = 0.9
-# gtk-custom-css = tab-style.css
-gtk-tabs-location = top
+font-family = Maple Mono NF
+background-opacity = 0.78
+gtk-custom-css = tab-style.css
+gtk-tabs-location = bottom
+gtk-wide-tabs = false
 window-theme = ghostty
 window-decoration = none
 
@@ -30,25 +31,23 @@ window-padding-y = 10,10
 
 # tab nav
 keybind=ctrl+a>c=new_tab
-keybind=ctrl+shift+l=next_tab
-keybind=ctrl+shift+h=previous_tab
+keybind=alt+shift+l=next_tab
+keybind=alt+shift+h=previous_tab
 keybind=ctrl+a>o=toggle_tab_overview
 
 keybind=ctrl+a>,=prompt_tab_title
 
-# # create splits
+# create splits
 keybind=ctrl+a>shift+\=new_split:right
 keybind=ctrl+a>-=new_split:down
 
 keybind=ctrl+a>e=equalize_splits
 
-# # navigate panes
+# navigate panes
 keybind=alt+l=goto_split:right
 keybind=alt+h=goto_split:left
 keybind=alt+k=goto_split:up
 keybind=alt+j=goto_split:down
-
-
 
 keybind=ctrl+a>shift+r=reload_config
 
@@ -57,3 +56,4 @@ keybind=ctrl+a>q=toggle_quick_terminal
 
 keybind=ctrl+a>z=toggle_split_zoom
 
+theme = noctalia
