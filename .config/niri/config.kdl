@@ -1,10 +1,17 @@
-// This config is in the KDL format: https://kdl.dev
-// Keep the main file thin and use ordered includes for easier tuning.
+include "inputs-outputs.kdl"
+include "layout.kdl"
+include "rules.kdl"
+include "keybindings.kdl"
 
-include "conf.d/00-inputs-outputs.kdl"
-include "conf.d/10-layout-look.kdl"
-include "conf.d/20-startup-session.kdl"
-include "conf.d/30-window-rules.kdl"
-include "conf.d/40-binds.kdl"
-include "conf.d/50-animations.kdl"
-include "conf.d/60-misc.kdl"
+spawn-at-startup "noctalia"
+spawn-at-startup "vicinae" "server"
+
+include "noctalia.kdl"
+
+hotkey-overlay {
+    // Uncomment this line to disable the "Important Hotkeys" pop-up at startup.
+    skip-at-startup
+}
+
+screenshot-path "~/Pictures/Screenshots/screenshot_%Y-%m-%d_%H-%M-%S.png"
+

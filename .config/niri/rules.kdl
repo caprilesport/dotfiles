@@ -1,0 +1,98 @@
+// Window rules let you adjust behavior for individual windows.
+// Find more information on the wiki:
+// https://niri-wm.github.io/niri/Configuration:-Window-Rules
+
+// Work around WezTerm's initial configure bug
+// by setting an empty default-column-width.
+window-rule {
+    // This regular expression is intentionally made as specific as possible,
+    // since this is the default config, and we want no false positives.
+    // You can get away with just app-id="wezterm" if you want.
+    match app-id=r#"^org\.wezfurlong\.wezterm$"#
+    default-column-width {}
+}
+
+// Open the Firefox picture-in-picture player as floating by default.
+window-rule {
+    // This app-id regular expression will work for both:
+    // - host Firefox (app-id is "firefox")
+    // - Flatpak Firefox (app-id is "org.mozilla.firefox")
+    match app-id=r#"firefox$"# title="^Picture-in-Picture$"
+    open-floating true
+}
+
+// Start Ghostty maximized within its column.
+window-rule {
+    match app-id="^ghostty$"
+    open-maximized true
+}
+
+// Start regular Firefox windows maximized while keeping Picture-in-Picture floating.
+window-rule {
+    match app-id=r#"firefox$"#
+    exclude title="^Picture-in-Picture$"
+    open-maximized true
+}
+
+// Soften regular Firefox windows and reveal Niri's background blur.
+window-rule {
+    match app-id=r#"firefox$"#
+    exclude title="^Picture-in-Picture$"
+    opacity 0.93
+}
+
+// Keep Steam friend/activity toast windows out of the center of the workspace.
+window-rule {
+    match app-id="^steam$" title=r#"^notificationtoasts_\d+_desktop$"#
+    default-floating-position x=10 y=10 relative-to="bottom-right"
+    open-focused false
+}
+
+// Example: block out two password managers from screen capture.
+// (This example rule is commented out with a "/-" in front.)
+/-window-rule {
+    match app-id=r#"^org\.keepassxc\.KeePassXC$"#
+    match app-id=r#"^org\.gnome\.World\.Secrets$"#
+
+    block-out-from "screen-capture"
+
+    // Use this instead if you want them visible on third-party screenshot tools.
+    // block-out-from "screencast"
+}
+
+// Rounded corners and blur for application windows.
+window-rule {
+    geometry-corner-radius 10
+    clip-to-geometry true
+
+    draw-border-with-background false
+    // Blur translucent application surfaces without sampling through everything.
+    background-effect {
+        blur true
+        xray false
+    }
+}
+
+
+// Let Noctalia's translucent bar, panels, dock, notifications, and OSD blur
+// the windows directly behind them.
+layer-rule {
+    match namespace=r#"^noctalia-(bar-[^\"]+|notification|dock|panel|attached-panel|osd)$"#
+    background-effect {
+        xray false
+    }
+}
+
+layer-rule {
+    match namespace="noctalia-window-switcher"
+    background-effect {
+        blur true
+        xray false
+    }
+}
+
+// Use Noctalia's blurred, theme-tinted wallpaper in Niri's overview.
+layer-rule {
+    match namespace="^noctalia-backdrop"
+    place-within-backdrop true
+}
