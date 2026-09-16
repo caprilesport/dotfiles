@@ -18,6 +18,8 @@ abbr -a rq 'recli queue'
 abbr -a svg2png --set-cursor 'inkscape % --export-type=png --export-dpi=600'
 abbr -a pob ' wine ~/.wine/drive_c/users/vport/AppData/Roaming/Path\ of\ Building\ Community\ \(PoE2\)/Path\ of\ Building-PoE2.exe '
 
+abbr -a rlmp --set-cursor 'mpirun -np 8 lmp -i % -sf gpu -pk gpu 1 neigh no'
+
 abbr -a babel 'ssh -t babel fish'
 
 abbr -a hm 'history merge'
@@ -67,7 +69,7 @@ abbr -a cclippy 'cargo clippy --fix --allow-dirty --allow-staged -- -W clippy::p
 
 # git 
 abbr -a g git
-abbr -a gf 'git diff --name-only'
+abbr -a gd 'git diff --name-only'
 abbr -a gac 'git a . && git c "updates" && git ps'
 abbr -a gs 'git status'
 abbr -a fuzzygitlog 'git log | fzf | awk \'{print $7}\''

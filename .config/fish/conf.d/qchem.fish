@@ -41,7 +41,7 @@ function go_remote -a ID
 end
 
 function mdenv
-    source (/home/vport/miniconda3/bin/conda shell.fish hook | psub)
+    # source (/home/vport/software/miniconda3/bin/conda shell.fish hook | psub)
     conda activate ambertools
-    source ~/projects/scripts/GMXRC.fish
+    # source ~/projects/scripts/GMXRC.fish
 end

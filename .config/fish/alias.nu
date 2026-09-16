@@ -1,0 +1,1 @@
+alias del = trash-put
