@@ -9,11 +9,6 @@ run  = "plugin smart-enter"
 desc = "Enter the child directory, or open the file"
 
 [[mgr.prepend_keymap]]
-on   = "E"
-run  = "shell '${EDITOR:-vi} %h' --block"
-desc = "Edit the hovered file in $EDITOR"
-
-[[mgr.prepend_keymap]]
 on   = [ "g", "i" ]
 run  = "plugin gedent"
 desc = "Generate a chemistry input with Gedent"
@@ -24,12 +19,12 @@ run  = "plugin gedent -- init"
 desc = "Initialize a Gedent project with selected parameters"
 
 [[mgr.prepend_keymap]]
-on   = [ "g", "s", "j" ]
+on   = [ "g", "s" ]
 run  = "plugin recli"
 desc = "Submit the hovered ORCA input to Jupiter"
 
 [[mgr.prepend_keymap]]
-on   = [ "g", "s", "l" ]
+on   = [ "g", "l" ]
 run  = "plugin recli -- local"
 desc = "Add the hovered ORCA input to the local Pueue queue"
 
@@ -37,8 +32,3 @@ desc = "Add the hovered ORCA input to the local Pueue queue"
 on   = [ "g", "r" ]
 run  = "plugin recli -- fetch"
 desc = "Fetch and show updated Recli job statuses"
-
-[[mgr.prepend_keymap]]
-on   = [ "g", "j" ]
-run  = "plugin recli -- next"
-desc = "Open the next synced job"

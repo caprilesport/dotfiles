@@ -1,33 +1,16 @@
+# Chemistry file openers.
+# Press Enter/l to use Litio, or O to choose Chemcraft from "Open with".
 [opener]
 litio = [
-	{ run = 'litio "$@"', desc = "litio" },
+	{ run = "litio %s", orphan = true, desc = "Open with Litio", for = "unix" },
 ]
-Chemcraft = [
-	{ run = 'wine /home/vport/.wine/drive_c/Chemcraft/Chemcraft.exe "$@"', desc = "Chemcraft" },
-]
-bibiman = [
-	{run = 'bibiman "$@"', block = true, desc = "bibiman"}
-]
-edit = [
-	{ run = '$EDITOR "$@"', block = true, for = "unix" },
+chemcraft = [
+	{ run = 'for file in %s; do wine /home/vport/.wine/drive_c/Chemcraft/Chemcraft.exe "$file" >/dev/null 2>&1 & done', orphan = true, desc = "Open with Chemcraft", for = "unix" },
 ]
 
 [open]
 prepend_rules = [
-	{ name = "*.inp", use = ["edit", "Chemcraft"] },
-	{ name = "*.xyz", use = ["litio", "edit", "Chemcraft"] },
-	{ name = "*.out", use = ["Chemcraft", "edit"] },
-	{ name = "*.bib", use = ["bibiman"]}
+	{ url = "*.{out,hess,xyz,trj,traj,trajectory}", use = [ "litio", "chemcraft" ] },
+	# xTB writes an XYZ trajectory using a .log filename.
+	{ url = "xtbopt.log", use = [ "litio", "chemcraft" ] },
 ]
-
-# Linux: Swaybg
-[[opener.set-wallpaper]]
-run  = "killall swaybg; swaybg -m fill -i %s1"
-for  = "linux"
-desc = "Set as wallpaper"
-orphan = true
-
-
-[[mgr.prepend_keymap]]
-on  = "y"
-run = [ 'shell -- for path in %s; do echo "file://$path"; done | wl-copy -t text/uri-list', "yank" ]
