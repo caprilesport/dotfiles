@@ -1,0 +1,2227 @@
+recli
+recli | lines
+recli --json | from json
+ls
+recli --json | from json
+recli --json | from json | columns
+ls
+$env.path
+ls
+ls | where name == data
+ls | where name =~ d
+$env.path | any
+$env.path | any =~ uv
+$env.path | any {|path| $path =~ uv}
+$env.path | any {|path| $path =~ mpi}
+$env.path | any {|path| $path =~ mpi; path}
+$env.path | where $it =~ mpi
+hx ~/.profile
+fg
+ls
+job list
+job unfreeze
+$env.path | where $it =~ mpi
+job unfreeze
+ls
+fd 
+fd --json
+fd | list
+fd | table
+fd | lines
+fd | lines | where $it =~ simu
+fd | lines | where $it =~ simu | input list -f
+fd | lines |  input list -f
+ls
+glob out
+glob *out
+freqcheck (glob *out)
+freqcheck (glob ...*out)
+freqcheck ...(glob *out)
+litio init.out
+ls
+ls ...
+recli
+ls
+ls ..
+ls
+eza
+eza | table
+eza -l| table
+ls
+recli fetch
+recli pull
+nj list
+next-job --help
+next-job list
+config 
+config  nu
+ls
+hx ~/.bashrc
+g st
+git 
+git status
+ls
+git status
+git status | lines
+git status | lines | foreach {|line| print line)
+git status | lines | foreach {|line| print $line)
+git status | lines | foreach {|line| print $line}
+git status | lines | any {|line| print $line}
+git status | lines | any {|line| if "modified" in $line {print $line}}
+git status | lines | each {|line| if "modified" in $line {print $line}}
+git status | lines | each {|line| if "modified" in $line {$line}}
+git status | lines | each {|line| if "modified" in $line {split $line}}
+git status | lines | each {|line| if "modified" in $line {$line | split}}
+git status | lines | each {|line| if "modified" in $line {$line | split row}}
+git status | lines | each {|line| if "modified" in $line {$line | split row " "}}
+git status | lines | each {|line| if "modified" in $line {$line | split words}}
+git status | lines | each {|line| if "modified" in $line {$line | split cell-path}}
+ls
+recli 
+recli | detect columns
+recli info 6d1c --json | from json 
+recli status --json | from json
+recli
+recli | cat
+recli | detect columns
+recli | detect columns --guess
+ls
+qsj
+ssh jupiter "qstat"
+ssh jupiter "qstat" | lines
+ssh jupiter "qstat" | recli | detect columns --guess
+ssh jupiter "qstat" |  detect columns --guess
+ssh jupiter "qstat" |  detect columns --guess | where "Queue" == "freq"
+ssh jupiter "qstat" |  detect columns --guess | where "Queue" == "big"
+ssh jupiter "qstat" |  detect columns --guess | where "Queue" == "big" | sort-by "S"
+cfree
+config nu
+ls
+gedent
+ping google.com
+ls
+ls | where "out"
+ls | where "out" in name
+ls | where name
+ls | select name
+ls | select name | lines
+ls | select name | foreach {|line| line.split(".")}
+ls | select name | each {|line| line.split(".")}
+ls | select name | each {|line| split column "."}
+ls | select name | each {|line| line}
+ls | select name | each {|line| $line}
+ls | select name | each {|line| $line | split column "."}
+ls | select name | each {|line| $line | into string | split column "."}
+ls *out
+ls *out | get name
+ls *out | select name
+ls *out | select name | path parse
+ls *out | get name | path parse
+ls *out | get name | path parse | get stem
+let out_stems = (ls *out | get name | path parse | get stem)
+out_stems
+$out_stems
+ls *xyz | get name
+ls *xyz | get name | path parse
+ls *xyz | get name | path parse | get stem
+ls *xyz | get name | path parse | get stem | get 1
+let testfile = (ls *xyz | get name | path parse | get stem | get 1)
+testfile in $out_stems
+$testfile in $out_stems
+$testfile not in $out_stems
+$testfile not-in $out_stems
+xyzfiles = (ls *xyz | get name | path parse | get stem)
+let xyzfiles = (ls *xyz | get name | path parse | get stem)
+$xyzfiles
+$xyzfiles | each {|file| $file not-in $out_stems}
+$xyzfiles | each {|file| if $file not-in $out_stems {echo $file "notin :D:D"}}
+$xyzfiles | each {|file| if $file not-in $out_stems {$"{file}.inp"}}
+$xyzfiles | each {|file| if $file not-in $out_stems {$"{$file}.inp"}}
+$xyzfiles | each {|file| if $file not-in $out_stems {$"($file).inp"}}
+$xyzfiles | each {|file| if $file not-in $out_stems {^qprep $"($file).inp" -r jupiter }}
+^qprep frame_00033_v00.inp -r jupiter
+^qprep frame_00033_v00.inp -r jupiter | nu
+^qprep frame_00033_v00.inp -r jupiter | nu --stdin
+echo "1 + 2" | nu --stdin
+echo "1 + 2" | nu -c '$in'
+recli
+ls
+echo "1 + 2" | nu -c '$in'
+^qprep frame_00033_v00.inp -r jupiter | nu -c '$in'
+nu -c (^qprep frame_00033_v00.inp -r jupiter )
+ls
+$xyzfiles | each {|file| if $file not-in $out_stems {nu -c (^qprep $"($file).inp" -r jupiter )}}
+$xyzfiles | each {|file| if $file not-in $out_stems {^qprep $"($file).inp" -r jupiter | bash}}
+$xyzfiles | each {|file| if $file not-in $out_stems {^qprep $"($file).inp" -r jupiter } | save submit.txt}
+ls
+rm submit.txt
+$xyzfiles | each {|file| if $file not-in $out_stems {^qprep $"($file).inp" -r jupiter | save submit.txt}}
+$xyzfiles | each {|file| if $file not-in $out_stems {^qprep $"($file).inp" -r jupiter | append submit.txt}}
+ls
+hx submit.txt
+rm submit.txt
+$xyzfiles | each {|file| if $file not-in $out_stems {^qprep $"($file).inp" -r jupiter | save --append submit.txt}}
+ls
+hx submit.txt
+cat submit.txt
+cat submit.txt | bash
+recli
+recli | detect columns --guess
+recli | detect columns --guess | get "Work dir" "Name"
+recli | detect columns --guess | get "Work dir"
+ls
+recli
+ls
+rf
+recli fetch
+recli
+recli cancl 2b11
+recli cancel 2b11
+ls
+..
+ls
+..
+ls
+..
+ls
+..
+ls
+ls ozd-formation/
+ls
+litio ozd-formation/attack_IRC.xyz
+ls
+litio ozd-formation/*
+ls
+cd ozd-formation/
+ls
+litio *
+z
+zi
+recli info 6676
+recli info 6676 --json
+recli info 6676 --json | from json
+recli info 6676 --json | from json | get work_dir
+recli info 6676 --json | from json | get work_dir | wl-copy
+ssh jupiter
+recli info 6676 --json | from json 
+recli info 6676 --json | from json  | get remote_dir | wl-copy
+ssh jupiter
+ls
+pq
+pueue
+pueue --json
+pueue status --json
+pueue status --json | from josn
+pueue status --json | from json
+pueue status 
+pueue status | columns
+pueue status | columns --guess
+pueue status | detect columns 
+pueue status | detect columns --format guess
+pueue status | detect columns --guess
+ls
+rg Coordinates init_MEP.allxyz
+rg Coordinates init_MEP.allxyz | lines
+rg Coordinates init_MEP.allxyz | lines | length 
+config nu
+abbr list
+abbr 
+abbr --help
+ls 
+ssh jupiter 'qstat'
+recli fetch
+ls
+hx ~/.tmux-conf
+hx ~/.tmux.conf
+ls
+$env.path
+ls
+cd Desktop/
+ls
+..
+ls
+$env.config-path
+$nu.config-path
+cd ~/.config/nushell/
+ls
+touch abbr.nu
+ls
+hx *nu
+ls
+hx abbr.nu ../fish/conf.d/abbreviations.fish
+ls
+mkdir ($nu.data-dir | path join "vendor/autoload")
+starship init nu | save -f ($nu.data-dir | path join "vendor/autoload/starship.nu")
+ls
+hx .synced_jobs
+recli
+hx .synced_jobs
+ls
+z
+$nu.env-path
+ls
+z
+ls
+z
+zi
+ls
+nj
+ls
+hx 
+recli
+hx ~/.synced_jobs
+ls
+next-job next
+let path = "/home/vport/projects/doc/td_mea/pbeh3c/meacoo-ozd/0-water/optts"
+let path = "/home/vport/projects/doc/td_mea/pbeh3c/meacoo-ozd/0-water/optts\n"
+echo $path
+let dir = "/home/vport/projects/doc/td_mea/pbeh3c/meacoo-ozd/0-water/optts\n"
+strip $dir
+$dir
+$dir | strip
+$dir | str strip
+str --help
+$dir | str trim
+$dir | str trim "\n"
+str trim --help
+$dir | str trim --right --char "\n"
+$dir | str trim --replace --regex '\n+$' ''
+$dir | str --replace --regex '\n+$' ''
+$dir | str replace --regex '\n+$' ''
+let dir = ($dir | str replace --regex '\n+$' '')
+dirs add $dir
+dirs --help
+idx dirs
+ls
+z mlip
+recli
+hx ~/.synced_jobs
+nj
+ls
+dirs
+hx config.nu ~/.bashrc --vsplit
+ls
+hx --health nu
+cargo binstall --git https://github.com/nushell/nufmt
+cargo install --git https://github.com/nushell/nufmt
+cargo install nu-lint
+ls
+hx --health nu
+ls
+recli fetch
+ls
+gedent
+gedent --generate
+ls
+z gedent
+reload
+ls
+z mlip
+ls
+fd xyz
+molv water-test/60/init.xyz
+ls
+ls
+hx abbr.nu
+ls
+git
+hx abbr.nu
+g
+dirs goto
+z doc
+z 
+dirs goto
+dirs goto --help
+ls
+cd Desktop/
+..
+ls
+dirs goto
+dirs list
+ls
+z --help
+zoxide
+ls
+cd td_mea/
+cd MLIP/
+ls
+recli fetch
+ls
+ls | get type
+ls
+ls | get type name
+ls
+hx ~/.config/fish/config.fish
+uv --generate
+uv --generate-shell-completions
+uv
+uv generate-shell-completions
+uv generate-shell-completion
+uv generate-shell-completion --help
+uv generate-shell-completion nushell
+z nushel
+ls
+mkdir completions
+ls
+uv generate-shell-completion nushell | save ./completions/uv.nu
+ls
+bat completions/uv.nu
+ls
+hx config.nu
+ls
+hx abbr.nu
+ls
+hx env.nu
+ls
+hx functions.nu
+ls
+hx history.txt
+ls
+mkdir autoload
+ls
+mv completions/uv.nu autoload/
+ls
+del completions/
+hx ~/.config/fish/alias.nu
+ls
+hx config.nu
+ls
+reload
+z
+zi
+hx config.nu
+z
+zi
+ls
+z nu
+ls
+nj list
+functions nj
+nj list
+ls
+hx functions.nu
+ls
+conda
+conda activate mea-mlip
+conda init
+conda activate mea-mlip
+ls
+conda activate ambertools
+ls
+conda activate mea-mlip
+ls
+hx ~/.config/nushell/conda.nu
+ls
+conda deactivate 
+ls
+recli fetch
+ls
+..
+ls
+cd gedent/
+ls
+...
+z gedent
+z gedent 
+ls
+z gedent
+ls
+cargo add clap_complete_nushell
+hx src/main.rs
+ls
+ls
+cargo run -- --generate-completions
+cargo run -- --generate
+cargo run -- --generate nushell
+cargo run -- --generate nushell >
+cargo run -- --generate nushell | save ~/.config/nushell/autoload/gedent.nu
+ls
+codex
+..
+ls
+cd recli
+ls
+g st
+git st
+g a .
+git a .
+hx ~/.config/nushell/abbr.nu
+ls
+git st
+git c "feat: add nushell completions"
+git ps
+ls
+../recli
+ls
+git st
+ls
+hx src/main.rs
+ls
+hx Cargo.toml
+cargo run -- --help
+cargo run -- completions nushell
+cargo run -- completions nushell | save ~/.config/nushell/autoload/recli.nu
+ls
+git st
+git a Cargo.* README.md src/main.rs
+git st
+git c "feat: add nushell completions"
+ls
+git ps
+ls
+gh 
+cargo clippy --fix --allow-dirty --allow-staged -- -W clippy::pedantic -W clippy::nursery
+gh pr new
+ls
+git log
+ls
+..
+ls
+cd litio/
+ls
+git st
+git nb nu
+ls
+git co optxtb
+ls
+git st
+git log
+ls
+config nu
+$env.config
+ls
+$env.config
+ls
+duf .
+ls
+codex
+ls
+..
+ls
+cd doc/td_mea/
+cd td_mea/MLIP/
+ls
+recli fetch
+ls
+ls
+ssh jupiter "qstat"
+cfree
+ls
+ls
+..
+ls
+cd doc/td_mea/
+ls
+recli
+recli --status running
+recli status --status running
+ls
+recli fetch
+cd gxtb/
+ls
+fd todo
+ls
+..
+ls
+cd pbeh3c/
+fd todo
+ls
+fd irc
+ls
+niri msg action set-dynamic-cast-window --id (niri msg --json pick-window | jq .id)
+litio r2scan/isocyanate/4-water/irc/init_IRC_Full_trj.xyz
+ls
+fd dlpno
+..
+ls
+fd dlpno
+fd ccsdt
+ls
+recli
+recli info bc22
+ls
+cd td_mea/
+ls
+trash-list
+trash-list | lines 
+ls
+fd ccsdt
+ls
+trash-list | grep "ccsdt"
+ls
+cd dlpls
+cd dlpno-ccsdt/
+ls
+recli status -d dlpno
+recli status -d dlpno --status finished
+recli status -d dlpno --status finished -a
+recli status -d dlpno --status finished -a | detect columns 
+recli status -d dlpno --status finished -a | detect columns  --guess
+recli status -d dlpno --status finished -a | detect columns  --guess | get id
+recli status -d dlpno --status finished -a | detect columns  --guess | get ID
+let ids = recli status -d dlpno --status finished -a | detect columns  --guess | get ID
+ids | each {|id| id}
+ids | each {|id| $id}
+$ids | each {|id| $id}
+$ids
+recli status -d dlpno --status finished -a | detect columns  --guess | get dir
+recli status -d dlpno --status finished -a | detect columns  --guess 
+recli status -d dlpno --status finished -a | detect columns  --guess | get "Work dir"
+let dirs = recli status -d dlpno --status finished -a | detect columns  --guess | get "Work dir"
+$dirs
+$dirs | each {|dir| mkdir $dir}
+ls
+$ids | each {|id| recli pull $id}
+$ids | each {|id| $id}
+$ids | each {|id| echo $id}
+$ids | first
+let test = $ids | first
+recli pull $first
+recli pull $test
+ls
+recli info 03da
+ls bheu-formation-via-ozd/attack/optts/
+recli pull --help
+..
+ls
+cd dlpno-ccsdt/
+ls
+cd bheu-formation-via-isocyanate/ls
+cd bheu-formation-via-isocyanate/
+ls
+cd optts/
+ls
+for id in $ids {<\n>recli pull $id<\n>}
+tail init.out
+ls
+rg "Normal termination" init.out
+..
+ls
+cd prod-freq/
+ls
+tail init.out
+rg "Normal termination" init.out
+rg "NORMALLY" init.out
+if (rg "NORMALLY" init.out) {echo "y"}
+rg "NORMALLY" init.out | describe 
+rg "NORMALLY" init.out | complete
+try {rg "NORMALLY" init.out<\n>true}
+try {rg "NORMALLY" init.out<\n>true}
+let ok = try {try {rg "NORMALLY" init.out<\n>true}}
+$ok
+let ok = try {try {rg "NORMALLY" init.out<\n>true}}
+let ok = try {try {rg "NORMALLY" init.out<\n>true}<\n>catch {false}}
+$ok
+let ok = (try {<\n>rg "NORMALLY" init.out<\n>true<\n>} catch {<\n>false<\n>})
+$ok
+let ok = (try {<\n>rg "NORMALLY" init.out<\n>true<\n>} catch {<\n>false<\n>})
+$ok
+let ok = (try {<\n>rg "NORMALLY" init.out | ignore<\n>true<\n>} catch {<\n>false<\n>})
+$ok
+ls
+find "NORMALLY" init.out
+open init.out | find "NORMALLY"
+exit
+hx test.nu
+ls
+open init.out | find "NORMALLY"
+open init.out | find "NORMALLY" | is-empty 
+open init.out | find "NORMALLY" | not is-empty
+open init.out | find "NORMALLY" | is-empty
+pwd
+ls
+ls
+./test.nu
+chmod +x test.nu
+ls
+./test.nu
+tail init.out
+ls
+recli
+recli status -d dlpno --status finished -a | detect columns  --guess | get "Work dir"
+let ccsdt = recli status -d dlpno --status finished -a | detect columns  --guess | get "Work dir"
+let dir = pwd
+$dir
+$dir in $ccsdt
+recli status -d dlpno --status finished -a | detect columns  --guess 
+for job in (recli status -d dlpno --status finished -a | detect columns  --guess ) {}
+for job in (recli status -d dlpno --status finished -a | detect columns  --guess ) { $job}
+$ccsdtjobs
+$ccsdt
+let ccsdt = recli status -d dlpno --status finished -a | detect columns  --guess 
+$ccsdt | where {|row| row."Work dir"}
+$ccsdt | where {|row| $row."Work dir"}
+$ccsdt | where {|row| $row.Work dir}
+$ccsdt | where {|row| $row.'Work dir'}
+$ccsdt | where {|row| $row.'Work dir' == pwd}
+pwd
+$dir
+$ccsdt | where {|row| $row.'Work dir' == $dir}
+ls
+./test.nu
+$dir
+./test.nu
+ls
+./test.nu
+ls
+tail init.out
+ls
+let failed = open init.out | find "NORMALLY" | is-empty
+let failed = open init.out | find "NORMALLY"
+let failed = open init.out | find "NORMALLY" | is-empty
+$failed
+if not $failed {echo "a"}
+if $failed {echo "a"}
+def re-sync-failed [] {<\n>  let failed = open "init.out" | find "NORMALLY" | is-empty<\n>  if not $failed {<\n>    return<\n>  }<\n>  let ccsdtjobs = recli status -d dlpno --status finished -a | detect columns  --guess <\n>  let dir = pwd<\n><\n>  let id = $ccsdtjobs | where {|row| $row."Work dir" == $dir } | get "ID" | last<\n><\n>  rm --trash ./*<\n><\n>  recli pull $id<\n>}<\n>
+re-sync-failed 
+def re-sync-failed [] {<\n>  let failed = open "init.out" | find "NORMALLY" | is-empty<\n>  if not $failed {<\n>    print "Nothing to do"<\n>    return<\n>  }<\n>  let ccsdtjobs = recli status -d dlpno --status finished -a | detect columns  --guess <\n>  let dir = pwd<\n><\n>  let id = $ccsdtjobs | where {|row| $row."Work dir" == $dir } | get "ID" | last<\n><\n>  rm --trash ./*<\n><\n>  recli pull $id<\n>}<\n>
+re-sync-failed 
+ls
+..
+ls
+cd prod-freq/
+ls
+rg "NORMALLY" init.out 
+../react-freq/
+ls
+rg "NORMALLY" init.out 
+...
+ls
+cd bheu-formation-via-isocyanate/
+ls
+cd optts/
+rg "NORMALLY" init.out 
+../prod-freq/
+rg "NORMALLY" init.out 
+../react-freq/
+rg "NORMALLY" init.out 
+..
+ls
+..
+ls
+cd heeda-trimea/
+ls
+cd optts/
+rg "NORMALLY" init.out 
+re-sync-failed 
+rg "NORMALLY" init.out 
+../react-freq/
+rg "NORMALLY" init.out 
+re-sync-failed 
+ls
+recli
+ls
+../prod-freq/
+rg "NORMALLY" init.out 
+ls
+re-sync-failed 
+ls
+trash-list
+pwd
+ls
+...
+ls
+cd mea-heeda/
+ls
+cd optts/
+rg "NORMALLY" init.out 
+re-sync-failed 
+recli status --status queued
+..
+ls
+cd prod-freq/
+ls
+rg "NORMALLY" init.out 
+re-sync-failed 
+ls
+rg "NORMALLY" init.out 
+../react-freq/
+rg "NORMALLY" init.out 
+re-sync-failed 
+rg "NORMALLY" init.out 
+..
+ls
+rg "NORMALLY" init.out 
+rg "NORMALLY" 
+..
+ls
+cd bheu-formation-via-isocyanate/
+ls
+rg "NORMALLY" 
+..
+ls
+cd bheu-formation-via-ozd/
+ls
+rg "NORMALLY" 
+ls
+cd attack/
+ls
+for i in * {}
+for i in * {<\n>print $i<\n>}
+for i in ...(*) {<\n>print $i<\n>}
+for i in ...(glob *) {<\n>print $i<\n>}
+for i in (glob *) {<\n>print $i<\n>}
+for i in (glob *) {<\n>cd $i<\n>}
+ls
+..
+ls
+for i in (glob *) {<\n>cd $i<\n>}
+..
+ls
+rg "NORMALLY" 
+for i in (glob *) {<\n>do {<\n>cd $i<\n>}<\n>}
+ls
+for i in (glob *) {<\n>do {<\n>cd $i<\n>}<\n>}
+hx test.nu
+recli info 9f654
+recli info e398
+for i in (glob *) {<\n>do {<\n>cd $i<\n>re-sync-failed <\n>}<\n>}
+ls
+rg "NORMALLY" 
+..
+ls
+cd leave/
+ls
+recli info 9777
+recli info 977
+recli info 977d
+rg ---duiashiudashsd
+rg regex
+rg regex "ahdsalkj"
+for i in (glob *) {<\n>do {<\n>cd $i<\n>re-sync-failed <\n>}<\n>}
+rg "NORMALLY" 
+..
+ls
+rg "NORMALLY" 
+..
+ls
+cd heeda-trimea/
+rg "NORMALLY" 
+..
+ls
+cd meacoo-ozd/
+ls
+rg "NORMALLY" 
+glob *
+glob */*
+for i in (glob */*) {<\n>do {<\n>cd $i<\n>re-sync-failed <\n>}<\n>}
+hx
+ls
+fg 
+job list
+job unfreeze
+ls
+hx
+ls
+hx test.nu
+job list
+job unfreeze
+job list
+job unfreeze
+ls
+job unfreeze 
+job list
+job --help
+job list
+job unfreeze 2
+ls
+ls
+..
+ls
+cd meacoo-ozd-via-isocyanate/
+ls
+rg "NORMALLY" 
+ls
+..
+ls
+cd z -
+ls
+-
+ls
+hx ~/.config/nushell/abbr.nu
+ls
+-
+ls
+z -
+ls
+ls
+....
+ls
+recli fetch
+recli
+ls
+ls
+..
+ls
+cd MLIP/
+ls
+ls mea_mlip/
+ls
+$nu.config
+$env.config
+$env.config | explore
+hx ~/.config/nushell/config.nu
+$env.config | explore
+hx ~/.config/nushell/config.nu
+reload
+hx ~/.config/nushell/config.nu
+ls
+reload
+ls
+touch test
+ls
+rm test
+trash-list
+ls
+$env.config | explore
+ls
+ls mea_mlip/
+rm -r mea_mlip/
+ls
+trash-list
+ls
+reload
+ls
+ls -l
+ls
+ls scripts/
+ls
+ls tests/
+rm -rf tests/
+trash-list
+ls
+ls runs/
+ls
+rm -rf runs/
+ls
+ls resources/
+ls
+mkdir rections
+ls
+mv rections/ reactions
+ls
+mv ozd-formation/ reactions/
+mv carbamate-formation/ reactions/
+ls
+ls data/
+ls data/candidates/
+ls
+ls water-test/
+ls
+rm -r water-test/
+ls
+hx gedent.toml
+ls
+mv gedent.toml data/
+ls
+cd data/
+ls
+ls candidates/ozd-attack-v1/
+ls candidates/ozd-attack-v1/xyz/
+ls
+..
+ls
+bash "history"
+ls
+cd td_mea/
+ls
+qplot --irc pbeh3c/meacoo-ozd/0-water/irc/init.out
+uv run scripts/expand_irc.py reactions/ozd-formation/0_water_irc.xyz --output data/ozd-no-water --charge 0 --multiplicity 1 --parent-id ozd-no-water1 --geometry-reference "PBEh-3c + implicit water" --count 12 --variants 4 --sigma 0.03 --seed 2026 --include-all-originals --ts-frame 41
+ls
+cd data/ozd-no-water/
+ls
+cd xyz/
+ls
+gedent gen grad *xyz
+ls
+gedent gen grad (glob *xyz)
+gedent gen --help
+gedent gen grad *xyz
+glob *xyz
+gedent gen grad ...(glob *xyz)
+ls
+hx *inp
+ls
+ssh jupiter "qstat"
+cfree
+ls
+gedent gen grad ...(glob *xyz) --nprocs 8
+ls
+hx *inp
+ls
+for i in *inp {<\n>qprep $i -r jupiter | bash<\n>}
+ls
+cd MLIP/
+ls
+cd data/
+ls
+ls candidates/
+ls
+mkdir ozd-5-water
+ls
+mv candidates/* ozd-5-water/
+ls
+cd candidates/
+ls
+..
+ls
+ls ozd-5-water/ozd-attack-v1/
+ls
+rmdir candidates/
+ls
+ssh jupiter "qstat"
+ls
+for i in (glob *inp) {<\n>qprep $i -r jupiter | bash<\n>}
+ssh jupiter "qstat"
+recli fetch
+for i in 1..100 {<\n>recli pull | next-job <\n>}
+lsls
+ls
+nj
+nj list
+nj clear
+ls
+recli
+ssh jupiter
+ls
+tail *out
+qplot --irc init.out
+litio init_IRC_Full_trj.xyz
+ls
+..
+ls
+mkdir prod-freq react-freq
+ls
+ls irc | select
+ls irc | input list --fuzzy
+ls irc | input list --fuzzy | get name
+litio (ls irc | input list --fuzzy | get name)
+ls
+cd prod-freq/
+ls
+gedent gen optfreq init.xyz
+ls
+qprep init.inp -r jupiter | bash 
+ls
+../react-freq/
+ls
+gedent gen optfreq init.xyz
+ls
+qprep init.inp -r jupiter | bash 
+ls
+ssh jupiter "qstat"
+recli fetch
+recli pull
+ls
+z mlip
+ls
+cd data/
+ls
+cd ozd-5-water/
+ls
+cd ozd-attack-v1/
+ls
+hx candidates.extxyz
+ls
+litio candidates.extxyz
+ls
+..
+ls
+..
+ls
+cd ozd-no-water/
+ls
+mkdir concerted-v1
+ls
+recli fetch
+ls
+cd ozd-no-water/
+ls
+cd xyz/
+ls
+tail -n 2 *out
+ls *out
+recli pull
+recli status
+recli status --name frame
+ls
+recli fetch
+wait 10
+sleep 10
+sleep 10s
+sleep --help
+sleep 10sec
+ls
+ssh jupiter "qstat"
+ls
+ls
+...
+ls
+..
+ls
+cd gxtb/
+ls
+cd mea-heeda/
+ls
+..
+ls
+cd meacoo-ozd/
+ls
+ls ../../pbeh3c/meacoo-ozd/
+ls
+mkdir 20-water
+ls
+cp ../../pbeh3c/meacoo-ozd/leave/ -r 20-water/
+cp ../../pbeh3c/meacoo-ozd/attack/ -r 20-water/
+ls
+cd 20-water/
+ls
+cd attack/
+ls
+mkdir solvate
+ls
+mv solvate/ solvate-optts
+ls
+mkdir solvate-prod solvate-react
+ls
+cd solvate-optts/
+ls
+cp ../optts/init.xyz .
+ls
+fd water.xyz ../../../
+cp ../../../react/qcg/water.xyz .
+ls
+..
+ls
+litio solute
+hx solute
+ls
+crest init.xyz --qcg water.xyz --nsolv 15 -T 16
+ls
+litio grow/qcg_grow.xyz init.xyz
+ls
+rm -rf solute solvent grow/
+ssh jupiter "qstat"
+crest init.xyz --qcg water.xyz --nsolv 15 -T 16 --nopreopt
+ls
+ls
+..
+ls
+mkdir calculations
+ls
+cd calculations/
+ls
+ls ../xyz/
+ls ../xyz/*xyz
+ls ../xyz/*xyz | get name
+ls ../xyz/*xyz | get name | path parse
+ls ../xyz/*xyz | get name | path parse | get stem
+glob ../xyz/*
+ls
+cp (glob ../xyz/*) .
+cp (glob ../xyz/* | list) .
+cp (glob ../xyz/* | lines) .
+cp ...(glob ../xyz/* | lines) .
+ls
+rm ./*
+ls
+let test = frame_00081_v04
+let test = "frame_00081_v04"
+cp ...(glob ../xyz/$test* | lines) .
+cp ...(glob "../xyz/$test*" | lines) .
+ls
+cp ...(glob "../xyz/$test*" | lines) ./
+mkdir test
+cp ...(glob "../xyz/$test*" | lines) ./test/
+...(glob "../xyz/$test*" | lines)
+...(glob "../xyz/$test*")
+...(glob $"../xyz/$test*")
+$"$test"
+cp ...(glob "../xyz/($test)*" | lines) ./test/
+cp ...(glob $"../xyz/($test)*" | lines) ./test/
+ls
+ls test/
+ls
+rm -r test/
+ls
+for i in (ls ../xyz/*xyz | get name | path parse | get stem) {<\n>mkdir $i<\n>cp ...(glob $"../xyz/($i)*") ./$i/<\n>}
+for i in (ls ../xyz/*xyz | get name | path parse | get stem) {<\n>mkdir $i<\n>#cp ...(glob $"../xyz/($i)*") ./$i/<\n>}
+ls
+for i in (ls ../xyz/*xyz | get name | path parse | get stem) {<\n>#mkdir $i<\n>cp ...(glob $"../xyz/($i)*") ./$i/<\n>}
+for i in (ls ../xyz/*xyz | get name | path parse | get stem) {<\n>#mkdir $i<\n>cp ...(glob $"../xyz/($i)*") ./$i<\n>}
+ls
+for i in (ls ../xyz/*xyz | get name | path parse | get stem) {<\n>mkdir $i<\n>cp ...(glob $"../xyz/($i)*") ./$i<\n>}
+for i in (ls ../xyz/*xyz | get name | path parse | get stem) {<\n>mkdir $i<\n>cp ...(glob $"../xyz/($i)*") $i<\n>}
+ls
+ls *
+ls frame_00001_v00/
+ls
+rm ./*
+rm ./* -r
+ls
+..
+ls
+..
+ls
+cd ozd-5-water/
+ls
+cd ozd-attack-v1/
+ls
+for i in (ls ../xyz/*xyz | get name | path parse | get stem) {<\n>mkdir $i<\n>cp ...(glob $"../xyz/($i)*") $i<\n>}
+ls
+mkdir calculations
+cd calculations/
+for i in (ls ../xyz/*xyz | get name | path parse | get stem) {<\n>mkdir $i<\n>cp ...(glob $"../xyz/($i)*") $i<\n>}
+ls
+..
+ls
+..
+ls
+cd ozd-attack-v1/
+ls
+cd xyz/
+ls
+hx frame_00001_v00.xyz
+recli
+../../../
+ls
+cd ozd-no-water/
+ls
+ls xyz/
+ls
+hx xyz/frame_00081_v04.xyz
+ls
+..
+ls
+cd ozd-5-water/
+ls
+cd ozd-attack-v1/
+ls
+cd xyz/
+ls
+ls | get name
+for i in (ls) {}
+for i in (ls | get name) {<\n>if ($i | path parse | ext) == xyz {<\n>print $i<\n>}<\n>}
+for i in (ls | get name) {<\n>if ($i | path parse | get ext) == xyz {<\n>print $i<\n>}<\n>}
+for i in (ls | get name) {<\n>$i | path parse | get ext<\n>}
+for i in (ls | get name) {<\n>$i | path parse <\n>}
+ls | get name
+ls | get name | path parse
+for i in (ls | get name) {<\n>if ($i | path parse | get extension) == xyz {<\n>print $i<\n>}<\n>}
+for i in (ls | get name) {<\n>if ($i | path parse | get extension) == xyz {<\n>continue<\n>} else {<\n>print $i<\n>}<\n>}
+for i in (ls | get name) {<\n>if ($i | path parse | get extension) == xyz {<\n>continue<\n>} else {<\n>rm $i<\n>}<\n>}
+ls
+..
+ls
+litio grow/qcg_grow.xyz init.xyz
+ls xyz/
+ls calculations/
+ls
+ssh jupiter "qstat"
+ls
+recli
+recli --status running
+recli status --status running
+ls
+..
+ls
+cd ozd-leave-v1/
+ls
+mkdir calculations
+ls
+cd calculations/
+for i in (ls ../xyz/*xyz | get name | path parse | get stem) {<\n>mkdir $i<\n>cp ...(glob $"../xyz/($i)*") $i<\n>}
+ls
+ls frame_00001_v00/
+hx frame_00001_v00/frame_00001_v00.out
+ls
+..
+ls
+cd xyz/
+ls
+rm submit.txt
+ls
+for i in (ls | get name) {<\n>if ($i | path parse | get extension) == xyz {<\n>continue<\n>} else {<\n>rm $i<\n>}<\n>}
+ls
+..
+ls
+..
+ls
+..
+ls
+cd ozd-no-water/
+ls
+cd calculations/
+ls
+..
+ls
+ssh jupiter "qstat"
+ls
+hx grow/qcg_grow.xyz
+ls
+hx grow/qcg_grow.xyz
+ls
+...
+ls
+..
+ls
+mkdir 40-water
+ls
+cd 40-water/
+ls
+cp ../20-water/attack/solvate-optts/ .
+ls
+cp ../20-water/attack/solvate-optts/ . -r
+ls
+mkdir attack
+ls
+mv solvate-optts/ attack/
+ls
+cd attack/solvate-optts/
+ls
+rm -r grow/ solute solvent
+ls
+hx init.xyz
+ls
+ssh jupiter "qstat"
+ls
+cd calculations/
+for i in (ls ../xyz/*xyz | get name | path parse | get stem) {<\n>mkdir $i<\n>cp ...(glob $"../xyz/($i)*") $i<\n>}
+ls
+..
+ls
+cd xyz/
+ls
+for i in (ls | get name) {<\n>if ($i | path parse | get extension) == xyz {<\n>continue<\n>} else {<\n>rm $i<\n>}<\n>}
+ls
+..
+ls
+mv * concerted-v1/
+ls
+..
+ls
+ls *
+ls ozd*
+ls ozd*/*
+ls ozd*/*/*
+crest init.xyz --qcg water.xyz --nsolv 35 -T 16 --nopreopt
+ls
+litio grow/qcg_grow.xyz init.xyz
+ls
+..
+ls
+mkdir solvate-prod solvate-react
+ls
+cp ../../20-water/attack/react-freq/init.xyz ./solvate-react/
+ls
+cp ../../20-water/attack/prod-freq/init.xyz ./solvate-prod/
+ls
+cd solvate-prod/
+ls
+cp ../solvate-optts/water.xyz .
+ls
+ssh jupiter "qstat"
+cfree
+ls
+....
+ls
+cp solvate-prod/water.xyz solvate-react/
+ls
+ls solvate-react/
+..
+ls
+mkdir leave
+ls
+cd leave/
+ls
+cp ../../20-water/leave/optts/init.xyz
+cp ../../20-water/leave/optts/init.xyz .
+ls
+mdkir solvate-prod solvate-react solvate-optts
+ls
+mkdir solvate-prod solvate-react solvate-optts
+ls
+mv init.xyz solvate-optts/
+ls
+cp ../../20-water/leave/prod-freq/init.xyz ./solvate-prod/
+cp ../../20-water/leave/react-freq/init.xyz ./solvate-react//
+ls
+ls solvate-react/
+cd solvate-react/
+ls
+litio init.xyz
+ls
+..
+ls
+for i in * {}
+for i in * {<\n>$i<\n>}
+for i in * {<\n>print $i<\n>}
+for i in (glob *) {<\n>print $i<\n>}
+for i in (glob *) {<\n>cp ../attack/solvate-optts/water.xyz $i<\n>}
+ls
+ls */*
+..
+ls
+cd attack/
+ls
+ls */*
+ls
+cd solvate-react/
+ls
+..
+ls
+cd data/
+ls
+..
+ls
+mkdir reactions/ozd-formation/40-water
+ls
+cp ../gxtb/meacoo-ozd/40-water/attack/solvate-optts/grow/cluster.xyz ./reactions/ozd-formation/40-water/
+crest init.xyz --qcg water.xyz --nsolv 35 -T 16 --nopreopt
+pueue add -- crest init.xyz --qcg water.xyz --nsolv 35 -T 16 --nopreopt
+pueue
+ls
+..
+ls
+cd leave/
+ls
+for i in (glob *) {<\n>do {<\n>cd $i<\n>pueue add -- crest init.xyz --qcg water.xyz --nsolv 35 -T 16 --nopreopt<\n>}<\n>}
+ls
+pueue
+ls
+pueue
+pueue clean
+pueue
+pueue log 218
+pueue log 218 --follow
+pueue log
+pueue log --help
+pueue --help
+pueue completions
+pueue completions --hellp
+pueue completions --help
+pueue completions nushell | save ~/.config/nushell/autoload/
+pueue completions nushell | save ~/.config/nushell/autoload/pueue.nu
+ls
+pueue
+ls
+cd data/
+ls
+cd ozd-5-water/
+ls
+ls ozd-attack-v1/calculations/
+ls ozd-attack-v1/calculations/ | get name
+ls ozd-attack-v1/calculations/ | get name | length 
+ls ozd-leave-v1/calculations/ | get name | length 
+ls ../ozd-no-water/concerted-v1/calculations/ | get name | length
+pueue
+ls
+ls
+..
+ls
+..
+ls
+cd reactions/ozd-formation/
+ls
+cd 40-water/
+ls
+mv cluster.xyz ts-attack-cluster.xyz
+ls
+cp ../../../../gxtb/meacoo-ozd/40-water/attack/solvate-prod/grow/cluster.xyz ./prod-attack-cluster.xyz
+cp ../../../../gxtb/meacoo-ozd/40-water/attack/solvate-react/grow/cluster.xyz ./react-attack-cluster.xyz
+ls
+cp ../../../../gxtb/meacoo-ozd/40-water/leave/solvate-react/grow/cluster.xyz ./react-leave-cluster.xyz
+ls
+head react-leave-cluster.xyz
+ls
+cp ../../../../gxtb/meacoo-ozd/40-water/leave/solvate-prod/grow/cluster.xyz ./prod-leave-cluster.xyz
+cp ../../../../gxtb/meacoo-ozd/40-water/leave/solvate-optts/grow/cluster.xyz ./ts-leave-cluster.xyz
+ls
+pwd | wl-copy 
+ls
+....
+ls
+mv ~/Downloads/41467_2024_50418_MOESM4_ESM.zip ./resources/
+cd resources/
+ls
+unzip 41467_2024_50418_MOESM4_ESM.zip
+ls
+rm -r __MACOSX/
+ls
+cd source_data/
+ls
+cd main_text/
+ls
+ls */*
+..
+ls
+cd SI/
+ls
+hx info.txt
+ls
+ls */*
+ls
+open S3/s1.xlsx 
+ls
+hx info.txt
+ls
+..
+ls
+cd main_text/
+ls
+hx info.txt
+ls
+...
+ls
+..
+ls
+ls data/
+ls data/solvation-tests/
+litio data/solvation-tests/box-packing-v1/box_11A_seed2137.xyz
+litio data/solvation-tests/box-packing-v1/*xyz
+ls
+cd td_mea/MLIP/
+ls
+cd data/solvation-tests/
+ls
+mkdir packmol
+ls
+cd packmol/
+ls
+uv tool install packmol
+ls
+cp ../../../../pbeh3c/meacoo-ozd/attack/optts/init.xyz .
+ls
+packmol -v
+hx packmol.inp
+ls
+mv init.xyz core.xyz
+packmol < packmol.inp
+packmol -i packmol.inp
+ls
+cp (fd water.xyz ../../../../ | input list) .
+cp (fd water.xyz ../../../../ |lines | input list) .
+;s
+ls
+packmol -i packmol.inp
+ls
+litio solvated_12A_seed2026.xyz
+ls
+obabel
+ls
+hx packmol.inp
+packmol -i packmol.inp
+ls
+litio solvated_12A_seed2026.xyz
+ls
+ls
+conda activate mea-mlip
+hx /home/vport/.config/nushell/conda.nu:25:24
+conda activate mea-mlip
+ls
+ls data/ozd-solvation-v1/xyz/
+ls data/ozd-solvation-v1/xtb-jobs/
+ls data/ozd-solvation-v1/xtb-jobs/prod-attack-cluster_pack000/
+litio data/ozd-solvation-v1/xtb-jobs/prod-attack-cluster_pack000/xtbopt.log
+ls
+cd data/ozd-solvation-v1/xtb-jobs/prod-attack-cluster_pack000/
+ls
+hx command.json
+ls
+python scripts/generate_solvation.py reactions/ozd-formation/40-water --output data/ozd-solvation-v1 --charge 0 --multiplicity 1 --count 5 --relax --xtb /home/vport/software/xtb/bin/xtb --threads 2 --opt-cycles 50 --opt-seconds 300
+xtb --opt --input fix.inp --gxtb
+xtb input.xyz --opt --input fix.inp --gxtb
+ls
+litio xtbopt.log
+python scripts/generate_solvation.py reactions/ozd-formation/40-water --output data/ozd-solvation-v1 --charge 0 --multiplicity 1 --count 5 --relax --xtb /home/vport/software/xtb/bin/xtb --threads 16 --opt-cycles 500 --opt-seconds 1000000
+ls
+cd data/ozd-solvation-v1/
+ls
+..
+ls
+rm -r ozd-solvation-v1/
+trash-list
+ls
+..
+ls
+cd data/ozd-solvation-v1/
+ls
+litio xyz/prod-attack-cluster_pack000.xyz
+pwd xyz/prod-attack-cluster_pack000.xyz
+pwd
+ls
+litio xyz/*
+ls
+litio xyz/*
+ssh jupiter "qstat"
+cfree
+ls
+ssh jupiter "qstat" | lines 
+ssh jupiter "qstat" | detec columns --format guess
+ssh jupiter "qstat" | detect columns --format guess
+ssh jupiter "qstat" | detect columns --guess
+ssh jupiter "qstat" | detect columns --guess | where "Queue" == big
+mkdir calculations
+ls
+cd calculations/
+ls
+python scripts/generate_solvation.py reactions/ozd-formation/40-water --output data/ozd-solvation-v1 --charge 0 --multiplicity 1 --count 5 --relax --xtb /home/vport/software/xtb/bin/xtb --threads 16 --opt-cycles 500 --opt-seconds 1000000
+cp ../xyz/* .
+ls
+gedent gen grad * --nprocs 8
+gedent gen grad ...(glob *) --nprocs 8
+ls
+hx prod-attack-cluster_pack000.xyz
+ls
+ls *inp
+ls *inp | length
+30*3
+ls
+for i in *inp {<\n>qprep $i -r jupiter | bash<\n>}
+for i in (ls *inp | get name ) {<\n>qprep $i -r jupiter | bash<\n>}
+ls
+recli fetch
+ls
+ls
+recli fetch
+ls
+ls
+recli
+recli info c91e
+recli info c91e --json
+recli info c91e --json | from json
+recli info c91e --json | from json | get remote_dir
+recli info c91e --json | from json | get remote_dir | wl-copy
+cfree
+ls
+ssh jupiter
+ls
+recli fetch
+ssh jupiter "qstat"
+su
+ssh jupiter
+ls
+ssh jupiter
+ls
+cd data/water-only-v1/
+ls
+ls n27/
+for i in * {<\n>print $i<\n>}
+for i in (glob *) {<\n>print $i<\n>}
+...
+ls
+ls ozd-no-water/concerted-v1/
+for i in (glob *) {<\n>mkdir $"($i)/calculations"<\n>cp ...(glob $"($i)/xyz/*") $"($i)/calculations"<\n>}
+ls
+ls n27/calculations/
+ls
+cd n27/
+ls
+ls calculations/
+ls
+cd xtb-jobs/ls
+cd xyz
+ls
+litio water_27_pack000.xyz
+ls
+...
+..
+ls
+mkdir ../../gxtb/water-md
+cp water-only-v1/n40/xyz/water_40_pack000.xyz ../../gxtb/water-md/init.xyz
+ls
+ls
+cd ../../gxtb/water-md/
+ls
+..
+hx xtb.inp
+ls
+tail md.out
+ls
+litio xtb.trj
+/home/vport/software/xtb/bin/xtb init.xyz --gxtb --chrg 0 --uhf 0 --md --input xtb.inp --parallel 8 --norestart out+err> md.out
+tail md.out -f
+ls
+rm md.out
+ls
+litio xtb.trj
+/home/vport/software/xtb/bin/xtb init.xyz --gfn 2 --chrg 0 --uhf 0 --md --input xtb.inp --parallel 8 --norestart out+err> md.out
+tail md.out -f
+rm md.out
+ls
+litio xtb.trj
+/home/vport/software/xtb/bin/xtb init.xyz --gfn 2 --chrg 0 --uhf 0 --md --input xtb.inp --parallel 16 --norestart out+err> md.out
+tail md.out -f
+litio xtb.trj
+ls
+hx scripts/water_md.inp
+ls
+..
+cd z -
+z -
+ls
+hx ~/.config/nushell/abbr.nu
+ls
+cd reactions/
+ls
+mkdir water-md
+ls
+cp ../../gxtb/water-md/xtb.trj ./water-md/
+ls
+..
+ls
+python scripts/select_md.py reactions/water-md/xtb.trj --output data/water-md-selected-v1 --count 50 --skip 100 --stride 5 --min-gap 10 --charge 0 --multiplicity 1 --parent-id water40-md-replica1
+ls
+cd data/
+ls
+cd water-md-selected-v1/
+ls
+mkdir calculations
+litio xyz/frame_0000*
+ls
+cp xyz/* calculations/
+ls
+cd calculations/
+ls
+gedent gen grad ...(glob *) --nprocs 8
+ls
+ssh jupiter "qstat"
+recli fetch
+ls
+hx frame_0000101.xyz
+ls
+ls | get name | path parse 
+ls *xyz
+ls *xyz | length
+ls
+ls
+hx frame_0000101.inp
+gedent gen grad ...(glob *) --nprocs 16
+gedent gen grad ...(glob *xyz) --nprocs 16
+ls
+hx frame_0000101.inp
+ls
+pueue add -- job frame_0000101.inp
+ls
+pueue
+recli
+recli info c91e --json | from json | get remote_dir | wl-copy
+ssh jupiter
+tail -f frame_0000101.out
+ls
+ssh jupiter "qstat"
+recli fetch
+ls
+ssh jupiter "qstat"
+ls
+for i in (glob *inp) {<\n>pueue add -- job $i<\n>}
+pueue
+recli fetch
+ls
+ssh jupiter "qstat"
+pueue
+ls
+z water-md-sele
+ls
+cd calculations/
+ls
+tail frame_0000116.out -f
+ls
+pueue
+recli info c91e201
+recli info c91e201 --json | from json | get "Work dir"
+recli info c91e201 --json | from json 
+recli info c91e201 --json | from json | get work_dir
+cd (recli info c91e201 --json | from json | get work_dir)
+ls
+tail *out
+ls
+recli pull | next-job
+tail *out
+recli pull -v
+ls
+recli
+recli pull | next-job
+ls
+pueue
+pueue --help
+pueue
+pueue status --help
+pueue status --json
+pueue status --json | from json
+pueue status --json | from json | get id
+pueue status --json | from json | get groups
+pueue status --json | from json | get tasks
+pueue status --json | from json | get tasks | get id
+pueue status --json | from json | get tasks | get id | describe
+pueue status --json | from json | get tasks  | describe
+pueue status --json
+pueue status --json | from json | get tasks | explore
+pueue status --json | from json | get tasks | first
+pueue status --json | from json | get tasks | inspect 
+ls
+pueue
+pueue | columns 
+pueue | columns detect
+pueue | detect columns --guess
+pueue | detect columns --guess | get Group
+pueue | detect columns --guess | get Group[1:]
+pueue
+pueue clean
+pueue | detect columns --guess | get Group 
+pueue
+pueue | detect columns --guess | get Group 
+pueue | detect columns --guess | get Group | slice 3..
+for i in (pueue | detect columns --guess | get Group | slice 3..) {<\n>pueue stash $i<\n>}
+pueue
+pueue enqueue 227 228
+pueue
+for i in (pueue | detect columns --guess | get Group | slice 3..) {<\n>pueue enqueue $i<\n>}
+pueue
+recli fetch
+ls
+hx *engrad
+ls
+ls | get name
+ls | get name | path parse
+ls | get name | path parse | get stem
+ls | get name | path parse | get stem | uniq 
+ls | get name | path parse
+ls | get name | path parse | get stem
+ls | get name | path parse | get stem | path parse
+ls | get name | path parse | get stem | path parse | get stem
+ls | get name | path parse | get stem | path parse | get stem | uniq
+ls | get name
+ls | get name | split 
+ls | get name | split column "."
+ls | get name | split column "." | get column0
+ls | get name | split column "." | get column0 | uniq
+ls | get name | split column "." | get column0 | uniq | sort
+ls | get name | split column "." | get column0 | uniq | reverse
+for i in (pueue | detect columns --guess | get Group | slice 3..) {<\n>pueue stash $i<\n>}
+pueue
+ls
+ls *out
+...
+ls
+ls
+tail *out
+tail frame_0000146.out
+tail frame_0000146.out -f
+ls
+for i in (pueue | detect columns --guess | get Group | slice 3..) {<\n>pueue enqueue $i<\n>}
+ls
+recli fetch
+pueue
+recli fetch
+ls
+pueue
+recli fetch
+pueue
+recli pull
+recli fetch
+ls
+cd ozd-solvation-v1/
+ls
+ls calculations/
+cd calculations/
+ls
+tail *out
+ls
+ssh jupiter "qstat"
+recli pull
+ls
+pueue
+for i in (pueue | detect columns --guess | get Group | slice 3..) {<\n>pueue stash $i<\n>}
+ls
+pueue clean
+pueue
+for i in (pueue | detect columns --guess | get Group | slice 2..) {<\n>pueue stash $i<\n>}
+pueue
+ls
+ssh jupiter "qstat"
+ls
+ssh jupiter "qstat"
+pueue
+z water-md
+ls
+z water-md-se
+ls
+cd calculations/
+ls
+pueue
+pueue | detect columns --guess 
+ls
+ls 
+ls | get name | split column "." 
+ls | get name | split column "." | where "Column1" = inp
+ls | get name | split column "." | where "column1" = inp
+ls | get name | split column "." | where "column1" == "inp"
+inpfiles = ls | get name | split column "." | where "column1" == "inp"
+let = inpfiles = ls | get name | split column "." | where "column1" == "inp"
+let inpfiles = ls | get name | split column "." | where "column1" == "inp"
+let outfiles = ls | get name | splot column "." | where "column1" == out 
+let outfiles = ls | get name | split column "." | where "column1" == out 
+$outfiles
+for file in $inpfiles {<\n>if $file in $outfiles {<\n>echo "a"<\n>}<\n>}
+let outfiles = ls | get name | split column "." | where "column1" == out | get "column0"
+let inpfiles = ls | get name | split column "." | where "column1" == "inp" | get column0
+$inpfiles
+for file in $inpfiles {<\n>if $file in $outfiles {<\n>echo "a"<\n>}<\n>}
+$outfiles
+for file in $inpfiles {<\n>if $file in $outfiles {<\n>"a"<\n>}<\n>}
+"frame_0000101" in $outfiles
+for file in $inpfiles {<\n>$file<\n>}
+$inpfiles
+for file in $inpfiles {<\n>print $file<\n>}
+for file in $inpfiles {<\n>if $file in $outfiles {<\n>print "a"<\n>}<\n>}
+for file in $inpfiles {<\n>if not ($file in $outfiles) {<\n>print "a"<\n>}<\n>}
+for file in $inpfiles {<\n>if not ($file in $outfiles) {<\n>gedent gen grad $file --nprocs 8<\n>}<\n>}
+for file in $inpfiles {<\n>if not ($file in $outfiles) {<\n>gedent gen grad $"($file).xyz" --nprocs 8<\n>}<\n>}
+ls
+hx frame_0000991.inp
+for file in $inpfiles {<\n>if not ($file in $outfiles) {<\n>qprep -r jupiter $"($file).xyz" | bash<\n>}<\n>}
+recli pull
+for file in $inpfiles {<\n>if not ($file in $outfiles) {<\n>qprep -r jupiter $"($file).inp" | bash<\n>}<\n>}
+for i in 1..100 {<\n>recli pull <\n>}
+ls
+...
+ls
+cd ozd-solvation-v1/
+ls
+cd calculations/
+ls
+ls | sort-by size
+hx ~/.config/recli/ignore
+for i in 1..100 { <\n>recli pull -v<\n>}
+ls
+recli pull
+recli
+recli --status Error
+recli status --status error
+recli status --status error -a
+recli pull -v
+recli status --status error -a | detect columns --guess
+recli status --status error -a | detect columns --guess | where "MLIP" in "Work dir"
+recli status --status error -a | detect columns --guess | each {|row| if "MLIP" in $row."Work dir" {$row}}
+recli status --status error -a | detect columns --guess | each {|row| if "MLIP" in $row."Work dir" {$row}} | get ID
+ls
+recli
+recli fetch
+ls
+ls
+recli pull
+sudo dnf install waypipe
+ls
+ls ts-attack-cluster_pack000.xyz
+ls ts-attack-cluster_pack000.xyz | get name
+ls ts-attack-cluster_pack000.xyz | get name | path parse
+ls ts-attack-cluster_pack000.xyz | get name | path parse 
+ls ts-attack-cluster_pack000.xyz | get name | path expand 
+ls ts-attack-cluster_pack000.xyz | get name | path expand | wl-copy
+sudo dnf isntall weston
+sudo dnf install weston
+ls
+tail *out
+tail *out -n1
+ls
+ls
+fastfetch
+recli pull
+sudo dnf copr enable lizardbyte/stable
+systemctl --user start app-dev.lizardbyte.app.Sunshine
+systemctl status app-dev.lzardbyte.app.Sunshine
+systemctl status app-dev.lzardbyte.app.Sunshine --user
+systemctl list
+systemctl list-jobs
+systemctl --user list-jobs
+systemctl --user --help
+systemctl --user list-units
+journalctl --user -u app-dev.lizardbyte.app.Sunshine -n 80 --no-pager
+hx ~/.config/sunshine/sunshine.conf
+ls
+systemctl --user restart app-dev.lizardbyte.app.Sunshine
+ls
+tmux new
+tmux new-pane
+tmux new-window
+ls
+ls
+systemctl --user restart app-dev.lizardbyte.app.Sunshine
+journalctl --user -u app-dev.lizardbyte.app.Sunshine -n 80 --no-pager
+hx ~/.config/sunshine/sunshine.conf
+ls
+systemctl --user restart app-dev.lizardbyte.app.Sunshine
+journalctl --user -u app-dev.lizardbyte.app.Sunshine -n 80 --no-pager
+ls
+ls
+litio prod-attack-cluster_pack000.out
+ls
+recli pull
+ls
+cd td_mea/
+ls
+cd MLIP/
+ls
+cd td_mea/MLIP/
+ls
+recli pull
+ls
+recli
+ls
+cd data/
+ls
+cd ozd-solvation-v1/calculations/
+ls
+freqcheck ...(glob *out)
+...
+ls
+cd water-only-v1/
+ls
+cd n27/
+ls
+..
+ls
+..
+ls
+cd water-md-selected-v1/
+ls
+cd calculations/
+ls
+freqcheck ...(glob *out)
+gx frame_0000846.out
+hx frame_0000846.out
+ls
+hx (ls | input list --fuzzy)
+hx (ls | input list --fuzzy )
+hx (ls | input list --fuzzy | get name)
+hx (ls | fzf | get name)
+ls
+hx frame_0000846.inp
+ls
+pueue add -- job frame_0000846.inp
+ls
+litio frame_0000846.xyz
+litio frame_0000101.xyz
+ls
+fd xyz
+ls
+tail -f frame_0000846.out
+ls
+cd td_mea/MLIP/data/water-md-selected-v1/
+ls
+cd calculations/
+ls
+litio frame_0000101.xyz
+ls
+pueue
+ls
+litio frame_0000101.xyz
+ls
+pueue
+tail frame_0000846.out
+ls
+pueue 
+recli status --status error -a | detect columns --guess | each {|row| if "MLIP" in $row."Work dir" {$row}} | get ID
+ls
+freqcheck ...(glob *out)
+freqcheck ...(glob *out) > detect columns --guess
+freqcheck ...(glob *out) | detect columns --guess
+freqcheck --help
+ls
+freqcheck ...(glob *out)
+hx src/chem_utils/scripts/freqcheck.py
+ls
+git diff
+ls
+ls
+freqcheck ...(glob *out) --help
+freqcheck ...(glob *out) --json
+freqcheck ...(glob *out) --json | from json
+freqcheck ...(glob *out) --json | from json | where "status" == failed
+freqcheck ...(glob *out) --json | from json | where "status" == failed | get file
+hx (freqcheck ...(glob *out) --json | from json | where "status" == failed | get file)
+hx ...(freqcheck ...(glob *out) --json | from json | where "status" == failed | get file)
+hx ...(freqcheck ...(glob *out) --json | from json | where "status" == failed | get file | str replace "out" "inp")
+ls
+for i in  ...(freqcheck ...(glob *out) --json | from json | where "status" == failed | get file | str replace "out" "inp") {<\n>print $i<\n>}
+for i in (freqcheck ...(glob *out) --json | from json | where "status" == failed | get file | str replace "out" "inp") {<\n>print $i<\n>}
+for i in (freqcheck ...(glob *out) --json | from json | where "status" == failed | get file | str replace "out" "inp") {<\n>pueue add -- job $i<\n>}
+ls
+recli pull
+hx ~/.config/niri/config.kdl
+ls
+echo $0
+$nu.config-path
+$env.config
+ls
+recli pull
+pueue
+pueue clean
+pueue
+pueue remove 272
+pueue
+pueue status --json
+pueue status --json | from json
+pueue status --json | from json | get tasks 
+pueue status --json | from json | get tasks  | first
+pueue status --json | from json | get tasks  | first | get 238
+pueue status --json | from json | get tasks | get 238
+pueue status --json | from json | get tasks | inspect
+pueue status --json | from json | get tasks | explore
+ls
+pueu status --json |<\n>from json |<\n>get tasks |<\n>columns
+pueue status --json |<\n>from json |<\n>get tasks |<\n>columns
+pueue status --json |<\n>from json |<\n>get tasks |<\n>columns | into int
+pueue status --json<\n>from json |<\n>get tasks |<\n>columns
+pueue status --json |<\n>from json |<\n>get tasks |<\n>columns
+pueue status --json |<\n>from json |<\n>get tasks |<\n>transpose id task
+pueue status --json | <\n>from json |<\n>get tasks |<\n>transpose id task | get id
+for i in (pueue status --json | from json |get tasks |transpose id task | get id) {pueue remove $i}
+ls
+pueue
+ls
+freqcheck ...(glob *out) --json | from json | where "status" == failed | get file
+ls
+freqcheck ...(glob *out) 
+ls
+..
+ls
+..
+ls
+cd ozd-5-water/
+ls
+cd ozd-attack-v1/calculations/
+ls
+freqcheck ...(glob *out) 
+freqcheck ...(glob */*out) 
+..
+ls
+..
+ls
+cd ozd-leave-v1/
+ls
+freqcheck ...(glob */*out) 
+cd calculations/
+freqcheck ...(glob */*out) 
+..
+ls
+fd *out
+fd out
+freqcheck (fd out)
+fd out | lines
+freqcheck ...(fd out | lines)
+..
+ls
+freqcheck ...(fd out | lines) | where "Status" != OK
+freqcheck ...(fd out | lines) 
+z down
+ls
+molv untitled.mol
+ls
+z bebe
+..
+l
+cd projects/
+ls
+cd doc/
+ls
+mkdir bebe
+cd bebe/
+ls
+xsel --paste
+xsel -o
+mv ~/C42N6H21O6.xyz .
+ls
+litio C42N6H21O6.xyz
+ls
+xtb C42N6H21O6.xyz --opt 
+ls
+litio xtbopt.log
+ls
+rm *
+ls
+xsel --clipboard --output > init.xyz
+xsel --clipboard --output 
+xsel --clipboard --output  | save init.xyz
+ls
+molv 
+molv init.xyz
+xsel --clipboard --output  | save init.xyz
+xsel --clipboard --output  | save init.xyz -f
+ls
+hx init.xyz
+ls
+xtb init.xyz --opt
+litio xtbopt.log
+ls
+molv xtbopt.xyz
+xsel --clipboard --output  | litio
+xsel --clipboard --output  | save init.xyz -f
+ls
+xtb init.xyz --opt --gxtb
+ls
+litio xtbopt.log
+ls
+litio xtbopt.xyz | xyzrender
+ls
+open graphic.svg
+ls
+inkscape graphic.svg
+xyzrender --help
+litio xtbopt.xyz | xyzrender -o delado.png
+ls
+open delado.png
+ls
+inkscape graphic.svg
+ls
+litio xtbopt.xyz | xyzrender -o delado.svg
+ls
+inkscape *svg
+ls
+..
+ls
+ls
+hx init.xyz
+ls
+mkdir dft
+ls
+cp xtbopt.xyz dft/
+ls
+cd dft/
+ls
+gedent gen opt xtbopt.xyz
+ls
+hx xtbopt.inp
+cfree
+ls
+qprep xtbopt.inp -r jupiter |bash
+ssh jupiter "qstat"
+ls
+cfree
+ssh jupiter "qstat"
+ls
+...
+ls
+codex
+ls
+codex
+codex
+ls
+codex
+ls
+hx PLANS.md
+ls
+z ghostty
+ls
+hx config
+ls
+tmux
+tmux new-window
+codex
+config nu
+ls
+touch another.css
+confign u
+config nu
+ls
