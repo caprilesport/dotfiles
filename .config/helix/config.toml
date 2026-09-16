@@ -1,4 +1,4 @@
-theme = "everforest_dark"
+theme = "nord_transparent"
 
 [editor]
 line-number = "relative"
@@ -46,6 +46,8 @@ display-inlay-hints = true
 "C-h" = [":buffer-previous"]
 "{" = ["goto_prev_paragraph", "collapse_selection"]
 "}" = ["goto_next_paragraph", "collapse_selection"]
+X = ["extend_line_up", "extend_to_line_bounds"]
+
 
 [keys.normal.C-g]
 g = [
@@ -71,11 +73,9 @@ r = [
     ":reload-all"
 ]
 
-
 [keys.normal."+"]
 x = "@/xyz<ret>;jvgekxd<space>P<esc>F*;jxxdf*;k"
 p = [":sh python %{buffer_name}"]
-X = ["extend_line_up", "extend_to_line_bounds"]
 A-x = "extend_to_line_bounds"
 
 [keys.normal.space]

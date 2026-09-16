@@ -1,0 +1,4 @@
+inherits = "nord"
+
+# Let the terminal's translucent background show through the editor canvas.
+"ui.background" = {}
