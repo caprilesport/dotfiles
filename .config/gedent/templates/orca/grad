@@ -1,10 +1,10 @@
 {#-
 software = "orca"
-jobtype = "opt"
+jobtype = "sp"
 requires = ["method", "basis_set", "charge", "mult", "nprocs", "mem", "Molecule"]
-description = "Geometry optimization"
+description = "Single point energy + gradient"
 -#}! {{ method }} {{ basis_set }}{% if dispersion is defined %} {{ dispersion }}{% endif %}{% if solvation %}{% if solvation_model is defined and solvation_model == "alpb" %} ALPB({{ solvent }}){% elif solvation_model is defined and solvation_model == "cpcm" %} CPCM({{ solvent }}){% endif %}{% endif %}
-! Opt
+! EnGrad
 
 {% if pmodel -%}
 %scf 
@@ -21,19 +21,6 @@ end
  smd true
  SMDsolvent "{{ solvent }}"
 end
-{% endif -%}
-{% if maxiter is defined -%}
-%geom
- maxiter {{ maxiter }}
-end
-
-{% endif -%}
-{% if start_hessian is defined and start_hessian -%}
-%geom
- InHess Read
- InHessName "{{ name }}.hess"
-end
-
 {% endif -%}
 *xyz {{ charge }} {{ mult }}
 {{ print_coords(molecule = Molecule) }}

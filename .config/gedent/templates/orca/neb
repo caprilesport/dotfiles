@@ -21,11 +21,13 @@ end
  smd true
  SMDsolvent "{{ solvent }}"
 end
+
 {% endif -%}
 %neb
  neb_end_xyzfile "{{ name }}.end.xyz"
- nimages {% if nimages is defined %}{{ nimages }}{% else %}12{% endif %}
- preopt_ends true
+ nimages {% if nimages is defined %}{{ nimages }}{% else %}{{ nprocs }}{% endif %}
+ # preopt_ends true
+ # restart_allxyzfile "{{ name }}_MEP.allxyz"
 end
 
 *xyz {{ charge }} {{ mult }}

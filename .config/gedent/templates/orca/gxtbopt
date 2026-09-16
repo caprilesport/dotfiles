@@ -1,0 +1,19 @@
+{#-
+software = "orca"
+jobtype = "opt"
+requires = ["charge", "mult", "nprocs", "mem", "Molecule"]
+description = "Geometry optimization"
+-#}! xtb
+! Opt numfreq
+
+%pal
+ nprocs {{ nprocs }}
+end
+
+%xtb
+  XTBINPUTSTRING  "--gxtb" 
+end
+
+*xyz {{ charge }} {{ mult }}
+{{ print_coords(molecule = Molecule) }}
+*
