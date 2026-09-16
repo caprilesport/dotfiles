@@ -1,16 +1,24 @@
-export SSH_AUTH_SOCK="$XDG_RUNTIME_DIR/gcr/ssh"
+# export SSH_AUTH_SOCK="$XDG_RUNTIME_DIR/gcr/ssh"
 
 #allow less to scroll with mouse
 export LESS="--mouse --wheel-lines=3"
 
+export PATH="/usr/local/cuda/bin:$PATH"
+export PATH="/usr/lib64/openmpi/bin:$PATH"
+export PATH="$HOME/software/lammps/build:$PATH"
+export PATH="$HOME/software/vmd:$PATH"
+export PATH="$HOME/software/ovito/bin:$PATH"
+
 . "$HOME/.cargo/env"
 export PATH="$HOME/.local/bin:$PATH"
+export PATH="$HOME/.cargo/bin:$PATH"
 
 export PATH="$HOME/.npm-global/bin:$PATH"
 export PATH="$HOME/.npm-global/lib:$PATH"
 
 # some software 
 export PATH="$HOME/software:$PATH"
+export PATH="$HOME/software/tracy:$PATH"
 export PATH="$HOME/projects/scripts:$PATH" # my scripts
 
 export PATH="$HOME/software/blender-5:$PATH"
@@ -18,6 +26,7 @@ export PATH="$HOME/software/vmd-2:$PATH"
 export PATH="$HOME/software/vmd:$PATH"
 export PATH="$HOME/software/chimera-src/bin:$PATH"
 export PATH="$HOME/software/Multiwfn_2026.3.27_bin_Linux:$PATH"
+export PATH="$HOME/software/Zotero_linux-x86_64:$PATH"
 
 
 #path xtb/crest
@@ -25,8 +34,6 @@ export XTBHOME="$HOME/software/xtb"
 export PATH="$HOME/software/crest:$PATH"
 export PATH="$HOME/software/xtb/bin:$PATH" # some programs
 
-export GXTBHOME="$HOME/software/gxtb"
-export PATH="$HOME/software/gxtb:$PATH"
 
 #nbo
 export NBOEXE="$HOME/software/nbo7/bin/nbo7.i4.exe"
@@ -35,14 +42,13 @@ export NBOEXE="$HOME/software/nbo7/bin/nbo7.i4.exe"
 export GCM_CREDENTIAL_STORE=cache
 
 # orca 
-export PATH="$HOME/software/orca_6_0_1:$PATH"
+export PATH="$HOME/software/orca_6_1_1:$PATH"
 export PATH="$HOME/software/orca_5_0_4:$PATH"
-export LD_LIBRARY_PATH="$HOME/software/orca_6_0_1:$LD_LIBRARY_PATH"
+export LD_LIBRARY_PATH="$HOME/software/orca_6_1_1:$LD_LIBRARY_PATH"
 export LD_LIBRARY_PATH="$HOME/software/orca_5_0_4:$LD_LIBRARY_PATH"
-export PATH="/opt/openmpi-4.1.1/bin/:$PATH"
-export LD_LIBRARY_PATH="/opt/openmpi-4.1.1/lib:$LD_LIBRARY_PATH"
+export PATH="/opt/openmpi-4.1.8/bin/:$PATH"
+export LD_LIBRARY_PATH="/opt/openmpi-4.1.8/lib:$LD_LIBRARY_PATH"
 
-export PATH="$HOME/software/xtb-6.6.1/bin:$PATH" # some programs
 # go 
 export GOPATH="$HOME/projects"
 export GOPATH="$HOME/go:$GOPATH"
