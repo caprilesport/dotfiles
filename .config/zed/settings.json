@@ -1,0 +1,76 @@
+// Zed settings
+//
+// For information on how to configure Zed, see the Zed
+// documentation: https://zed.dev/docs/configuring-zed
+//
+// To see all of Zed's default settings without changing your
+// custom settings, run `zed: open default settings` from the
+// command palette (cmd-shift-p / ctrl-shift-p)
+{
+    // font stuff
+    "buffer_line_height": "comfortable",
+    "buffer_font_weight": 400.0,
+    "buffer_font_size": 16,
+    "buffer_font_family": "FiraCode Nerd Font Mono",
+    "ui_font_size": 16,
+
+    // ui, keymap & others
+    "document_symbols": "on",
+    "relative_line_numbers": "enabled",
+    "soft_wrap": "prefer_line",
+    "toolbar": { "quick_actions": true },
+    "tabs": { "file_icons": true },
+    "git": { "inline_blame": { "enabled": false } },
+    "current_line_highlight": "none",
+    "tab_size": 4,
+
+    "project_panel": {
+        "dock": "right",
+        "hide_root": true,
+
+        "starts_open": false,
+    },
+    "outline_panel": {
+        "dock": "right",
+    },
+    "collaboration_panel": {
+        "dock": "left",
+    },
+    "agent": {
+        "dock": "right",
+        "favorite_models": [],
+        "model_parameters": [],
+    },
+    "git_panel": {
+        "dock": "left",
+    },
+
+    // keymap
+    "vim_mode": true,
+    "helix_mode": false,
+    "base_keymap": "VSCode",
+
+    // theme
+    "icon_theme": "Material Icon Theme",
+    "theme": {
+        "mode": "dark",
+        "light": "One Light",
+        "dark": "Catppuccin Mocha",
+    },
+
+    // terminal
+    "terminal": {
+        "shell": {
+            "program": "fish",
+        },
+    },
+    "agent_servers": {
+        "codex-acp": {
+            "default_config_options": {
+                "reasoning_effort": "high",
+            },
+            "type": "registry",
+        },
+    },
+    "cli_default_open_behavior": "existing_window",
+}

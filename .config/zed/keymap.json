@@ -1,0 +1,233 @@
+// Zed keymap
+//
+// For information on binding keys, see the Zed
+// documentation: https://zed.dev/docs/key-bindings
+//
+// To see the default key bindings run `zed: open default keymap`
+// from the command palette.
+[
+    {
+        "bindings": {
+            // Change font size
+            "ctrl-+": ["zed::IncreaseBufferFontSize", { "persist": false }],
+            "ctrl-=": ["zed::ResetBufferFontSize", { "persist": false }],
+            "ctrl--": ["zed::DecreaseBufferFontSize", { "persist": false }],
+
+            // Jump back/forward in the jump list
+            //
+            // Global because we need them when we're not in Vim mode, e.g.
+            // when we are in the "Project Search"
+            "ctrl-o": "pane::GoBack",
+            "ctrl-i": "pane::GoForward",
+
+            // "ctrl-w" should do nothing by itself, as by default Zed binds it to close the
+            // active window: this frequently causes current window to be closed accidentally due
+            // to key timeout
+            "ctrl-w": null,
+
+            // close active item
+            "ctrl-s": "pane::CloseActiveItem",
+
+            // Go to next/previous tab
+            "ctrl-t": "vim::GoToPreviousTab",
+            "ctrl-n": "vim::GoToTab",
+
+            // These are under "ctrl" because they are useful e.g. in the Terminal
+            "ctrl-y": "workspace::CopyRelativePath",
+            "ctrl-shift-y": "workspace::CopyPath",
+
+            // Toggle focus
+            "ctrl-w t": "terminal_panel::ToggleFocus",
+            "ctrl-w ctrl-t": "terminal_panel::ToggleFocus",
+            "ctrl-w e": "project_panel::ToggleFocus",
+            "ctrl-w ctrl-e": "project_panel::ToggleFocus",
+            "ctrl-w m": "git_panel::ToggleFocus",
+            "ctrl-w ctrl-m": "git_panel::ToggleFocus",
+            // "ctrl-w shift-f": "collab_panel::ToggleFocus",
+            // "ctrl-w ctrl-shift-f": "collab_panel::ToggleFocus",
+            // "ctrl-w w": "editor::ToggleFocus",
+            // "ctrl-w ctrl-w": "editor::ToggleFocus",
+
+            // Toggle dock
+            "ctrl-w u": "workspace::ToggleBottomDock",
+            // "ctrl-w ctrl-u": "workspace::ToggleBottomDock",
+            // "ctrl-w y": "workspace::ToggleLeftDock",
+            // "ctrl-w ctrl-y": "workspace::ToggleLeftDock",
+
+            // New terminal
+            "ctrl-w i": "workspace::NewTerminal",
+            "ctrl-w ctrl-i": "workspace::NewTerminal",
+            "ctrl-w shift-i": "workspace::NewCenterTerminal",
+            "ctrl-w ctrl-shift-i": "workspace::NewCenterTerminal",
+        },
+    },
+    {
+        "context": "VimControl && !menu",
+        "bindings": {
+            // Incrementally increase/decrease tree-sitter selection
+            "alt-down": "vim::SelectSmallerSyntaxNode",
+            "alt-up": "vim::SelectLargerSyntaxNode",
+
+            // Goto References
+            "g r": "editor::FindAllReferences",
+
+            // File diagnostics
+            // "g t": "diagnostics::DeployCurrentFile",
+            // Workspace diagnostics
+            "g shift-t": "diagnostics::Deploy",
+
+            // Jump to file in multibuffers
+            // "g o": "editor::OpenExcerpts",
+
+            // Commands under "g" mode prefixed with "ctrl-w" will open
+            // in a split
+            // "ctrl-w g d": "editor::GoToDefinitionSplit",
+            // "ctrl-w g shift-d": "editor::GoToDeclarationSplit",
+            // "ctrl-w g y": "editor::GoToTypeDefinitionSplit",
+            // "ctrl-w g shift-i": "editor::GoToImplementationSplit",
+            // "ctrl-w g o": "editor::OpenExcerptsSplit",
+
+            // Multi-line t,f,T,F motions
+            "f": [
+                "vim::PushFindForward",
+                { "before": false, "multiline": true },
+            ],
+            "t": [
+                "vim::PushFindForward",
+                { "before": true, "multiline": true },
+            ],
+            "shift-f": [
+                "vim::PushFindBackward",
+                { "after": false, "multiline": true },
+            ],
+            "shift-t": [
+                "vim::PushFindBackward",
+                { "after": true, "multiline": true },
+            ],
+
+            // Replace object with yanked: "vp" but bound to a single key
+            // and doesn't replace contents with whatever we removed
+            // "up": "vim::PushReplaceWithRegister",
+
+            // To match "D" and "C"
+            // "shift-y": "vim::YankToEndOfLine",
+
+            // Add cursor below/above
+            "alt-right": "vim::HelixDuplicateBelow",
+            "alt-left": "vim::HelixDuplicateAbove",
+
+            // Motions that respect wrapped lines
+            "j": ["vim::Down", { "display_lines": true }],
+            "k": ["vim::Up", { "display_lines": true }],
+            "$": ["vim::EndOfLine", { "display_lines": true }],
+            "_": ["vim::FirstNonWhitespace", { "display_lines": true }],
+            "0": ["vim::StartOfLine", { "display_lines": true }],
+            // Motions that don't respect wrapped line
+            "g j": "vim::Down",
+            "g k": "vim::Up",
+            "g $": "vim::EndOfLine",
+            "g _": "vim::FirstNonWhitespace",
+            "g 0": "vim::StartOfLine",
+
+            // View hunk diff
+            // "g h": "editor::ToggleSelectedDiffHunks",
+            // Toggle if hunk is staged
+            "g shift-h": "git::ToggleStaged",
+            // Restore hunk to what it was before the change
+            // "g shift-r": "git::Restore",
+
+            // Manipulate selections
+            // "g l": "vim::HelixSelectRegex",
+            // "g shift-l": [
+            //     "editor::SplitSelectionIntoLines",
+            //     { "keep_selections": true },
+            // ],
+        },
+    },
+    {
+        "context": "VimControl && VimCount",
+        "bindings": {
+            // We overwrite the "0" keybind to respect visual lines, which will break
+            // counted jumps - so fix it by assigning to a number
+            "0": ["vim::Number", 0],
+        },
+    },
+    {
+        "context": "Editor && (vim_mode == normal || vim_mode ==  visual)",
+        "bindings": {
+            "space f": "file_finder::Toggle",
+            "space g": "pane::DeploySearch",
+            "space o": "outline::Toggle",
+            "space 1": ["pane::ActivateItem", 0],
+            "space 2": ["pane::ActivateItem", 1],
+            "space 3": ["pane::ActivateItem", 2],
+            "space 4": ["pane::ActivateItem", 3],
+            "space 5": ["pane::ActivateItem", 4],
+            "space 6": ["pane::ActivateItem", 5],
+            "space 7": ["pane::ActivateItem", 6],
+            "space 8": ["pane::ActivateItem", 7],
+        },
+    },
+    // Use "S" to add surround instead of "ys".
+    //
+    // Main reason is that "ys" is not available in Visual mode,
+    // and it would be awkward to use "ys" for adding surrounds in normal and "S" in visual
+    // so let's just make it "S" everywhere - since "S" is the same as "cc" anyways
+    {
+        "context": "vim_mode == normal",
+        "bindings": {
+            // Surround operator in normal mode
+            "shift-s": "vim::PushAddSurrounds",
+        },
+    },
+
+    // Visual mode bindings
+    {
+        "context": "Editor && vim_mode == visual && !VimWaiting && !VimObject",
+        "bindings": {
+            // Surround selection in visual mode with `S`
+            "shift-s": "vim::PushAddSurrounds",
+            // Like "p" but doesn't change the clipboard
+            "up": ["vim::Paste", { "preserve_clipboard": true }],
+        },
+    },
+
+    // Go to next/previous error
+    {
+        "context": "vim_mode == normal",
+        "bindings": {
+            "] s": ["editor::GoToDiagnostic", { "severity": "error" }],
+            "[ s": ["editor::GoToPreviousDiagnostic", { "severity": "error" }],
+        },
+    },
+
+    {
+        "context": "Editor && vim_mode == normal",
+        "bindings": {
+            "g r": "editor::FindAllReferences",
+            "space k": "editor::Hover",
+            "g d": "editor::GoToDefinition",
+            "space c r": "editor::Rename",
+            "space c a": "editor::ToggleCodeActions",
+        },
+    },
+    {
+        "context": "Editor && vim_mode == insert",
+        "bindings": {
+            // "j k": "vim::NormalBefore",
+        },
+    },
+    {
+        "context": "(VimControl && !menu) || (!Editor && !Terminal)",
+        "unbind": {
+            "ctrl-w p": "workspace::ActivatePreviousPane",
+        },
+    },
+    {
+        "context": "Workspace",
+        "bindings": {
+            "ctrl-w p": "workspace::ToggleRightDock",
+            "ctrl-w y": "workspace::ToggleLeftDock",
+        },
+    },
+]
