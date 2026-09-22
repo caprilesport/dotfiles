@@ -8,7 +8,8 @@ command = /home/vport/.cargo/bin/nu
 # window-new-tab-position = end
 mouse-hide-while-typing = true
 focus-follows-mouse = true
-desktop-notifications = false
+desktop-notifications = true
+window-save-state = always
 
 copy-on-select = clipboard
 clipboard-paste-protection = false
