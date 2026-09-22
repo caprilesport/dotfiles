@@ -5,6 +5,7 @@ $env.config.abbreviations = {
     ":q": exit
     ":!": exit
     tf: "tail -f"
+    mopen:xdg-open
     # -: "z -"
 
     #recli
