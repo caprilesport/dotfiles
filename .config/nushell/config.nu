@@ -22,7 +22,8 @@ use std/dirs
 $env.config.buffer_editor = "hx"
 $env.config.show_banner = false
 $env.config.rm.always_trash = true
-$env.config.completions.algorithm = "substring"
+$env.config.completions.partial = true
+$env.config.completions.algorithm = "fuzzy"
 $env.config.auto_cd_implicit = true
 $env.config.table.index_mode = "auto"
 $env.config.footer_mode = "auto"
@@ -49,7 +50,21 @@ $env.config.keybindings ++= [{
 # modules
 source ./abbr.nu
 source ./functions.nu
+source ./utils.nu
 
 # cli
 source ~/.zoxide.nu
 use ./conda.nu
+source $"($nu.cache-dir)/carapace.nu"
+
+#  Wrap Carapace and fall back to a small path completer that can match anywhere in the filename.
+let carapace_external_completer = $env.config.completions.external.completer
+
+$env.config.completions.external.completer = {|spans|
+    let carapace_results = (do $carapace_external_completer $spans)
+    if ($carapace_results | is-empty) {
+        partial-path-completions ($spans | last)
+    } else {
+        $carapace_results
+    }
+}

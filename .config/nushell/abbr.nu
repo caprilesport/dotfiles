@@ -1,4 +1,5 @@
 $env.config.abbreviations = {
+    lg: lazygit
     #system
     reload: "exec nu"
     ll: "ls -l"
