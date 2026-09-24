@@ -17,6 +17,7 @@ binds {
     Mod+T hotkey-overlay-title="Terminal" { spawn "kitty"; }
     Mod+B hotkey-overlay-title="Open Firefox" { spawn "firefox"; }
     Mod+D hotkey-overlay-title="Open Vicinae" repeat=false { spawn "vicinae" "toggle"; }
+    Mod+Shift+S hotkey-overlay-title="Kitty Sessions" repeat=false { spawn "vicinae" "cmd" "launch" "@vport/kitty-sessions:sessions"; }
     Super+Alt+L hotkey-overlay-title="Lock with Noctalia" { spawn-sh "noctalia msg session lock"; }
     Mod+E hotkey-overlay-title="Open Yazi in Kitty" { spawn "kitty" "-e" "yazi"; }
 

@@ -1,0 +1,17 @@
+{
+  "name": "kitty-sessions",
+  "title": "Kitty Sessions",
+  "description": "Browse and launch Kitty session files",
+  "icon": "icon.svg",
+  "author": "vport",
+  "license": "MIT",
+  "commands": [{
+    "name": "sessions",
+    "title": "Kitty Sessions",
+    "description": "Open a session in a new Kitty window",
+    "mode": "view"
+  }],
+  "scripts": {"build": "vici build", "dev": "vici develop", "typecheck": "tsc --noEmit"},
+  "dependencies": {"@vicinae/api": "0.29.0"},
+  "devDependencies": {"@types/node": "^22.0.0", "@types/react": "19.1.17", "typescript": "5.9.2"}
+}

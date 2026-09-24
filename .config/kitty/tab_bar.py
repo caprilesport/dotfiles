@@ -1,5 +1,5 @@
 # Custom kitty tab bar renderer.
-# Centered normal tabs + a rounded Nord cwd pill on the left.
+# Centered normal tabs + a rounded Nord session pill on the left.
 
 import os
 
@@ -14,9 +14,11 @@ INACTIVE_FG = "#4c566a"  # nord3
 LEFT = ""
 RIGHT = ""
 TAB_ICON = "󰓩"
-CWD_ICON = ""
+SESSION_ICON = "󰆧"  # layered workspace
 
-LEFT_CWD_MAX = 32
+LEFT_SESSION_MAX = 32
+# Widths collected during Kitty's measurement pass, separately per OS window.
+_layout_widths = {}
 
 
 def as_rgb(hex_color: str) -> int:
@@ -93,9 +95,12 @@ def smart_cwd(path: str, width: int) -> str:
     return fit_left(parts[-1], width)
 
 
-def draw_left_cwd(screen) -> None:
-    """Draw a cwd pill at the far left without participating in tab layout."""
-    old_x = screen.cursor.x
+def active_session_name() -> str:
+    return get_boss().active_session or "no session"
+
+
+def draw_left_session(screen) -> None:
+    """Draw a session pill, advancing the cursor to reserve its space."""
     old_fg = screen.cursor.fg
     old_bg = screen.cursor.bg
 
@@ -103,9 +108,8 @@ def draw_left_cwd(screen) -> None:
     active = as_rgb(ACTIVE)
     active_fg = as_rgb(ACTIVE_FG)
 
-    text = f"{CWD_ICON} {smart_cwd(active_cwd(), LEFT_CWD_MAX)}"
+    text = f"{SESSION_ICON} {fit(active_session_name(), LEFT_SESSION_MAX)}"
 
-    screen.cursor.x = 0
     screen.cursor.bg = bar
     screen.cursor.fg = active
     screen.draw(LEFT)
@@ -118,7 +122,9 @@ def draw_left_cwd(screen) -> None:
     screen.cursor.fg = active
     screen.draw(RIGHT)
 
-    screen.cursor.x = old_x
+    # Draw the gap on the bar background, not the active tab's background.
+    screen.cursor.bg = bar
+    screen.draw(" ")
     screen.cursor.fg = old_fg
     screen.cursor.bg = old_bg
 
@@ -129,8 +135,24 @@ def draw_tab(draw_data, screen, tab, before, max_tab_length, index, is_last, ext
     active_fg = as_rgb(ACTIVE_FG)
     inactive_fg = as_rgb(INACTIVE_FG)
 
-    if index == 1 and not extra_data.for_layout:
-        draw_left_cwd(screen)
+    widths = _layout_widths.setdefault(tab.os_window_id, [])
+    if index == 1:
+        if extra_data.for_layout:
+            widths.clear()
+        # The session stays at column zero; Kitty's global alignment is disabled.
+        screen.cursor.x = 0
+        screen.cursor.bold = False
+        screen.cursor.italic = False
+        draw_left_session(screen)
+        label_width = screen.cursor.x
+        max_tab_length = max(1, max_tab_length - label_width)
+        if not extra_data.for_layout:
+            # Center the tabs in the full bar when possible. On crowded bars,
+            # move them right just enough to avoid the session label.
+            tabs_width = sum(widths)
+            screen.cursor.x = max(label_width, (screen.columns - tabs_width) // 2)
+
+    tab_start = screen.cursor.x
 
     suffix = ""
     if tab.needs_attention:
@@ -169,4 +191,6 @@ def draw_tab(draw_data, screen, tab, before, max_tab_length, index, is_last, ext
     screen.cursor.fg = inactive_fg
     if not is_last:
         screen.draw(" ")
+    if extra_data.for_layout:
+        widths.append(screen.cursor.x - tab_start)
     return screen.cursor.x
