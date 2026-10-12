@@ -1,4 +1,9 @@
-theme = "nord_transparent"
+theme = "github_light"
+
+[editor.cursor-shape]
+normal = "bar"
+insert = "bar"
+select = "underline"
 
 [editor]
 line-number = "relative"
@@ -8,11 +13,6 @@ bufferline = "always"
 true-color = true
 insecure = true
 mouse = true
-
-[editor.cursor-shape]
-insert = "bar"
-normal = "block"
-select = "underline"
 
 [editor.indent-guides]
 render = true

@@ -38,7 +38,6 @@ window-rule {
 window-rule {
     match app-id=r#"firefox$"#
     exclude title="^Picture-in-Picture$"
-    opacity 0.93
 }
 
 // Keep Steam friend/activity toast windows out of the center of the workspace.

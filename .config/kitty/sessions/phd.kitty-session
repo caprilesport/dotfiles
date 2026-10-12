@@ -3,7 +3,7 @@ layout tall
 # Set the working directory for windows in the current tab
 cd ~/projects/doc/td_mea
 # Start pi, matching the main tab in the other sessions
-launch /home/vport/.local/bin/pi
+launch /home/vport/.local/bin/codex
 
 new_tab shell
 cd ~/projects/doc/td_mea

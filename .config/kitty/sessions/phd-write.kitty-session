@@ -1,0 +1,23 @@
+# Set the layout for the current tab
+layout tall
+# Set the working directory for windows in the current tab
+cd ~/projects/doc/td_mea/
+# Create the "main" window and run an editor in it to edit the project files
+launch /home/vport/.local/bin/codex
+
+new_tab hx
+cd ~/projects/doc/td_mea/
+launch hx .
+
+new_tab scratch
+layout splits
+cd ~/projects/doc/td_mea/
+launch --var window=shell bash
+launch --location=hsplit --bias=20 typst watch ./report/main.typ
+launch --location=vsplit bash
+
+new_tab git
+cd ~/projects/doc/td_mea/report
+launch lazygit
+
+focus_tab 1

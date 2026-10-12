@@ -1,0 +1,21 @@
+# Set the layout for the current tab
+layout tall
+# Set the working directory for windows in the current tab
+cd ~/projects/LaMP/oracle
+# Create the "main" window and run an editor in it to edit the project files
+launch /home/vport/.local/bin/codex
+
+new_tab hx
+cd ~/projects/LaMP/oracle
+launch hx .
+
+new_tab scratch
+layout splits
+cd ~/projects/LaMP/oracle
+launch --var window=shell bash
+
+new_tab git
+cd ~/projects/LaMP/oracle
+launch lazygit
+
+focus_tab 1

@@ -3,7 +3,7 @@ layout tall
 # Set the working directory for windows in the current tab
 cd ~/projects/recli
 # Create the "main" window and run an editor in it to edit the project files
-launch /home/vport/.local/bin/pi --continue
+launch /home/vport/.local/bin/codex --continue
 
 new_tab hx
 cd ~/projects/recli
@@ -12,7 +12,7 @@ launch hx .
 new_tab scratch
 layout splits
 cd ~/projects/recli
-launch --var window=shell nu
+launch --var window=shell bash
 launch --location=vsplit --bias 60 bacon 
 
 new_tab git
